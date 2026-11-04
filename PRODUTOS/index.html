@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consulta de Produtos — Painel de Contratações</title>
+<style>
+:root{color-scheme:light;--ink:#17263c;--muted:#68778d;--line:#dce4ef;--blue:#2457d6;--panel:#fff;--bg:#f4f7fb;--teal:#087f5b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:14px}
+header{padding:25px max(20px,calc((100% - 1450px)/2));background:linear-gradient(115deg,#13294b,#2457d6);color:#fff}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#b9ccff;font-weight:700}h1{font-size:clamp(25px,3vw,34px);margin:8px 0}.intro{margin:0;color:#dbe5ff;line-height:1.5}
+main{max-width:1494px;margin:auto;padding:22px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.button{display:inline-block;padding:10px 14px;border-radius:9px;background:#fff;border:1px solid var(--line);color:#23406e;text-decoration:none;font-weight:700;font-size:12px;cursor:pointer}.button.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.panel{padding:18px;border:1px solid var(--line);border-radius:15px;background:var(--panel);box-shadow:0 8px 28px rgba(22,42,78,.06);margin-bottom:14px}.panel-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}.panel-title h2{font-size:15px;margin:0 0 4px}.panel-title p{font-size:11px;color:var(--muted);margin:0;line-height:1.5}
+.filters{display:grid;grid-template-columns:repeat(4,minmax(170px,1fr));gap:12px}.field label{display:block;color:var(--muted);font-size:11px;font-weight:700;margin:0 0 6px}.field input,.field select{width:100%;min-width:0;background:#fbfcfe;border:1px solid var(--line);border-radius:9px;padding:10px;color:var(--ink);font:inherit;outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2457d61c}.filter-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;flex-wrap:wrap}.filter-summary{font-size:12px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.kpi{padding:15px 17px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 6px 20px rgba(22,42,78,.05);min-width:0}.kpi span{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.kpi strong{display:block;font-size:clamp(16px,1.8vw,22px);overflow-wrap:anywhere}
+.table-toolbar{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}.table-toolbar p{font-size:11px;color:var(--muted);margin:0}.table-scroll{overflow:auto;max-height:70vh;border:1px solid var(--line);border-radius:10px}table{border-collapse:separate;border-spacing:0;min-width:1800px;width:100%;font-size:11px}thead{position:sticky;top:0;z-index:2;background:#edf2fb;color:#34445e}th,td{padding:10px 11px;text-align:left;border-bottom:1px solid #e8edf4;white-space:nowrap}th{font-size:10px;text-transform:uppercase;letter-spacing:.035em;cursor:pointer;user-select:none}th:hover{background:#e3ebfa}tbody tr:nth-child(even){background:#f8faff}tbody tr:hover{background:#edf4ff}td.money{text-align:right;font-variant-numeric:tabular-nums}.empty{text-align:center;padding:30px;color:var(--muted)}
+.pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;flex-wrap:wrap;color:var(--muted);font-size:12px}.pagination-actions{display:flex;align-items:center;gap:8px}.pagination-actions button{padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:#edf2fb;color:#23406e;font-weight:700;cursor:pointer}.pagination-actions button:disabled{opacity:.45;cursor:not-allowed}.load-error{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:15px}
+@media(max-width:900px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){main{padding:13px}header{padding:22px 17px}.panel{padding:13px}.filters{grid-template-columns:1fr}.kpis{gap:8px}.kpi{padding:12px}.pagination{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Painel de Contratações • CCHSA/UFPB</div>
+  <h1>Consulta de Produtos</h1>
+  <p class="intro">Filtre os produtos e consulte quantidades, empenhos e saldos da base de contratações.</p>
+</header>
+<main>
+  <div class="toolbar"><a class="button" href="../index.html">← Voltar à dashboard</a><button class="button primary" id="exportCsv" type="button">↓ Exportar CSV</button></div>
+  <section class="panel">
+    <div class="panel-title"><div><h2>Filtros da consulta</h2><p>A tabela e os indicadores são atualizados enquanto você altera os filtros.</p></div><button class="button" id="clearFilters" type="button">Limpar filtros</button></div>
+    <div class="filters">
+      <div class="field"><label for="numberFilter">Número do pregão/IRP</label><input id="numberFilter" list="numberOptions" placeholder="Digite o número" autocomplete="off"><datalist id="numberOptions"></datalist></div>
+      <div class="field"><label for="yearFilter">Ano</label><select id="yearFilter"><option value="">Todos os anos</option></select></div>
+      <div class="field"><label for="modalityFilter">Modalidade</label><select id="modalityFilter"><option value="">Todas as modalidades</option></select></div>
+      <div class="field"><label for="supplierFilter">Nome do fornecedor</label><input id="supplierFilter" list="supplierOptions" placeholder="Digite o fornecedor" autocomplete="off"><datalist id="supplierOptions"></datalist></div>
+      <div class="field"><label for="cnpjFilter">CNPJ</label><input id="cnpjFilter" placeholder="Digite o CNPJ" autocomplete="off"></div>
+      <div class="field"><label for="itemFilter">Número do item</label><input id="itemFilter" placeholder="Digite o número do item" inputmode="numeric"></div>
+      <div class="field"><label for="descriptionFilter">Descrição do produto</label><input id="descriptionFilter" list="descriptionOptions" placeholder="Digite parte da descrição" autocomplete="off"><datalist id="descriptionOptions"></datalist></div>
+      <div class="field"><label for="commitmentFilter">Número da nota de empenho</label><input id="commitmentFilter" list="commitmentOptions" placeholder="Digite a nota de empenho" autocomplete="off"><datalist id="commitmentOptions"></datalist></div>
+      <div class="field"><label for="invoiceFilter">Número da nota fiscal</label><input id="invoiceFilter" placeholder="Digite a nota fiscal" autocomplete="off"></div>
+    </div>
+    <div class="filter-actions"><div class="filter-summary" id="filterSummary">Carregando base de produtos…</div></div>
+  </section>
+  <section class="kpis" aria-label="Resumo dos produtos">
+    <article class="kpi"><span>Linhas encontradas</span><strong id="kpiRows">—</strong></article>
+    <article class="kpi"><span>Fornecedores</span><strong id="kpiSuppliers">—</strong></article>
+    <article class="kpi"><span>Valor empenhado no recorte</span><strong id="kpiCommitted">—</strong></article>
+    <article class="kpi"><span>Saldo dos produtos</span><strong id="kpiBalance">—</strong></article>
+  </section>
+  <section class="panel">
+    <div class="panel-title"><div><h2>Produtos da contratação</h2><p>Clique nos cabeçalhos para ordenar. A tabela contém todas as colunas da base.</p></div></div>
+    <div class="table-toolbar"><p id="tableSummary">—</p><label class="field" style="display:flex;align-items:center;gap:8px">Linhas por página <select id="pageSize" style="width:auto"><option>25</option><option>50</option><option>100</option></select></label></div>
+    <div class="table-scroll"><table><thead><tr id="tableHead"></tr></thead><tbody id="tableBody"><tr><td class="empty">Carregando dados…</td></tr></tbody></table></div>
+    <div class="pagination"><span id="pageInfo">—</span><div class="pagination-actions"><button id="prevPage" type="button">← Anterior</button><button id="nextPage" type="button">Próxima →</button></div></div>
+  </section>
+</main>
+<script>
+const DATA_URL='./dados_produtos.json';
+const columns=[
+ {key:'Modalidade',label:'Modalidade'}, {key:'Número',label:'Número'}, {key:'Ano',label:'Ano'},
+ {key:'Nome do fornecedor',label:'Nome do fornecedor'}, {key:'CNPJ',label:'CNPJ'},
+ {key:'Valor total da ata',label:'Valor total da ata',type:'money'}, {key:'Valor total adquirido',label:'Valor total adquirido',type:'money'},
+ {key:'Num. Item',label:'Num. Item'}, {key:'Descrição',label:'Descrição'}, {key:'Qtd. ARP',label:'Qtd. ARP',type:'number'},
+ {key:'Valor unitário',label:'Valor unitário',type:'money'}, {key:'Qtd empenhada',label:'Qtd empenhada',type:'number'},
+ {key:'Valor empenhado',label:'Valor empenhado',type:'money'}, {key:'Num. Nota Emp',label:'Num. Nota Emp'},
+ {key:'Num. Nota Fiscal',label:'Num. Nota Fiscal'}, {key:'Qtd. adquirida',label:'Qtd. adquirida',type:'number'},
+ {key:'Qtd. restante',label:'Qtd. restante',type:'number'}, {key:'Saldo dos produtos',label:'Saldo dos produtos',type:'money'}
+];
+const $=id=>document.getElementById(id), money=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(n)||0), number=n=>new Intl.NumberFormat('pt-BR',{maximumFractionDigits:3}).format(Number(n)||0);
+let DATA=[],page=0,pageSize=25,sortKey='Num. Item',sortDir=1;
+const filterIds=['numberFilter','yearFilter','modalityFilter','supplierFilter','cnpjFilter','itemFilter','descriptionFilter','commitmentFilter','invoiceFilter'];
+const norm=v=>String(v??'').trim().toLocaleLowerCase('pt-BR');
+function setOptions(id,values,placeholder){const el=$(id);el.replaceChildren(new Option(placeholder,''),...values.map(v=>new Option(String(v),String(v))));}
+function fillDatalist(id,values){$(id).replaceChildren(...values.map(v=>{const o=document.createElement('option');o.value=String(v);return o;}));}
+function filteredRows(){
+ const f=Object.fromEntries(filterIds.map(id=>[id,norm($(id).value)]));
+ return DATA.filter(r=>norm(r['Número']).includes(f.numberFilter)&&(!f.yearFilter||String(r['Ano']??'')===f.yearFilter)&&(!f.modalityFilter||norm(r['Modalidade'])===f.modalityFilter)&&norm(r['Nome do fornecedor']).includes(f.supplierFilter)&&norm(r.CNPJ).includes(f.cnpjFilter)&&String(r['Num. Item']??'').includes(f.itemFilter)&&norm(r['Descrição']).includes(f.descriptionFilter)&&norm(r['Num. Nota Emp']).includes(f.commitmentFilter)&&norm(r['Num. Nota Fiscal']).includes(f.invoiceFilter));
+}
+function updateSummary(rows){
+ $('kpiRows').textContent=rows.length.toLocaleString('pt-BR');
+ $('kpiSuppliers').textContent=new Set(rows.map(r=>r['Nome do fornecedor']).filter(Boolean)).size.toLocaleString('pt-BR');
+ $('kpiCommitted').textContent=money(rows.reduce((s,r)=>s+(Number(r['Valor empenhado'])||0),0));
+ $('kpiBalance').textContent=money(rows.reduce((s,r)=>s+(Number(r['Saldo dos produtos'])||0),0));
+ $('filterSummary').textContent=`${rows.length.toLocaleString('pt-BR')} de ${DATA.length.toLocaleString('pt-BR')} linhas após os filtros`;
+}
+function displayValue(row,col){const value=row[col.key];if(value===null||value===undefined||value==='')return '—';if(col.type==='money')return money(value);if(col.type==='number')return number(value);return String(value);}
+function renderTable(){
+ const rows=filteredRows();updateSummary(rows);
+ rows.sort((a,b)=>{const x=a[sortKey],y=b[sortKey],nx=Number(x),ny=Number(y);const numeric=x!==''&&y!==''&&Number.isFinite(nx)&&Number.isFinite(ny);const c=numeric?nx-ny:String(x??'').localeCompare(String(y??''),'pt-BR',{numeric:true,sensitivity:'base'});return c*sortDir;});
+ const totalPages=Math.max(1,Math.ceil(rows.length/pageSize));page=Math.min(page,totalPages-1);
+ const shown=rows.slice(page*pageSize,(page+1)*pageSize),body=$('tableBody');body.replaceChildren();
+ if(!shown.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=columns.length;td.className='empty';td.textContent='Nenhum produto encontrado com os filtros atuais.';tr.appendChild(td);body.appendChild(tr);}
+ shown.forEach(row=>{const tr=document.createElement('tr');columns.forEach(col=>{const td=document.createElement('td');td.textContent=displayValue(row,col);if(col.type==='money')td.className='money';tr.appendChild(td);});body.appendChild(tr);});
+ $('tableSummary').textContent=`${rows.length.toLocaleString('pt-BR')} registro(s) • ${new Set(rows.map(r=>r['Num. Item']).filter(v=>v!==null&&v!==undefined&&v!=='')).size.toLocaleString('pt-BR')} número(s) de item`;
+ $('pageInfo').textContent=`Página ${page+1} de ${totalPages} • ${rows.length.toLocaleString('pt-BR')} registro(s)`;
+ $('prevPage').disabled=page===0;$('nextPage').disabled=page>=totalPages-1;
+}
+function buildHeaders(){const head=$('tableHead');columns.forEach(col=>{const th=document.createElement('th');th.textContent=col.label+' ↕';th.addEventListener('click',()=>{if(sortKey===col.key)sortDir*=-1;else{sortKey=col.key;sortDir=1;}renderTable();});head.appendChild(th);});}
+function exportCsv(){const rows=filteredRows(),csv=[columns.map(c=>c.label),...rows.map(r=>columns.map(c=>r[c.key]??''))].map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(';')).join('\r\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='produtos_filtrados.csv';a.click();URL.revokeObjectURL(url);}
+function clearFilters(){filterIds.forEach(id=>$(id).value='');page=0;renderTable();}
+fetch(DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Não foi possível carregar dados_produtos.json');return r.json();}).then(rows=>{
+ if(!Array.isArray(rows))throw new Error('A base de produtos precisa conter uma lista de registros.');DATA=rows;
+ setOptions('yearFilter',[...new Set(DATA.map(r=>r['Ano']).filter(v=>v!==null&&v!==''))].sort((a,b)=>Number(a)-Number(b)),'Todos os anos');
+ setOptions('modalityFilter',[...new Set(DATA.map(r=>r['Modalidade']).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR')),'Todas as modalidades');
+ fillDatalist('numberOptions',[...new Set(DATA.map(r=>r['Número']).filter(v=>v!==null&&v!==''))]);
+ fillDatalist('supplierOptions',[...new Set(DATA.map(r=>r['Nome do fornecedor']).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR')));
+ fillDatalist('descriptionOptions',[...new Set(DATA.map(r=>r['Descrição']).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR')));
+ fillDatalist('commitmentOptions',[...new Set(DATA.map(r=>r['Num. Nota Emp']).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR')));
+ buildHeaders();renderTable();
+}).catch(err=>{$('tableBody').innerHTML=`<tr><td class="empty" colspan="${columns.length}"><div class="load-error">${err.message}. Confira se o arquivo foi publicado na pasta PRODUTOS.</div></td></tr>`;$('filterSummary').textContent='Erro ao carregar os dados.';console.error(err);});
+filterIds.forEach(id=>$(id).addEventListener('input',()=>{page=0;renderTable();}));
+['yearFilter','modalityFilter'].forEach(id=>$(id).addEventListener('change',()=>{page=0;renderTable();}));
+$('pageSize').addEventListener('change',e=>{pageSize=Number(e.target.value)||25;page=0;renderTable();});
+$('clearFilters').addEventListener('click',clearFilters);$('prevPage').addEventListener('click',()=>{if(page>0){page--;renderTable();}});$('nextPage').addEventListener('click',()=>{if((page+1)*pageSize<filteredRows().length){page++;renderTable();}});$('exportCsv').addEventListener('click',exportCsv);
+</script>
+</body>
+</html>

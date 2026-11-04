@@ -1480,9 +1480,9 @@
     "cnpj": "67.457.705/0001-03",
     "estado": "SP",
     "planejado": 5732.89,
-    "empenho": "",
-    "empenhado": 0,
-    "dataEmpenho": "",
+    "empenho": "2026NE000131",
+    "empenhado": 5732.89,
+    "dataEmpenho": "04/09/2026",
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
