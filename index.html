@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Contratações e Execução Financeira</title>
+<style>
+:root{--bg:#f4f7fb;--panel:#fff;--ink:#17263c;--muted:#68778d;--line:#e4eaf2;--blue:#2457d6;--blue2:#6487ef;--teal:#0f9f8f;--orange:#e99a37;--red:#dc5c67;--shadow:0 8px 28px rgba(22,42,78,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:14px}
+header{background:linear-gradient(115deg,#13294b,#2457d6);color:white;padding:28px max(22px,calc((100% - 1500px)/2)) 26px}
+.headline{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:#b9ccff}.headline h1{margin:8px 0 7px;font-size:clamp(24px,3vw,34px);letter-spacing:-.03em}.headline p{margin:0;color:#dbe5ff;max-width:760px;line-height:1.55}.head-actions{display:flex;gap:9px;flex-wrap:wrap}
+button{border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;font-size:12px;transition:.15s}button:hover{transform:translateY(-1px)}.btn-light{background:#fff;color:#1d3f85}.btn-ghost{background:#ffffff1a;color:white;border:1px solid #ffffff42}
+main{max-width:1500px;margin:auto;padding:22px}.filters{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:var(--shadow);margin-top:-2px}.section-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-top h2{font-size:14px;margin:0}.hint{font-size:11px;color:var(--muted)}
+.filter-grid{display:grid;grid-template-columns:repeat(6,minmax(125px,1fr));gap:12px}.field label{display:block;color:var(--muted);font-size:11px;font-weight:700;margin:0 0 6px}.field input,.field select{width:100%;min-width:0;background:#fbfcfe;border:1px solid #dce4ef;border-radius:9px;padding:10px;color:var(--ink);outline:none;font:inherit}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2457d61c}.filter-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:13px;flex-wrap:wrap}.filter-summary{font-size:12px;color:var(--muted)}.btn-primary{background:var(--blue);color:white}.btn-secondary{background:#edf2fb;color:#23406e}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}.kpi{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:var(--shadow);min-width:0}.kpi-head{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:650}.kpi-icon{display:grid;place-items:center;width:33px;height:33px;border-radius:10px;background:#edf2ff;color:var(--blue);font-size:17px}.kpi-value{font-size:clamp(19px,2vw,28px);font-weight:800;letter-spacing:-.04em;margin:13px 0 6px;overflow-wrap:anywhere}.kpi-foot{font-size:11px;color:var(--muted)}.kpi-foot strong{color:var(--teal)}
+.charts{display:grid;grid-template-columns:1.15fr 1fr;gap:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:var(--shadow);min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}.panel-title h2{font-size:14px;margin:0 0 5px}.panel-title p{font-size:11px;color:var(--muted);margin:0}.chart-wrap{position:relative;width:100%;height:300px}.chart-wrap canvas{width:100%;height:100%;display:block}.chart-note{font-size:11px;color:var(--muted);margin-top:7px}.lower{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.insights{display:grid;gap:10px}.insight{display:flex;gap:11px;padding:11px;border-radius:11px;background:#f7f9fd;border:1px solid #edf1f7}.insight-mark{width:28px;height:28px;flex:0 0 28px;display:grid;place-items:center;border-radius:8px;background:#e7eeff;color:var(--blue);font-weight:800}.insight b{display:block;font-size:12px;margin:1px 0 4px}.insight p{margin:0;font-size:12px;color:var(--muted);line-height:1.45}
+.table-panel{margin-top:14px}.table-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.table-controls input{border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-width:210px;font:inherit}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:12px}thead{background:#f4f7fc;color:#506078}th,td{padding:12px 13px;text-align:left;border-bottom:1px solid #edf1f6}th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer}tbody tr:hover{background:#f8faff}td.money{text-align:right;font-variant-numeric:tabular-nums}tbody tr:last-child td{border-bottom:0}.tag{display:inline-block;padding:4px 7px;border-radius:6px;background:#edf2ff;color:#2852b6;font-weight:700;font-size:10px}.pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:13px;color:var(--muted);font-size:12px}.pagination-actions{display:flex;gap:7px}.pagination-actions button{padding:8px 11px}.empty{padding:28px;text-align:center;color:var(--muted)}footer{max-width:1500px;margin:auto;padding:0 22px 24px;color:var(--muted);font-size:11px;line-height:1.6}
+@media(max-width:1050px){.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.charts,.lower{grid-template-columns:1fr}}
+@media(max-width:600px){main{padding:13px}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{gap:9px}.kpi{padding:13px}.kpi-value{font-size:19px}.panel{padding:14px}.chart-wrap{height:260px}header{padding:23px 17px}.head-actions{width:100%}.head-actions button{flex:1}.filter-grid{gap:9px}}
+
+/* Mapa interativo por UF */
+.map-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:18px;align-items:stretch}
+.state-map{display:grid;grid-template-columns:repeat(10,minmax(28px,1fr));grid-template-rows:repeat(7,48px);gap:5px;align-content:center;min-height:360px;padding:10px;background:#f7f9fd;border:1px solid #edf1f7;border-radius:12px}
+.state-tile{border:1px solid #dce5f2;border-radius:8px;background:#e9effb;color:#29456f;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3px;min-width:0;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+.state-tile strong{font-size:12px}.state-tile small{font-size:9px;opacity:.8;margin-top:2px}.state-tile:hover{transform:translateY(-2px);box-shadow:0 4px 12px #1c3e771c}.state-tile.active{outline:2px solid #2457d6;outline-offset:1px;background:#2457d6!important;color:#fff!important}
+.map-legend{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:11px}.legend-swatch{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:4px}
+.map-details{border:1px solid var(--line);border-radius:12px;padding:15px;min-width:0}.map-details h3{font-size:15px;margin:0 0 5px}.map-details .sub{color:var(--muted);font-size:11px;line-height:1.5;margin-bottom:12px}.state-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}.state-stat{background:#f6f8fc;border-radius:9px;padding:10px;min-width:0}.state-stat span{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.state-stat strong{display:block;font-size:13px;overflow-wrap:anywhere}.supplier-list{display:grid;gap:8px;max-height:260px;overflow:auto}.supplier-item{border:1px solid #edf1f6;border-radius:9px;padding:10px}.supplier-item b{font-size:11px;display:block;line-height:1.4;overflow-wrap:anywhere}.supplier-item span{font-size:10px;color:var(--muted);display:block;margin-top:4px;line-height:1.4}.supplier-item .supplier-money{color:#167c70;font-weight:700}
+.invoice-chart-note{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:7px}
+@media(max-width:850px){.map-layout{grid-template-columns:1fr}.state-map{grid-template-rows:repeat(7,40px);min-height:300px}}
+@media(max-width:600px){.state-map{gap:3px;grid-template-rows:repeat(7,34px);padding:6px}.state-tile strong{font-size:10px}.state-tile small{font-size:8px}.map-details{padding:12px}}
+
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+
+<style>
+/* Mapa geográfico choropleth incorporado à dashboard */
+.geo-map-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.85fr);gap:16px;align-items:stretch}
+#geoMap{height:520px;width:100%;border:1px solid #e1e8f2;border-radius:12px;overflow:hidden;background:#edf2f7;z-index:1}
+.geo-map-note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:9px}
+.geo-map-legend{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)}
+.geo-map-legend span{display:inline-flex;align-items:center;gap:5px}
+.geo-map-legend i{width:17px;height:12px;border-radius:3px;display:inline-block;border:1px solid #ffffff}
+.geo-details{background:#f8faff;border:1px solid #e5ebf4;border-radius:12px;padding:15px;min-height:520px;max-height:620px;overflow:auto}
+.geo-details h3{margin:0 0 5px;font-size:16px;color:#17345d}
+.geo-details .geo-sub{color:var(--muted);font-size:11px;line-height:1.45;margin-bottom:12px}
+.geo-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.geo-metric{background:#fff;border:1px solid #e5ebf4;border-radius:9px;padding:10px}
+.geo-metric small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:700;margin-bottom:5px}
+.geo-metric strong{display:block;font-size:13px;overflow-wrap:anywhere}
+.geo-company{background:#fff;border:1px solid #e5ebf4;border-radius:9px;margin:9px 0;overflow:hidden}
+.geo-company summary{cursor:pointer;padding:11px 12px;font-weight:700;font-size:12px;color:#1d3f70;line-height:1.4}
+.geo-company summary::marker{color:#2457d6}
+.geo-company-body{padding:0 12px 12px;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.geo-field{background:#f7f9fd;border-radius:7px;padding:8px;min-width:0}
+.geo-field.full{grid-column:1/-1}
+.geo-field small{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.geo-field span{font-size:11px;font-weight:650;overflow-wrap:anywhere;display:block}
+.geo-empty{padding:25px 12px;text-align:center;color:var(--muted);font-size:12px;line-height:1.6}
+.leaflet-tooltip{font-family:Inter,Segoe UI,Arial,sans-serif}
+@media(max-width:900px){.geo-map-layout{grid-template-columns:1fr}#geoMap{height:430px}.geo-details{min-height:240px;max-height:none}}
+@media(max-width:600px){#geoMap{height:360px}.geo-details{padding:12px}}
+</style>
+
+<style id="dark-theme-map-emphasis">
+:root {
+  color-scheme: dark;
+  --bg:#080d17; --surface:#111827; --surface2:#172235; --border:#29364b;
+  --text:#111827; --muted:#9aa9bf; --accent:#60a5fa; --accent2:#34d399;
+}
+html, body { background:#080d17 !important; color:#111827 !important; }
+body { background-image: radial-gradient(ellipse at 15% 0%, rgba(37,99,235,.13), transparent 42%) !important; }
+header, .header, .topbar, .hero, .panel, .card, .chart-card, .section-card,
+.kpi, .metric-card, .filter-card, .filter-panel, .chart-container, .content-card {
+  background:#111827 !important; color:#111827 !important; border-color:#29364b !important;
+}
+h1,h2,h3,h4,h5,strong,b,label { color:#edf4ff; }
+p,small,.muted,.subtitle,.description { color:#9aa9bf; }
+input,select,textarea,button:not(.leaflet-control-zoom-in):not(.leaflet-control-zoom-out) {
+  background:#172235; color:#111827; border-color:#35445c;
+}
+input::placeholder,textarea::placeholder { color:#8292aa; }
+hr { border-color:#29364b; }
+table, th, td { border-color:#29364b !important; }
+th { background:#172235 !important; color:#dbeafe !important; }
+tr:nth-child(even) td { background:rgba(23,34,53,.5); }
+a { color:#7dd3fc; }
+.kpi, .metric-card {
+  box-shadow:0 10px 28px rgba(0,0,0,.22) !important;
+}
+#geoMap {
+  height: min(68vh, 650px) !important; min-height:480px !important;
+  width:100% !important; border:1px solid #334155 !important; border-radius:16px !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.38) !important; background:#0b1422 !important;
+}
+#geoDetails {
+  background:#0e1726 !important; color:#111827 !important;
+  border:1px solid #334155 !important; border-radius:16px !important;
+  padding:18px !important; box-shadow:0 14px 35px rgba(0,0,0,.28) !important;
+}
+.leaflet-container { background:#0b1422 !important; font:inherit; }
+.leaflet-control-zoom a { background:#172235 !important; color:#111827 !important; border-color:#35445c !important; }
+.leaflet-control-attribution { background:rgba(8,13,23,.8) !important; color:#9aa9bf !important; }
+.leaflet-control-attribution a { color:#7dd3fc !important; }
+.leaflet-popup-content-wrapper,.leaflet-popup-tip { background:#111827 !important; color:#111827 !important; }
+.geo-emphasis-section { margin:22px 0 30px !important; padding:20px !important; background:linear-gradient(145deg,#101a2b,#0c1422) !important; border:1px solid #2b3b54 !important; border-radius:20px !important; box-shadow:0 18px 45px rgba(0,0,0,.3) !important; }
+.geo-emphasis-section h2 { font-size:clamp(1.35rem,2vw,1.9rem) !important; letter-spacing:-.025em; }
+.geo-emphasis-intro { color:#9fb0c8 !important; margin:0 0 16px !important; }
+.geo-emphasis-grid { display:grid !important; grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr) !important; gap:18px !important; align-items:stretch !important; }
+@media(max-width:900px){.geo-emphasis-grid{grid-template-columns:1fr !important;} #geoMap{min-height:380px !important;height:55vh !important;}}
+</style>
+
+
+<style id="geo-map-and-details-layout">
+.geo-emphasis-section { margin:22px 0 30px !important; padding:20px !important; background:linear-gradient(145deg,#101a2b,#0c1422) !important; border:1px solid #2b3b54 !important; border-radius:20px !important; box-shadow:0 18px 45px rgba(0,0,0,.3) !important; }
+.geo-emphasis-grid { display:grid !important; grid-template-columns:minmax(0,1.8fr) minmax(320px,1fr) !important; gap:18px !important; align-items:stretch !important; }
+.geo-map-column,.geo-details-column { min-width:0; }
+.geo-details-column { max-height:min(68vh,650px); overflow:auto; }
+#geoMap { height:min(68vh,650px) !important; min-height:480px !important; }
+#geoDetails { min-height:100%; box-sizing:border-box; }
+@media(max-width:900px){.geo-emphasis-grid{grid-template-columns:1fr !important;} .geo-details-column{max-height:none;} #geoMap{height:55vh !important;min-height:380px !important;}}
+</style>
+
+
+<style id="map-after-filters-kpis">
+#supplier-map-feature { position:relative; clear:both; width:100%; margin-top:24px !important; }
+</style>
+
+
+<style id="complete-dark-theme">
+:root {
+  color-scheme: dark;
+  --bg:#080d17; --panel:#111827; --panel-2:#172235; --line:#d1d5db;
+  --text:#111827; --muted:#475569; --accent:#7dd3fc;
+}
+html, body {
+  background:#080d17 !important;
+  color:#111827 !important;
+}
+body {
+  background-image:radial-gradient(ellipse at 15% 0%, rgba(37,99,235,.12), transparent 45%) !important;
+}
+body * { border-color:var(--line); }
+header, main, footer, section, article, aside, nav,
+.panel, .card, .filter-card, .filter-panel, .filters, .filters-panel,
+.kpi, .kpi-card, .metric-card, .stat-card, .chart-card, .chart-panel,
+.table-panel, .table-container, .content-card, .dashboard-section,
+.panel-title, .panel-header, .panel-body, .filter-group, .filter-item {
+  background-color:#111827 !important;
+  color:#111827 !important;
+}
+.panel-title, .panel-header, .section-title {
+  border-color:#d1d5db !important;
+}
+h1,h2,h3,h4,h5,h6,strong,b,label,legend,th,dt {
+  color:#edf4ff !important;
+}
+p,small,.muted,.subtitle,.description,.hint,.chart-note,.geo-map-note,
+.geo-sub,.invoice-chart-note,.table-note,.help-text {
+  color:#475569 !important;
+}
+input,select,textarea,button {
+  background:#172235 !important;
+  color:#111827 !important;
+  border-color:#3a4a63 !important;
+}
+input::placeholder,textarea::placeholder { color:#8fa0b8 !important; }
+input[type="date"]::-webkit-calendar-picker-indicator { filter:invert(1); }
+button:hover { background:#22324a !important; }
+table { background:#111827 !important; color:#111827 !important; }
+thead, th { background:#1a2940 !important; color:#edf4ff !important; }
+tbody tr, tbody td { background:#111827 !important; color:#111827 !important; }
+tbody tr:nth-child(even) td { background:#152033 !important; }
+a { color:#7dd3fc !important; }
+hr { border-color:#d1d5db !important; }
+pre,code { background:#0b1220 !important; color:#dbeafe !important; }
+#supplier-map-feature, #geoDetails, .geo-details, .geo-map-layout,
+#filters, #filterPanel, .filters-panel, .filter-panel {
+  background:#111827 !important;
+  color:#111827 !important;
+  border-color:#334155 !important;
+}
+#geoDetails *, .geo-details * { color:#111827 !important; }
+#geoDetails .geo-sub, .geo-details .geo-sub,
+#geoDetails .geo-empty, .geo-details .geo-empty {
+  color:#475569 !important;
+}
+#geoMap, .leaflet-container { background:#0b1422 !important; }
+.leaflet-control-zoom a {
+  background:#172235 !important; color:#111827 !important; border-color:#35445c !important;
+}
+.leaflet-control-attribution { background:rgba(8,13,23,.88) !important; color:#475569 !important; }
+.leaflet-control-attribution a { color:#7dd3fc !important; }
+.badge, .tag { background:#1d2b42 !important; color:#bfdbfe !important; border-color:#3b4f6b !important; }
+canvas { color-scheme:dark; }
+@media(max-width:900px) {
+  #supplier-map-feature { padding:14px !important; }
+}
+</style>
+
+
+<style id="fix-map-supplier-panel-dark">
+/* Painel lateral do mapa: sobrescreve estilos claros que estavam definidos inline ou em regras anteriores. */
+#geoDetails,
+#geoDetails * {
+  color: #111827 !important;
+  border-color: #334155 !important;
+}
+#geoDetails {
+  background: #0e1726 !important;
+  color: #111827 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 16px !important;
+}
+#geoDetails div,
+#geoDetails article,
+#geoDetails section,
+#geoDetails details,
+#geoDetails summary,
+#geoDetails button,
+#geoDetails .supplier-card,
+#geoDetails .supplier-item,
+#geoDetails .supplier,
+#geoDetails .detail-card,
+#geoDetails .info-card,
+#geoDetails .metric-card,
+#geoDetails .stat-card,
+#geoDetails .vendor-card,
+#geoDetails .contract-card,
+#geoDetails .record-card {
+  background-color: #172235 !important;
+  color: #111827 !important;
+  border-color: #334155 !important;
+  box-shadow: none !important;
+}
+#geoDetails h1,#geoDetails h2,#geoDetails h3,#geoDetails h4,
+#geoDetails h5,#geoDetails h6,#geoDetails strong,#geoDetails b,
+#geoDetails label,#geoDetails summary {
+  color: #f1f5f9 !important;
+}
+#geoDetails p,#geoDetails span,#geoDetails small,
+#geoDetails .muted,#geoDetails .subtitle,#geoDetails .description,
+#geoDetails .geo-sub,#geoDetails .geo-empty {
+  color: #475569 !important;
+}
+#geoDetails input,#geoDetails select,#geoDetails textarea {
+  background: #111827 !important;
+  color: #111827 !important;
+  border-color: #3a4a63 !important;
+}
+#geoDetails .supplier-card *,
+#geoDetails .supplier-item *,
+#geoDetails .detail-card *,
+#geoDetails .info-card *,
+#geoDetails .vendor-card *,
+#geoDetails .contract-card *,
+#geoDetails .record-card * {
+  color: #111827 !important;
+  border-color: #334155 !important;
+}
+#geoDetails [style*="background: white"],
+#geoDetails [style*="background:white"],
+#geoDetails [style*="background-color: white"],
+#geoDetails [style*="background-color:white"],
+#geoDetails [style*="background: rgb(255"],
+#geoDetails [style*="background-color: rgb(255"] {
+  background: #172235 !important;
+}
+#geoDetails .leaflet-popup-content-wrapper { background:#111827 !important; }
+</style>
+
+
+
+
+<style id="insights-dark-theme-fix-final">
+/* Fix definitivo: cards de Insights automáticos no tema escuro */
+html body main .panel #insights > .insight,
+html body main .insights#insights > .insight,
+html body main .insights .insight {
+  background: #172235 !important;
+  background-color: #172235 !important;
+  border: 1px solid #2d3b52 !important;
+  color: #111827 !important;
+  box-shadow: none !important;
+}
+html body main .panel #insights > .insight b,
+html body main .insights .insight b { color: #f1f5fb !important; }
+html body main .panel #insights > .insight p,
+html body main .insights .insight p { color: #b7c4d8 !important; }
+html body main .panel #insights > .insight .insight-mark,
+html body main .insights .insight .insight-mark {
+  background: #243653 !important; background-color: #243653 !important; color: #8fb0ff !important;
+}
+</style>
+
+<style id="dashboard-premium-surfaces">
+html, body {
+  background-color:#080e1b !important;
+  background-image:
+    radial-gradient(ellipse at 8% 4%, rgba(37,99,235,.19), transparent 34%),
+    radial-gradient(ellipse at 92% 18%, rgba(20,184,166,.10), transparent 30%),
+    linear-gradient(145deg,#080e1b 0%,#0b1322 52%,#0a1020 100%) !important;
+  background-attachment:fixed !important;
+}
+header {
+  background:linear-gradient(112deg,#101c32 0%,#17376b 58%,#174d69 100%) !important;
+  border-bottom:1px solid rgba(125,211,252,.2) !important;
+  box-shadow:0 16px 42px rgba(0,0,0,.24) !important;
+}
+html body main .filters,
+html body main .panel,
+html body main .kpi {
+  background:linear-gradient(145deg,rgba(22,34,55,.98),rgba(14,24,41,.98)) !important;
+  border:1px solid rgba(137,164,204,.19) !important;
+  box-shadow:0 16px 38px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.035) !important;
+  position:relative;
+  overflow:hidden;
+}
+html body main .filters {
+  background:linear-gradient(120deg,rgba(24,42,68,.98),rgba(15,27,46,.98)) !important;
+  border-color:rgba(96,165,250,.28) !important;
+  border-radius:18px !important;
+}
+html body main .kpi {
+  border-radius:17px !important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+html body main .kpi:hover {
+  transform:translateY(-3px);
+  border-color:rgba(125,211,252,.42) !important;
+  box-shadow:0 20px 44px rgba(0,0,0,.32),0 0 24px rgba(59,130,246,.08) !important;
+}
+html body main .kpi:nth-child(1){border-top:2px solid #60a5fa !important}
+html body main .kpi:nth-child(2){border-top:2px solid #34d399 !important}
+html body main .kpi:nth-child(3){border-top:2px solid #a78bfa !important}
+html body main .kpi:nth-child(4){border-top:2px solid #fbbf24 !important}
+html body main .kpi-icon {
+  background:linear-gradient(145deg,#203b61,#1c2e4c) !important;
+  color:#9bdcff !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+html body main .panel {border-radius:17px !important}
+html body main .panel-title {background:transparent !important}
+html body main .tag {
+  background:linear-gradient(135deg,#203b61,#1b304c) !important;
+  border:1px solid rgba(125,211,252,.16) !important;
+  color:#c4e6ff !important;
+}
+html body main .chart-wrap {border-radius:12px}
+html body main .table-scroll {
+  border-color:rgba(137,164,204,.18) !important;
+  box-shadow:inset 0 1px 8px rgba(0,0,0,.12);
+}
+#supplier-map-feature {
+  background:linear-gradient(145deg,rgba(19,34,56,.98),rgba(12,22,38,.98)) !important;
+  border:1px solid rgba(45,212,191,.22) !important;
+  box-shadow:0 18px 44px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.035) !important;
+}
+@media(max-width:600px){html,body{background-attachment:scroll !important}}
+</style>
+
+<style id="dashboard-visual-details">
+header .headline {align-items:center;}
+header .eyebrow {
+  display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid rgba(191,219,254,.23);
+  border-radius:999px;background:rgba(10,25,48,.28);color:#c7ddff !important;font-size:10px;letter-spacing:.13em;
+}
+header .eyebrow::before {content:"";width:7px;height:7px;border-radius:50%;background:#5eead4;box-shadow:0 0 12px rgba(94,234,212,.8)}
+header .headline h1 {text-shadow:0 3px 22px rgba(125,211,252,.2);}
+header .headline p {color:#d0def3 !important;}
+header .btn-ghost,header .btn-light,html body main button {
+  border-radius:11px !important;transition:transform .18s ease,box-shadow .18s ease,background .18s ease !important;
+}
+header .btn-ghost:hover {background:rgba(255,255,255,.15) !important;box-shadow:0 8px 22px rgba(0,0,0,.18)}
+header .btn-light:hover {box-shadow:0 8px 24px rgba(0,0,0,.2);}
+html body main .btn-primary {background:linear-gradient(135deg,#3478ee,#2457d6) !important;box-shadow:0 6px 16px rgba(36,87,214,.24)}
+html body main .btn-secondary {background:linear-gradient(135deg,#243653,#1b2a41) !important;color:#d9e8ff !important;border:1px solid rgba(137,164,204,.2) !important}
+html body main button:hover {transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.22)}
+html body main .section-top {padding-bottom:11px;border-bottom:1px solid rgba(137,164,204,.14)}
+html body main .section-top h2 {font-size:15px;letter-spacing:.01em}
+html body main .hint {padding:5px 9px;border-radius:999px;background:rgba(96,165,250,.09);color:#a9c8ec !important}
+html body main .field label {color:#b6c7df !important;letter-spacing:.02em}
+html body main .field input,html body main .field select,
+html body main .table-controls input {
+  background:linear-gradient(180deg,#111e31,#0e192a) !important;border:1px solid #30425d !important;
+  border-radius:10px !important;box-shadow:inset 0 2px 5px rgba(0,0,0,.14);transition:border-color .16s ease,box-shadow .16s ease;
+}
+html body main .field input:focus,html body main .field select:focus,html body main .table-controls input:focus {
+  border-color:#60a5fa !important;box-shadow:0 0 0 3px rgba(96,165,250,.17),inset 0 2px 5px rgba(0,0,0,.14) !important;
+}
+html body main .filter-summary {padding:7px 10px;border-left:2px solid #34d399;border-radius:0 8px 8px 0;background:rgba(52,211,153,.07);color:#b8cbe3 !important}
+html body main .kpi {padding:19px 19px 17px !important}
+html body main .kpi-value {color:#f3f8ff !important;text-shadow:0 2px 18px rgba(96,165,250,.14);font-variant-numeric:tabular-nums}
+html body main .kpi-head {color:#bdcbe0 !important}
+html body main .kpi-foot {color:#91a4bf !important}
+html body main .kpi:nth-child(2) .kpi-icon {color:#6ee7b7 !important;background:linear-gradient(145deg,#183f42,#193441) !important}
+html body main .kpi:nth-child(3) .kpi-icon {color:#c4b5fd !important;background:linear-gradient(145deg,#352c5a,#25294b) !important}
+html body main .kpi:nth-child(4) .kpi-icon {color:#fcd34d !important;background:linear-gradient(145deg,#4a3b24,#332d27) !important}
+html body main .panel {transition:border-color .18s ease,box-shadow .18s ease}
+html body main .panel:hover {border-color:rgba(125,211,252,.3) !important;box-shadow:0 20px 46px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04) !important}
+html body main .panel-title {padding-bottom:10px;border-bottom:1px solid rgba(137,164,204,.12)}
+html body main .panel-title h2 {font-size:15px;letter-spacing:-.01em}
+html body main .panel-title h2::before {content:"";display:inline-block;width:4px;height:13px;margin:0 8px 0 0;border-radius:4px;vertical-align:-2px;background:linear-gradient(180deg,#67e8f9,#60a5fa);box-shadow:0 0 10px rgba(96,165,250,.35)}
+html body main .panel-title p {color:#9eb0c9 !important;line-height:1.5}
+html body main .chart-wrap {background:linear-gradient(180deg,rgba(8,16,29,.22),rgba(8,16,29,.04));border:1px solid rgba(137,164,204,.07);}
+html body main .chart-note {color:#91a4bf !important}
+html body main .insight {background:linear-gradient(120deg,#192a43,#142238) !important;border-color:rgba(137,164,204,.16) !important;border-radius:13px !important;transition:transform .16s ease,border-color .16s ease}
+html body main .insight:hover {transform:translateX(3px);border-color:rgba(125,211,252,.28) !important}
+html body main .insight-mark {box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+html body main .table-scroll {border-radius:13px !important}
+html body main thead th {position:sticky;top:0;z-index:1;background:linear-gradient(180deg,#20324c,#192941) !important;color:#dceaff !important;border-bottom:1px solid #3b506e !important}
+html body main tbody tr {transition:background .12s ease}
+html body main tbody tr:hover td {background:#1c2d46 !important}
+html body main tbody td {color:#d0dced !important}
+html body main td .tag {border-radius:999px !important}
+html body main .pagination {padding-top:15px}
+html body main .pagination-actions button:disabled {filter:saturate(.45);}
+#supplier-map-feature h2 {color:#e6fbff !important}
+#supplier-map-feature .geo-emphasis-intro {max-width:780px;color:#a7bdd1 !important;line-height:1.6}
+#geoMap {box-shadow:inset 0 0 30px rgba(0,0,0,.15),0 10px 24px rgba(0,0,0,.18) !important}
+#geoDetails {background:linear-gradient(150deg,#14233a,#101b2d) !important}
+html body footer {color:#7f91aa !important}
+html body ::-webkit-scrollbar {width:10px;height:10px}
+html body ::-webkit-scrollbar-track {background:#0c1524;border-radius:10px}
+html body ::-webkit-scrollbar-thumb {background:#30435f;border:2px solid #0c1524;border-radius:10px}
+html body ::-webkit-scrollbar-thumb:hover {background:#476486}
+@media(prefers-reduced-motion:reduce){html body main *,header button{transition:none !important;scroll-behavior:auto !important}}
+@media(max-width:600px){
+  html body main .panel-title h2 {font-size:14px}
+  html body main .kpi {padding:14px !important}
+  html body main .section-top {align-items:flex-start;flex-direction:column}
+  html body main .chart-wrap {background:transparent;border:0}
+}
+</style>
+
+<style id="dashboard-full-light-theme">
+:root {color-scheme:light;--bg:#f3f5f8;--panel:#fff;--line:#111827;--ink:#111827;--muted:#475569;--blue:#2457d6;--teal:#087f5b;--shadow:0 8px 24px rgba(15,23,42,.08)}
+html,body {background:#f1f3f6 !important;background-image:linear-gradient(180deg,#f8fafc 0%,#edf1f5 100%) !important;background-attachment:scroll !important;color:#111827 !important}
+header {background:linear-gradient(112deg,#fff 0%,#f1f5f9 65%,#e9eef5 100%) !important;color:#111827 !important;border-bottom:1px solid #111827 !important;box-shadow:0 8px 22px rgba(15,23,42,.08) !important}
+header .eyebrow {background:#e8f0ff !important;color:#1e40af !important;border-color:#111827 !important}
+header .headline h1,header .headline p,header h1 {color:#111827 !important;text-shadow:none !important}
+header .headline p {color:#475569 !important}
+header .btn-ghost {background:#fff !important;color:#111827 !important;border:1px solid #111827 !important}
+header .btn-light {background:#111827 !important;color:#fff !important}
+html body, html body main, html body main section, html body main article, html body main aside,
+html body main .filters,html body main .panel,html body main .kpi,html body main .geo-emphasis-section {
+  color:#111827 !important;background-color:#fff !important;
+}
+html body main .filters,html body main .panel,html body main .kpi,html body main .geo-emphasis-section {
+  border:1px solid #111827 !important;border-radius:15px !important;
+  box-shadow:0 7px 20px rgba(15,23,42,.07) !important;
+}
+html body main .filters {background:linear-gradient(135deg,#fff,#f7f9fc) !important}
+html body main .panel,html body main .kpi {background:linear-gradient(145deg,#fff,#f9fafb) !important}
+html body main .panel:hover,html body main .kpi:hover {border-color:#111827 !important;box-shadow:0 11px 26px rgba(15,23,42,.12) !important}
+html body main .panel-title,html body main .section-top {background:transparent !important;border-color:#d1d5db !important}
+html body main h1,html body main h2,html body main h3,html body main h4,
+html body main strong,html body main b,html body main label,html body main .kpi-value {color:#111827 !important;text-shadow:none !important}
+html body main p,html body main small,html body main .hint,html body main .chart-note,
+html body main .panel-title p,html body main .filter-summary,html body main .kpi-head,
+html body main .kpi-foot,html body footer {color:#475569 !important}
+html body main .kpi-icon {background:#e8eef8 !important;color:#1d4ed8 !important;box-shadow:none !important}
+html body main .kpi:nth-child(n) {border-top:1px solid #111827 !important}
+html body main .field input,html body main .field select,html body main .table-controls input,
+html body main input,html body main select {background:#fff !important;color:#111827 !important;border:1px solid #64748b !important;box-shadow:none !important}
+html body main input::placeholder {color:#64748b !important}
+html body main .field input:focus,html body main .field select:focus,html body main .table-controls input:focus {border-color:#2457d6 !important;box-shadow:0 0 0 3px rgba(36,87,214,.14) !important}
+html body main button,html body main .btn-secondary {background:#eef2f7 !important;color:#111827 !important;border:1px solid #111827 !important}
+html body main .btn-primary {background:#2457d6 !important;color:#fff !important;border:1px solid #173b99 !important}
+html body main .tag {background:#e8eef8 !important;color:#1e3a8a !important;border:1px solid #64748b !important}
+html body main .chart-wrap {background:#f8fafc !important;border:1px solid #d1d5db !important}
+html body main .insight {background:#f8fafc !important;color:#111827 !important;border:1px solid #111827 !important}
+html body main .insight b,html body main .insight p {color:#111827 !important}
+html body main .insight-mark {background:#e8eef8 !important;color:#1e40af !important}
+html body main .table-scroll {background:#fff !important;border:1px solid #111827 !important}
+html body main table,html body main tbody tr,html body main tbody td {background:#fff !important;color:#111827 !important}
+html body main thead th {background:#e9edf2 !important;color:#111827 !important;border-bottom:1px solid #111827 !important}
+html body main tbody tr:nth-child(even) td {background:#f5f7f9 !important}
+html body main tbody tr:hover td {background:#e8f0ff !important}
+html body main td,html body main th {border-color:#d1d5db !important}
+html body main .geo-emphasis-section {background:linear-gradient(145deg,#fff,#f5f8fb) !important}
+#supplier-map-feature h2,#supplier-map-feature .geo-emphasis-intro {color:#111827 !important}
+#geoMap,.leaflet-container {background:#eef2f6 !important;border:1px solid #111827 !important}
+#geoDetails {background:#fff !important;color:#111827 !important;border:1px solid #111827 !important}
+#geoDetails *,#geoDetails h1,#geoDetails h2,#geoDetails h3,#geoDetails strong,#geoDetails b,
+#geoDetails span,#geoDetails small,#geoDetails p,#geoDetails summary {color:#111827 !important}
+#geoDetails .geo-sub,#geoDetails .geo-empty,#geoDetails small {color:#475569 !important}
+#geoDetails div,#geoDetails article,#geoDetails section,#geoDetails details,#geoDetails summary,
+#geoDetails .geo-company,#geoDetails .geo-company-body,#geoDetails .geo-metric,#geoDetails .geo-field,
+#geoDetails .supplier-card,#geoDetails .supplier-item {background:#f8fafc !important;border-color:#111827 !important}
+#geoDetails [style*="color:#2563eb"],#geoDetails [style*="color:#16803d"] {color:#166534 !important}
+.leaflet-tooltip,.leaflet-popup-content-wrapper,.leaflet-popup-tip {background:#fff !important;color:#111827 !important;border:1px solid #64748b !important;box-shadow:0 3px 12px rgba(15,23,42,.15) !important}
+.leaflet-control-zoom a {background:#fff !important;color:#111827 !important;border-color:#64748b !important}
+.leaflet-control-attribution {background:rgba(255,255,255,.92) !important;color:#475569 !important}
+.leaflet-control-attribution a {color:#1d4ed8 !important}
+#invoiceScatterTooltip {background:#fff !important;color:#111827 !important;border-color:#111827 !important;box-shadow:0 8px 24px rgba(15,23,42,.18) !important}
+html body ::-webkit-scrollbar-track {background:#e5e7eb !important}
+html body ::-webkit-scrollbar-thumb {background:#9ca3af !important;border-color:#e5e7eb !important}
+html body ::-webkit-scrollbar-thumb:hover {background:#6b7280 !important}
+html body main #supplier-map-feature {
+  background:linear-gradient(145deg,#fff 0%,#f7f9fc 100%) !important;
+  background-color:#fff !important;
+  border:1px solid #111827 !important;
+  box-shadow:0 7px 20px rgba(15,23,42,.07) !important;
+}
+html body main #supplier-map-feature h2,
+html body main #supplier-map-feature .geo-emphasis-intro {color:#111827 !important}
+</style>
+<style id="dashboard-print-report">
+@page {size:A4 landscape;margin:10mm}
+@media print {
+  * {-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  html,body {width:100% !important;min-width:0 !important;background:#fff !important;color:#111827 !important;font-size:9pt !important}
+  body {background-image:none !important}
+  header {padding:8mm 0 5mm !important;background:#fff !important;color:#111827 !important;box-shadow:none !important;border-bottom:1.5pt solid #111827 !important}
+  header .headline h1 {font-size:20pt !important;margin:3mm 0 !important}
+  header .headline p {font-size:9pt !important}
+  .head-actions,.table-controls,.pagination,#dataLoadStatus {display:none !important}
+  main {max-width:none !important;padding:5mm 0 !important}
+  footer {max-width:none !important;padding:4mm 0 0 !important}
+  html body main .filters,html body main .panel,html body main .kpi,html body main #supplier-map-feature {
+    box-shadow:none !important;border:1px solid #111827 !important;break-inside:avoid-page;
+  }
+  .filter-grid {grid-template-columns:repeat(6,minmax(0,1fr)) !important;gap:2mm !important}
+  .field input,.field select {padding:1.5mm !important;font-size:8pt !important}
+  .kpis {grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:3mm !important;margin:4mm 0 !important}
+  .kpi {padding:3mm !important}
+  .kpi-value {font-size:15pt !important;margin:2mm 0 !important}
+  .charts,.lower {grid-template-columns:1fr 1fr !important;gap:3mm !important}
+  .panel {padding:3mm !important;margin-top:3mm !important}
+  .panel-title {margin-bottom:2mm !important;padding-bottom:2mm !important}
+  .panel-title h2 {font-size:10pt !important}
+  .panel-title p,.chart-note,.invoice-chart-note {font-size:7pt !important}
+  .chart-wrap {height:58mm !important;min-height:58mm !important;background:#f8fafc !important}
+  .pareto-panel .chart-wrap,.invoice-scatter-panel .chart-wrap {height:70mm !important;min-height:70mm !important}
+  #supplier-map-feature {margin:3mm 0 !important;padding:3mm !important}
+  #supplier-map-feature h2 {font-size:12pt !important}
+  #supplier-map-feature .geo-emphasis-intro {font-size:8pt !important;margin-bottom:2mm !important}
+  .geo-emphasis-grid {grid-template-columns:1.4fr 1fr !important;gap:3mm !important}
+  .geo-details-column {max-height:none !important;overflow:visible !important}
+  #geoMap {height:105mm !important;min-height:105mm !important;box-shadow:none !important}
+  #geoDetails {min-height:0 !important;max-height:none !important;overflow:visible !important;padding:3mm !important}
+  #geoDetails .supplier-list {max-height:none !important;overflow:visible !important}
+  .table-panel {break-before:page !important}
+  .table-scroll {overflow:visible !important;border:1px solid #111827 !important}
+  table {width:100% !important;white-space:normal !important;font-size:6.5pt !important;table-layout:auto !important}
+  thead {display:table-header-group !important}
+  tr {break-inside:avoid !important;page-break-inside:avoid !important}
+  th,td {padding:1.4mm 1mm !important;white-space:normal !important;overflow-wrap:anywhere !important}
+  th {font-size:6pt !important}
+  .tag {font-size:6pt !important;padding:1mm !important}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="headline">
+    <div><div class="eyebrow">Painel de transparência • visão gerencial</div><h1>Painel de Contratações do CCHSA/UFPB</h1><p>Acompanhe valores planejados, empenhados e faturados. Use os filtros para explorar os registros e atualizar indicadores, gráficos, insights e tabela em tempo real.</p></div>
+    <div class="head-actions"><button class="btn-ghost" id="resetTop">↺ Limpar filtros</button><button class="btn-light" id="exportTop">↓ Exportar CSV</button><button class="btn-light" id="printDashboard">▧ Imprimir relatório PDF</button></div>
+  </div>
+</header>
+<main>
+
+
+
+<section class="filters">
+ <div class="section-top"><h2>Filtros da análise</h2><span class="hint">Os componentes são recalculados automaticamente</span></div>
+ <div class="filter-grid">
+  <div class="field"><label for="stateFilter">Estado (UF)</label><select id="stateFilter"><option value="">Todos os estados</option></select></div>
+  <div class="field"><label for="yearFilter">Ano do pregão/IRP</label><select id="yearFilter"><option value="">Todos os anos</option></select></div>
+  <div class="field"><label for="modalityFilter">Modalidade</label><select id="modalityFilter"><option value="">Todas as modalidades</option><option value="Pregão">Pregão</option><option value="IRP">IRP</option></select></div>
+  <div class="field"><label for="supplierFilter">Fornecedor</label><input id="supplierFilter" placeholder="Nome do fornecedor"></div>
+  <div class="field"><label for="fromDate">Emissão da nota — de</label><input type="date" id="fromDate"></div>
+  <div class="field"><label for="toDate">Emissão da nota — até</label><input type="date" id="toDate"></div>
+ </div>
+ <div class="filter-footer"><div class="filter-summary" id="filterSummary">Carregando registros…</div><button class="btn-secondary" id="resetFilters">Limpar filtros</button></div>
+</section>
+
+<section class="geo-emphasis-section" id="supplier-map-feature">
+  <h2>Mapa geográfico de contratações por estado</h2>
+  <p class="geo-emphasis-intro">Clique em um estado para consultar os fornecedores, modalidades, anos e valores associados. O conteúdo acompanha os filtros aplicados à dashboard.</p>
+  <div class="geo-emphasis-grid">
+    <div class="geo-map-column"><div id="geoMap" aria-label="Mapa geográfico interativo das contratações por estado"></div></div>
+    <div class="geo-details-column"><aside class="geo-details" id="geoDetails">
+   <h3>Selecione um estado</h3>
+   <div class="geo-sub">Os dados de fornecedores e execução financeira aparecerão neste painel.</div>
+   <div class="geo-empty">Clique em qualquer estado no mapa para consultar os registros da base original.</div>
+  </aside></div>
+  </div>
+</section>
+<section class="kpis">
+ <article class="kpi"><div class="kpi-head"><span>Valor planejado</span><span class="kpi-icon">◎</span></div><div class="kpi-value" id="kpiPlanned">—</div><div class="kpi-foot" id="plannedFoot">Total previsto nos registros filtrados</div></article>
+ <article class="kpi"><div class="kpi-head"><span>Valor empenhado</span><span class="kpi-icon">↗</span></div><div class="kpi-value" id="kpiCommitted">—</div><div class="kpi-foot" id="committedFoot">—</div></article>
+ <article class="kpi"><div class="kpi-head"><span>Valor faturado</span><span class="kpi-icon">▤</span></div><div class="kpi-value" id="kpiInvoice">—</div><div class="kpi-foot" id="invoiceFoot">—</div></article>
+ <article class="kpi"><div class="kpi-head"><span>Empenho convertido em nota</span><span class="kpi-icon">%</span></div><div class="kpi-value" id="kpiRate">—</div><div class="kpi-foot" id="rateFoot">Faturado ÷ empenhado</div></article>
+</section>
+
+<section class="charts">
+ <article class="panel"><div class="panel-title"><div><h2>Valores por estado</h2><p>Comparação dos valores empenhados e faturados por UF</p></div><span class="tag">UF</span></div><div class="chart-wrap"><canvas id="stateChart" aria-label="Gráfico de valores por estado"></canvas></div><div class="chart-note">Exibe os 10 estados com maior valor empenhado no recorte atual.</div></article>
+ <article class="panel"><div class="panel-title"><div><h2>Evolução mensal</h2><p>Valor empenhado e valor de notas fiscais por mês de emissão</p></div><span class="tag">MENSAL</span></div><div class="chart-wrap"><canvas id="monthChart" aria-label="Gráfico de evolução mensal"></canvas></div><div class="chart-note">O mês considera a data de emissão da nota fiscal.</div></article>
+
+ 
+</section>
+
+<section class="panel" style="margin-top:14px">
+ <div class="panel-title"><div><h2>Evolução acumulada dos gastos com notas fiscais</h2><p>A linha soma progressivamente os valores das notas fiscais pela data de emissão.</p></div><span class="tag">TOTAL ACUMULADO</span></div>
+ <div class="chart-wrap" style="height:320px"><canvas id="invoiceChart" aria-label="Gráfico de linha dos gastos acumulados por data de emissão das notas fiscais"></canvas></div>
+ <div class="invoice-chart-note"><span id="invoiceChartSummary">—</span><span>O total acumulado considera notas fiscais com data de emissão e valor preenchidos.</span></div>
+</section>
+
+<section class="panel pareto-panel" style="margin-top:14px">
+ <div class="panel-title">
+  <div><h2>Análise de Pareto — Pregões/IRPs que concentram 80% do valor adquirido</h2>
+  <p>Pregões/IRPs ordenados do maior para o menor valor adquirido, com percentual acumulado. O gráfico mostra pelo menos 16 quando houver essa quantidade.</p></div>
+  <span class="tag">PARETO 80/20</span>
+ </div>
+ <div class="chart-wrap" style="height:390px"><canvas id="paretoChart" aria-label="Gráfico de Pareto dos pregões responsáveis por pelo menos 80 por cento do valor adquirido"></canvas></div>
+ <div class="chart-note" id="paretoSummary">O gráfico soma os valores das notas fiscais por pregão/IRP e destaca os itens necessários para alcançar pelo menos 80% do valor adquirido no recorte filtrado, exibindo pelo menos 16 quando disponíveis.</div>
+</section>
+
+<section class="charts" style="margin-top:14px">
+<article class="panel invoice-scatter-panel">
+ <div class="panel-title">
+  <div><h2>Dispersão dos valores das notas fiscais</h2>
+  <p>Cada ponto representa uma nota fiscal. Passe o mouse sobre um ponto para consultar fornecedor, CNPJ, pregão, valor e data de emissão.</p></div>
+  <span class="tag">NOTAS FISCAIS</span>
+ </div>
+ <div class="chart-wrap" style="height:430px; position:relative">
+  <canvas id="invoiceScatterChart" aria-label="Gráfico de dispersão das notas fiscais com detalhes ao passar o mouse"></canvas>
+  <div id="invoiceScatterTooltip" role="status" style="display:none;position:absolute;z-index:10;max-width:340px;padding:12px 14px;border:1px solid #3b4f6b;border-radius:10px;background:#0b1220;color:#111827;box-shadow:0 10px 30px rgba(0,0,0,.4);pointer-events:none;font-size:12px;line-height:1.5"></div>
+ </div>
+ <div class="chart-note" id="invoiceScatterSummary">Cada ponto corresponde a uma nota fiscal com data de emissão e valor válidos no recorte filtrado.</div>
+</article>
+
+
+
+
+
+
+
+
+<article class="panel invoice-distribution-panel">
+ <div class="panel-title"><div><h2>Distribuição de Notas Fiscais por Valor</h2><p>Quantidade de notas fiscais em cada faixa de valor, no recorte filtrado</p></div><span class="tag">NOTAS FISCAIS</span></div>
+ <div class="chart-wrap" style="height:360px"><canvas id="invoiceDistributionChart" aria-label="Histograma da distribuição de notas fiscais por valor"></canvas></div>
+ <div class="chart-note" id="invoiceDistributionSummary">A distribuição considera notas fiscais identificadas e com valor preenchido.</div>
+</article>
+</section>
+
+<section class="lower">
+ <article class="panel"><div class="panel-title"><div><h2>Maiores fornecedores</h2><p>Ranking por valor faturado no período filtrado — até 7 fornecedores</p></div></div><div class="chart-wrap" style="height:350px"><canvas id="supplierChart" aria-label="Gráfico horizontal dos 7 fornecedores com maior valor faturado"></canvas></div></article>
+ <article class="panel"><div class="panel-title"><div><h2>Insights automáticos</h2><p>Resumo calculado a partir dos filtros ativos</p></div></div><div class="insights" id="insights"></div></article>
+</section>
+<section class="panel table-panel">
+ <div class="panel-title"><div><h2>Detalhamento dos registros</h2><p>Ordene clicando no cabeçalho. A pesquisa abaixo procura em todos os campos.</p></div><div class="table-controls"><input id="tableSearch" placeholder="Pesquisar na tabela…"><button class="btn-primary" id="exportTable">Exportar CSV</button></div></div>
+ <div class="table-scroll"><table><thead><tr>
+  <th data-sort="modalidade">Modalidade ↕</th><th data-sort="numero">Número ↕</th><th data-sort="ano">Ano ↕</th><th data-sort="descricao">Descrição ↕</th><th data-sort="fornecedor">Fornecedor ↕</th><th data-sort="cnpj">CNPJ ↕</th><th data-sort="estado">UF ↕</th><th data-sort="planejado">Planejado ↕</th><th data-sort="empenho">Nota de empenho ↕</th><th data-sort="empenhado">Empenhado ↕</th><th data-sort="dataEmpenho">Data empenho ↕</th><th data-sort="notaFiscal">Nota fiscal ↕</th><th data-sort="notaFiscalValor">Valor da nota ↕</th><th data-sort="dataNota">Emissão ↕</th>
+ </tr></thead><tbody id="tableBody"></tbody></table></div>
+ <div class="pagination"><span id="pageInfo">—</span><div class="pagination-actions"><button class="btn-secondary" id="prevPage">← Anterior</button><button class="btn-secondary" id="nextPage">Próxima →</button></div></div>
+</section>
+</main>
+<footer>Fonte: base de dados fornecida. Os indicadores refletem apenas os registros carregados e os filtros ativos. “Valor faturado” corresponde à soma dos valores das notas fiscais; a taxa de conversão é calculada como valor faturado ÷ valor empenhado. Os dados são exibidos como recebidos, sem validação externa de CNPJ, notas ou empenhos.</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+let DATA = [];
+const money = n => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:2}).format(n||0);
+const compactMoney = n => {if(Math.abs(n)>=1e6)return 'R$ '+(n/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})+' mi';if(Math.abs(n)>=1e3)return 'R$ '+(n/1e3).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil';return money(n)};
+const dateISO = s => {const m=(s||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);return m?`${m[3]}-${m[2]}-${m[1]}`:''};
+const dateObj = s => {const x=dateISO(s);return x?new Date(x+'T12:00:00'):null};
+const monthKey = s => {const d=dateObj(s);return d?`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`:''};
+const monthLabel = key => {const [y,m]=key.split('-');return new Date(+y,+m-1,1).toLocaleDateString('pt-BR',{month:'short',year:'2-digit'}).replace('.','')};
+const sum = (a,k)=>a.reduce((s,r)=>s+(+r[k]||0),0);
+const unique = a=>[...new Set(a)].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+const stateNames={AC:'Acre',AL:'Alagoas',AP:'Amapá',AM:'Amazonas',BA:'Bahia',CE:'Ceará',DF:'Distrito Federal',ES:'Espírito Santo',GO:'Goiás',MA:'Maranhão',MT:'Mato Grosso',MS:'Mato Grosso do Sul',MG:'Minas Gerais',PA:'Pará',PB:'Paraíba',PR:'Paraná',PE:'Pernambuco',PI:'Piauí',RJ:'Rio de Janeiro',RN:'Rio Grande do Norte',RS:'Rio Grande do Sul',RO:'Rondônia',RR:'Roraima',SC:'Santa Catarina',SP:'São Paulo',SE:'Sergipe',TO:'Tocantins'};
+const $=id=>document.getElementById(id);
+let page=0,pageSize=12,sortKey='dataNota',sortDir=-1,tableRows=[];
+const stateFilter=$('stateFilter'),yearFilter=$('yearFilter'),modalityFilter=$('modalityFilter'),supplierFilter=$('supplierFilter'),fromDate=$('fromDate'),toDate=$('toDate'),tableSearch=$('tableSearch');
+unique(DATA.map(d=>d.estado)).forEach(s=>stateFilter.add(new Option(`${s} — ${stateNames[s]||s}`,s)));
+unique(DATA.map(d=>String(d.ano??'').trim()).filter(Boolean)).forEach(y=>yearFilter.add(new Option(y,y)));
+function getFiltered(){
+ const mod=modalityFilter.value,sup=supplierFilter.value.trim().toLocaleLowerCase('pt-BR'),q=tableSearch.value.trim().toLocaleLowerCase('pt-BR');
+ return DATA.filter(d=>{
+  const dt=dateISO(d.dataNota);
+  return (!stateFilter.value||d.estado===stateFilter.value)&&(!yearFilter.value||String(d.ano??'').trim()===yearFilter.value)&&(!mod||d.modalidade===mod)&&(!sup||d.fornecedor.toLocaleLowerCase('pt-BR').includes(sup))&&(!fromDate.value||dt>=fromDate.value)&&(!toDate.value||dt<=toDate.value)&&(!q||Object.values(d).some(v=>String(v).toLocaleLowerCase('pt-BR').includes(q)));
+ });
+}
+function pct(a,b){return b?100*a/b:0}
+function setText(id,t){$(id).textContent=t}
+function updateKPIs(rows){
+ const p=sum(rows,'planejado'),e=sum(rows,'empenhado'),f=sum(rows,'notaFiscalValor'),count=rows.length;
+ setText('kpiPlanned',money(p));setText('kpiCommitted',money(e));setText('kpiInvoice',money(f));setText('kpiRate',pct(f,e).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%');
+ setText('plannedFoot',`${count.toLocaleString('pt-BR')} registro(s) no recorte`);
+ setText('committedFoot',`${pct(e,p).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do valor planejado`);
+ setText('invoiceFoot',`${pct(f,p).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do valor planejado`);
+ setText('rateFoot','Faturado ÷ empenhado');
+}
+function canvasSetup(id){
+ const c=$(id),rect=c.getBoundingClientRect(),ratio=window.devicePixelRatio||1;
+ c.width=Math.max(1,rect.width*ratio);c.height=Math.max(1,rect.height*ratio);
+ const ctx=c.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,rect.width,rect.height);
+ return {ctx,w:rect.width,h:rect.height};
+}
+function drawLegend(ctx,items,x,y){let xx=x;ctx.font='11px Segoe UI,Arial';ctx.textAlign='left';ctx.textBaseline='middle';items.forEach(it=>{ctx.fillStyle=it.color;ctx.fillRect(xx,y-5,10,10);ctx.fillStyle='#475569';ctx.fillText(it.label,xx+16,y);xx+=ctx.measureText(it.label).width+43})}
+function drawGroupedBar(id,labels,series,opts={}){
+ const {ctx,w,h}=canvasSetup(id);const left=opts.left||48,right=12,top=42,bottom=48,ph=h-top-bottom,pw=w-left-right;
+ ctx.font='10px Segoe UI,Arial';ctx.textAlign='right';ctx.textBaseline='middle';
+ const vals=series.flatMap(s=>s.values),max=Math.max(1,...vals)*1.12;
+ for(let i=0;i<=4;i++){let y=top+ph*i/4;ctx.strokeStyle='#e9eef5';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();ctx.fillStyle='#64748b';ctx.fillText(compactMoney(max*(1-i/4)),left-7,y)}
+ const group=pw/Math.max(1,labels.length),barW=Math.min(22,group*.26);
+ labels.forEach((lab,i)=>{series.forEach((s,j)=>{let v=s.values[i]||0,bh=v/max*ph,x=left+i*group+group/2+(j-(series.length-1)/2)*(barW+3)-barW/2,y=top+ph-bh;ctx.fillStyle=s.color;roundRect(ctx,x,y,barW,Math.max(0,bh),4);});ctx.save();ctx.translate(left+i*group+group/2,top+ph+10);ctx.rotate(labels.length>6?-.55:0);ctx.textAlign=labels.length>6?'right':'center';ctx.textBaseline='top';ctx.fillStyle='#475569';ctx.fillText(lab,0,0);ctx.restore()});
+ drawLegend(ctx,series.map(s=>({label:s.name,color:s.color})),left,12);
+}
+function roundRect(ctx,x,y,w,h,r){if(h<=0)return;ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();ctx.fill()}
+function drawLine(id,labels,series){
+ const {ctx,w,h}=canvasSetup(id);const left=49,right=12,top=44,bottom=38,ph=h-top-bottom,pw=w-left-right,max=Math.max(1,...series.flatMap(s=>s.values))*1.12;
+ ctx.font='10px Segoe UI,Arial';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let i=0;i<=4;i++){let y=top+ph*i/4;ctx.strokeStyle='#e9eef5';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();ctx.fillStyle='#64748b';ctx.fillText(compactMoney(max*(1-i/4)),left-7,y)}
+ series.forEach(s=>{const pts=s.values.map((v,i)=>({x:left+(labels.length===1?pw/2:i*pw/(labels.length-1)),y:top+ph-v/max*ph}));ctx.strokeStyle=s.color;ctx.lineWidth=2.5;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();pts.forEach((p,i)=>{if(!i){ctx.moveTo(p.x,p.y);return}const prev=pts[i-1],before=pts[Math.max(0,i-2)],next=pts[Math.min(pts.length-1,i+1)],dx=(p.x-prev.x)/6;ctx.bezierCurveTo(prev.x+dx,prev.y+(p.y-before.y)/6,p.x-dx,p.y-(next.y-prev.y)/6,p.x,p.y)});ctx.stroke();pts.forEach(p=>{ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);ctx.fill()})});
+ labels.forEach((l,i)=>{let x=left+(labels.length===1?pw/2:i*pw/(labels.length-1));ctx.fillStyle='#475569';ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText(l,x,top+ph+10)});
+ drawLegend(ctx,series.map(s=>({label:s.name,color:s.color})),left,12);
+}
+function drawInvoiceDistribution(rows){
+ const canvas=$('invoiceDistributionChart');if(!canvas)return;
+ const bins=[500,1000,2500,7500,15000,30000,60000,100000,300000,Infinity];
+ const labels=['Até R$ 500','R$ 500–1 mil','R$ 1–2,5 mil','R$ 2,5–7,5 mil','R$ 7,5–15 mil','R$ 15–30 mil','R$ 30–60 mil','R$ 60–100 mil','R$ 100–300 mil','Acima de R$ 300 mil'];
+ const values=rows.filter(r=>String(r.notaFiscal??'').trim()!==''&&String(r.notaFiscalValor??'').trim()!==''&&Number.isFinite(Number(r.notaFiscalValor))&&Number(r.notaFiscalValor)>=0).map(r=>Number(r.notaFiscalValor));
+ const counts=Array(labels.length).fill(0);values.forEach(v=>{let i=bins.findIndex(edge=>v<=edge);if(i<0)i=labels.length-1;counts[i]++});
+ const {ctx,w,h}=canvasSetup('invoiceDistributionChart');const left=54,right=12,top=42,bottom=74,ph=h-top-bottom,pw=w-left-right,max=Math.max(1,...counts),yMax=Math.ceil(max/5)*5||1;
+ ctx.font='10px Segoe UI,Arial';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let i=0;i<=4;i++){const y=top+ph*i/4;ctx.strokeStyle='#e9eef5';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();ctx.fillStyle='#64748b';ctx.fillText(Math.round(yMax*(1-i/4)).toLocaleString('pt-BR'),left-8,y)}
+ const group=pw/labels.length,barW=group*.72,pts=[];
+ const peak=Math.max(...counts),peakIndex=counts.indexOf(peak);
+ counts.forEach((v,i)=>{const bh=v/yMax*ph,x=left+i*group+(group-barW)/2,y=top+ph-bh;ctx.fillStyle=i===peakIndex?'#4b5563':'#9ca3af';ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;ctx.fillRect(x,y,barW,bh);ctx.strokeRect(x,y,barW,bh);pts.push({x:left+i*group+group/2,y:top+ph-v/yMax*ph})});
+ ctx.strokeStyle='#111827';ctx.fillStyle='#111827';ctx.lineWidth=2.5;ctx.beginPath();pts.forEach((p,i)=>{if(!i){ctx.moveTo(p.x,p.y);return}const prev=pts[i-1],before=pts[Math.max(0,i-2)],next=pts[Math.min(pts.length-1,i+1)],dx=(p.x-prev.x)/6;ctx.bezierCurveTo(prev.x+dx,prev.y+(p.y-before.y)/6,p.x-dx,p.y-(next.y-prev.y)/6,p.x,p.y)});ctx.stroke();pts.forEach((p,i)=>{ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);ctx.fill();ctx.save();ctx.translate(p.x,top+ph+12);ctx.rotate(-.27);ctx.textAlign='right';ctx.textBaseline='top';ctx.fillStyle='#475569';ctx.font='10px Segoe UI,Arial';ctx.fillText(labels[i],0,0);ctx.restore()});
+ ctx.strokeStyle='#111827';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(left,13);ctx.lineTo(left+19,13);ctx.stroke();ctx.fillStyle='#475569';ctx.textAlign='left';ctx.textBaseline='middle';ctx.font='11px Segoe UI,Arial';ctx.fillText('Tendência da distribuição',left+25,13);ctx.fillStyle='#9ca3af';ctx.fillRect(left+174,8,12,10);ctx.fillStyle='#475569';ctx.fillText('Frequência',left+192,13);
+ const summary=$('invoiceDistributionSummary');if(summary)summary.textContent=values.length?`${values.length.toLocaleString('pt-BR')} nota(s) fiscal(is) com valor no recorte atual. Maior concentração: ${labels[peakIndex]} (${peak} nota(s)).`:'Não há notas fiscais com valor preenchido no recorte atual.';
+}
+function drawSupplierChart(entries){
+ const {ctx,w,h}=canvasSetup('supplierChart');
+ const left=Math.min(250,Math.max(125,w*.38)),right=52,top=48,bottom=12,pw=Math.max(20,w-left-right),ph=h-top-bottom;
+ const max=Math.max(1,...entries.map(x=>x[1]))*1.08;
+ ctx.font='9px Segoe UI,Arial';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let i=0;i<=4;i++){const x=left+pw*i/4;ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,top+ph);ctx.stroke();ctx.fillStyle='#6b7280';ctx.fillText(compactMoney(max*i/4),x,top-10)}
+ const rowH=ph/Math.max(1,entries.length),barH=Math.min(19,rowH*.58),labelWidth=left-12;
+ const wrapText=(text,maxWidth)=>{const words=String(text||'Fornecedor não informado').split(/\s+/),lines=[];let line='';words.forEach(word=>{const candidate=line?line+' '+word:word;if(ctx.measureText(candidate).width<=maxWidth||!line)line=candidate;else{lines.push(line);line=word}});if(line)lines.push(line);return lines};
+ entries.forEach(([name,value],i)=>{
+  const y=top+i*rowH+rowH/2,lines=wrapText(name,labelWidth);
+  ctx.fillStyle='#4b5563';ctx.textAlign='right';ctx.textBaseline='middle';
+  const lineHeight=11,startY=y-(lines.length-1)*lineHeight/2;lines.forEach((line,j)=>ctx.fillText(line,left-9,startY+j*lineHeight));
+  const barW=Math.max(0,value/max*pw);ctx.fillStyle='#6b7280';roundRect(ctx,left,y-barH/2,barW,barH,4);
+ });
+ ctx.fillStyle='#6b7280';ctx.textAlign='left';ctx.textBaseline='middle';ctx.font='10px Segoe UI,Arial';ctx.fillRect(12,9,12,10);ctx.fillText('Faturado',29,14);
+}
+function drawInsights(rows){
+ const el=$('insights');el.innerHTML='';
+ if(!rows.length){el.innerHTML='<div class="empty">Nenhum registro encontrado para os filtros selecionados.</div>';return}
+ const p=sum(rows,'planejado'),e=sum(rows,'empenhado'),f=sum(rows,'notaFiscalValor');
+ const states=Object.entries(rows.reduce((a,r)=>(a[r.estado]=(a[r.estado]||0)+r.empenhado,a),{})).sort((a,b)=>b[1]-a[1]);
+ const suppliers=Object.entries(rows.reduce((a,r)=>(a[r.fornecedor]=(a[r.fornecedor]||0)+r.notaFiscalValor,a),{})).sort((a,b)=>b[1]-a[1]);
+ const months=Object.entries(rows.reduce((a,r)=>{let k=monthKey(r.dataNota);if(k)a[k]=(a[k]||0)+r.notaFiscalValor;return a},{})).sort((a,b)=>a[0].localeCompare(b[0]));
+ const gap=p-e,unbilled=e-f;
+ const items=[
+ ['↗','Execução do planejado',`${pct(e,p).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do valor planejado está empenhado, equivalente a ${money(e)}.`],
+ ['▤','Diferença entre empenhado e faturado',`${money(unbilled)} separam o total empenhado do total das notas fiscais no recorte. É uma diferença financeira, não necessariamente um saldo irregular.`],
+ ['⌖','Estado com maior empenho',states.length?`${states[0][0]} — ${stateNames[states[0][0]]||states[0][0]} concentra ${money(states[0][1])} em empenhos (${pct(states[0][1],e).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do total).`:'Sem dados por estado.'],
+ ['★','Maior fornecedor por faturamento',suppliers.length?`${suppliers[0][0]} soma ${money(suppliers[0][1])} em notas fiscais no recorte.`:'Sem dados de fornecedores.'],
+ ['◷','Mês com maior faturamento',months.length?`${monthLabel(months.reduce((a,b)=>a[1]>b[1]?a:b)[0])} teve o maior valor faturado entre os meses exibidos.`:'Não há datas válidas para agrupar por mês.'],
+ ['◎','Valor planejado ainda não empenhado',`${money(gap)} de diferença entre o planejado e o empenhado. A comparação é agregada e depende da consistência dos registros de origem.`]
+ ];
+ items.forEach(([mark,title,desc])=>{const div=document.createElement('div');div.className='insight';div.style.setProperty('background-color','#f8fafc','important');div.style.setProperty('background','#f8fafc','important');div.style.setProperty('border','1px solid #111827','important');div.style.setProperty('color','#111827','important');div.innerHTML=`<div class="insight-mark" style="background:#e8eef8!important;color:#1e40af!important">${mark}</div><div><b style="color:#111827!important">${escapeHtml(title)}</b><p style="color:#334155!important">${escapeHtml(desc)}</p></div>`;el.appendChild(div)});
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+
+function drawInvoiceScatter(rows){
+ const canvas=$('invoiceScatterChart');
+ if(!canvas)return;
+ const points=rows.map((r,index)=>({
+  fornecedor:String(r.fornecedor??'Não informado'),
+  cnpj:String(r.cnpj??'Não informado'),
+  contratacao:`${r.modalidade??'Não informada'} ${r.numero??''}/${r.ano??'Ano não informado'}`,
+  valor:Number(r.notaFiscalValor),
+  data:String(r.dataNota??''),
+  original:r,
+  index
+ })).filter(p=>Number.isFinite(p.valor)&&p.valor>=0&&String(p.original.notaFiscalValor??'').trim()!==''&&!!dateISO(p.data));
+ const {ctx,w,h}=canvasSetup('invoiceScatterChart');
+ const left=76,right=24,top=28,bottom=58,pw=w-left-right,ph=h-top-bottom;
+ ctx.clearRect(0,0,w,h);
+ const tooltip=$('invoiceScatterTooltip');
+ const summary=$('invoiceScatterSummary');
+ if(!points.length){
+  ctx.fillStyle='#475569';ctx.font='13px Segoe UI,Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('Não há notas fiscais com data e valor válidos neste recorte.',w/2,h/2);
+  if(summary)summary.textContent='O gráfico exibe somente notas fiscais com data de emissão e valor numérico válidos.';
+  if(tooltip)tooltip.style.display='none';
+  canvas.onmousemove=null;canvas.onmouseleave=null;
+  return;
+ }
+ const maxVal=Math.max(1,...points.map(p=>p.valor))*1.08;
+ const xAt=i=>points.length===1?left+pw/2:left+pw*i/(points.length-1);
+ const yAt=v=>top+ph*(1-v/maxVal);
+ const fmtShort=v=>v>=1e6?'R$ '+(v/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})+' mi':v>=1e3?'R$ '+(v/1e3).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil':'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0});
+ const parseDate=s=>{
+  if(!s)return null;
+  if(/^\d{4}-\d{2}-\d{2}/.test(s)){const d=new Date(s.slice(0,10)+'T12:00:00');return isNaN(d)?null:d;}
+  const m=s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if(m){const d=new Date(+m[3],+m[2]-1,+m[1]);return isNaN(d)?null:d;}
+  const d=new Date(s);return isNaN(d)?null:d;
+ };
+ const dateLabel=s=>{const d=parseDate(s);return d?d.toLocaleDateString('pt-BR'):(s||'Não informada')};
+ const dates=points.map(p=>parseDate(p.data));
+ const validDates=dates.filter(Boolean);
+ // Use emission date on X axis when available; otherwise keep record order for the full set.
+ const useDates=validDates.length===points.length;
+ const minTime=useDates?Math.min(...dates.map(d=>d.getTime())):0;
+ const maxTime=useDates?Math.max(...dates.map(d=>d.getTime())):0;
+ const xFor=(p,i)=>useDates?(maxTime===minTime?left+pw/2:left+pw*(dates[i].getTime()-minTime)/(maxTime-minTime)):xAt(i);
+ // Grid and axes
+ ctx.font='11px Segoe UI,Arial';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let i=0;i<=5;i++){
+  const v=maxVal*(1-i/5),y=top+ph*i/5;
+  ctx.strokeStyle='#d1d5db';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();
+  ctx.fillStyle='#475569';ctx.fillText(fmtShort(v),left-9,y);
+ }
+ ctx.fillStyle='#475569';ctx.textAlign='center';ctx.textBaseline='top';
+ ctx.fillText(useDates?'Data de emissão da nota fiscal':'Notas fiscais (ordem dos registros)',left+pw/2,h-18);
+ if(useDates){
+  const count=5;
+  for(let i=0;i<count;i++){
+   const t=minTime+(maxTime-minTime)*i/(count-1);
+   const d=new Date(t);
+   ctx.fillText(d.toLocaleDateString('pt-BR',{month:'2-digit',year:'2-digit'}),left+pw*i/(count-1),top+ph+10);
+  }
+ } else {
+  const step=Math.max(1,Math.ceil(points.length/6));
+  for(let i=0;i<points.length;i+=step)ctx.fillText(String(i+1),xAt(i),top+ph+10);
+ }
+ // Scatter points: each point is one invoice, positioned chronologically if dates are valid.
+ const plotted=points.map((p,i)=>({ ...p, px:xFor(p,i), py:yAt(p.valor), pointIndex:i }));
+ plotted.forEach((p,i)=>{
+  ctx.beginPath();ctx.arc(p.px,p.py,7,0,Math.PI*2);
+  ctx.fillStyle='#4b5563';ctx.fill();
+  ctx.strokeStyle='#ffffff';ctx.lineWidth=1.5;ctx.stroke();
+ });
+ if(summary)summary.textContent=`${points.length.toLocaleString('pt-BR')} nota(s) fiscal(is) com data e valor no recorte atual. Passe o mouse sobre qualquer ponto para ver os dados da nota.`;
+ const moneyFmt=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ canvas.onmousemove=function(ev){
+  const rect=canvas.getBoundingClientRect();
+  const mx=(ev.clientX-rect.left)*(w/rect.width),my=(ev.clientY-rect.top)*(h/rect.height);
+  let best=null,bestD=12*12;
+  plotted.forEach(p=>{const d=(p.px-mx)**2+(p.py-my)**2;if(d<bestD){bestD=d;best=p;}});
+  if(!best){if(tooltip)tooltip.style.display='none';return;}
+  if(!tooltip)return;
+  tooltip.innerHTML=`<strong style="display:block;color:#111827;margin-bottom:5px">${esc(best.fornecedor)}</strong>
+   <div><span style="color:#475569">CNPJ:</span> ${esc(best.cnpj)}</div>
+   <div><span style="color:#475569">Modalidade / ano:</span> ${esc(best.contratacao)}</div>
+   <div><span style="color:#475569">Valor da nota fiscal:</span> <strong>${moneyFmt(best.valor)}</strong></div>
+   <div><span style="color:#475569">Data de emissão:</span> ${esc(dateLabel(best.data))}</div>`;
+  tooltip.style.display='block';
+  const tw=tooltip.offsetWidth,th=tooltip.offsetHeight;
+  let tx=mx+14,ty=my+14;
+  if(tx+tw>w-6)tx=mx-tw-14;
+  if(ty+th>h-6)ty=my-th-14;
+  tooltip.style.left=Math.max(4,Math.min(tx,w-tw-4))+'px';
+  tooltip.style.top=Math.max(4,Math.min(ty,h-th-4))+'px';
+ };
+ canvas.onmouseleave=function(){if(tooltip)tooltip.style.display='none';};
+}
+
+function drawParetoChart(rows){
+ const canvas=$('paretoChart');
+ if(!canvas)return;
+ const totals=new Map();
+ rows.forEach(r=>{
+  const key=`${String(r.modalidade??'Modalidade não informada')} ${String(r.numero??'Número não informado')}/${String(r.ano??'Ano não informado')}`.trim();
+  const value=Number(r.notaFiscalValor)||0;
+  totals.set(key,(totals.get(key)||0)+value);
+ });
+ const sorted=[...totals.entries()].filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
+ const total=sorted.reduce((s,x)=>s+x[1],0);
+ const target=total*.8;
+ let running=0,cutoff=0;
+ for(let i=0;i<sorted.length;i++){running+=sorted[i][1];cutoff=i+1;if(running>=target)break;}
+ const entries=sorted.slice(0,Math.min(sorted.length,Math.max(cutoff,16)));
+ const {ctx,w,h}=canvasSetup('paretoChart');
+ const left=66,right=58,top=44,bottom=84,ph=h-top-bottom,pw=w-left-right;
+ ctx.clearRect(0,0,w,h);
+ if(!entries.length||total<=0){
+  ctx.fillStyle='#475569';ctx.font='13px Segoe UI,Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('Não há valores de notas fiscais para calcular o Pareto neste recorte.',w/2,h/2);
+  const summary=$('paretoSummary');if(summary)summary.textContent='Sem dados de valor adquirido para os filtros atuais.';
+  return;
+ }
+ const maxVal=Math.max(...entries.map(x=>x[1]))*1.12;
+ const cumulative=[];let accum=0;
+ entries.forEach(x=>{accum+=x[1];cumulative.push(accum/total*100)});
+ const fmt=v=>v>=1e6?'R$ '+(v/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})+' mi':v>=1e3?'R$ '+(v/1e3).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil':'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0});
+ ctx.font='11px Segoe UI,Arial';
+ // Grid and left axis (money)
+ for(let i=0;i<=5;i++){
+  const y=top+ph*i/5,val=maxVal*(1-i/5);
+  ctx.strokeStyle='#d1d5db';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();
+  ctx.fillStyle='#475569';ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillText(fmt(val),left-8,y);
+ }
+ // Right percentage axis
+ for(let p=0;p<=100;p+=20){
+  const y=top+ph*(1-p/100);
+  ctx.fillStyle='#475569';ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(p+'%',w-right+9,y);
+ }
+ const group=pw/entries.length,barW=Math.max(5,Math.min(34,group*.62));
+ entries.forEach((entry,i)=>{
+  const x=left+i*group+(group-barW)/2;
+  const bh=entry[1]/maxVal*ph,y=top+ph-bh;
+  ctx.fillStyle=cumulative[i]<=80?'#4b5563':'#9ca3af';
+  ctx.fillRect(x,y,barW,bh);
+ });
+ // Cumulative percentage line, using the right-hand axis.
+ ctx.strokeStyle='#111827';ctx.lineWidth=3;ctx.lineJoin='round';ctx.lineCap='round';ctx.beginPath();
+ cumulative.forEach((pct,i)=>{
+  const x=left+i*group+group/2,y=top+ph*(1-pct/100);
+  if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+ });
+ ctx.stroke();
+ cumulative.forEach((pct,i)=>{
+  const x=left+i*group+group/2,y=top+ph*(1-pct/100);
+  ctx.beginPath();ctx.arc(x,y,3.5,0,Math.PI*2);ctx.fillStyle='#111827';ctx.fill();
+ });
+ // 80% target reference line
+ const targetY=top+ph*.2;
+ ctx.save();ctx.setLineDash([5,4]);ctx.strokeStyle='#6b7280';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(left,targetY);ctx.lineTo(w-right,targetY);ctx.stroke();ctx.restore();
+ ctx.fillStyle='#4b5563';ctx.textAlign='right';ctx.textBaseline='bottom';ctx.font='bold 10px Segoe UI,Arial';ctx.fillText('Meta 80%',w-right-3,targetY-3);
+ // Category labels, angled and sparse if many bars.
+ ctx.fillStyle='#475569';ctx.font='10px Segoe UI,Arial';
+ const step=Math.max(1,Math.ceil(entries.length/18));
+ entries.forEach((entry,i)=>{
+  if(i%step!==0&&i!==entries.length-1)return;
+  const x=left+i*group+group/2;
+  ctx.save();ctx.translate(x,top+ph+10);ctx.rotate(-Math.PI/4);ctx.textAlign='right';ctx.textBaseline='middle';
+  const label=entry[0].length>24?entry[0].slice(0,22)+'…':entry[0];
+  ctx.fillText(label,0,0);ctx.restore();
+ });
+ // Compact legend
+ const ly=17;
+ ctx.fillStyle='#6b7280';ctx.fillRect(left,ly-7,12,10);
+ ctx.fillStyle='#111827';ctx.textAlign='left';ctx.textBaseline='middle';ctx.font='11px Segoe UI,Arial';ctx.fillText('Valor adquirido',left+17,ly-2);
+ ctx.strokeStyle='#111827';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(left+145,ly-2);ctx.lineTo(left+170,ly-2);ctx.stroke();
+ ctx.fillStyle='#111827';ctx.fillText('Percentual acumulado',left+176,ly-2);
+ const reached=entries.reduce((s,x)=>s+x[1],0)/total*100;
+ const summary=$('paretoSummary');
+ if(summary)summary.textContent=`${entries.length} de ${sorted.length} pregão(ões) concentram ${reached.toLocaleString('pt-BR',{maximumFractionDigits:1})}% do valor adquirido (${fmt(entries.reduce((s,x)=>s+x[1],0))} de ${fmt(total)}), considerando os filtros ativos.`;
+}
+
+function drawCharts(rows){
+ drawInvoiceDistribution(rows);
+ const byState={};rows.forEach(r=>{if(!byState[r.estado])byState[r.estado]={e:0,f:0};byState[r.estado].e+=r.empenhado;byState[r.estado].f+=r.notaFiscalValor});
+ const states=Object.entries(byState).sort((a,b)=>b[1].e-a[1].e).slice(0,10);
+ drawGroupedBar('stateChart',states.map(x=>x[0]),[{name:'Empenhado',color:'#111827',values:states.map(x=>x[1].e)},{name:'Faturado',color:'#9ca3af',values:states.map(x=>x[1].f)}]);
+ const byMonth={};rows.forEach(r=>{const k=monthKey(r.dataNota);if(k){if(!byMonth[k])byMonth[k]={e:0,f:0};byMonth[k].e+=r.empenhado;byMonth[k].f+=r.notaFiscalValor}});
+ let months=Object.keys(byMonth).sort();if(months.length>6){months=months.slice(-6)}
+ drawLine('monthChart',months.map(monthLabel),[{name:'Empenhado',color:'#111827',values:months.map(k=>byMonth[k].e)},{name:'Faturado',color:'#9ca3af',values:months.map(k=>byMonth[k].f)}]);
+ const bySupplier={};rows.forEach(r=>bySupplier[r.fornecedor]=(bySupplier[r.fornecedor]||0)+r.notaFiscalValor);
+ const top=Object.entries(bySupplier).sort((a,b)=>b[1]-a[1]).slice(0,7);
+ drawSupplierChart(top);
+}
+function renderTable(rows){
+ tableRows=[...rows].sort((a,b)=>{let av=a[sortKey],bv=b[sortKey];if(typeof av==='number')return (av-bv)*sortDir;return String(av).localeCompare(String(bv),'pt-BR')*sortDir});
+ const total=tableRows.length,pages=Math.max(1,Math.ceil(total/pageSize));page=Math.min(page,pages-1);
+ const shown=document.body.classList.contains('printing-report')?tableRows:tableRows.slice(page*pageSize,(page+1)*pageSize);
+ const tbody=$('tableBody');tbody.innerHTML='';
+ if(!shown.length){tbody.innerHTML='<tr><td colspan="14" class="empty">Nenhum registro corresponde aos filtros.</td></tr>'}
+ shown.forEach(r=>{const tr=document.createElement('tr');const vals=[r.modalidade,r.numero||'',r.ano,r.descricao||'',r.fornecedor,r.cnpj,r.estado,money(r.planejado),r.empenho,money(r.empenhado),r.dataEmpenho,r.notaFiscal,money(r.notaFiscalValor),r.dataNota];vals.forEach((v,i)=>{const td=document.createElement('td');td.textContent=v;if([7,9,12].includes(i))td.className='money';if(i===6){td.innerHTML=`<span class="tag">${escapeHtml(v)}</span>`}tr.appendChild(td)});tbody.appendChild(tr)});
+ setText('pageInfo',total?`Exibindo ${page*pageSize+1}–${Math.min((page+1)*pageSize,total)} de ${total.toLocaleString('pt-BR')} registro(s)`:'0 registros');
+ $('prevPage').disabled=page===0;$('nextPage').disabled=page>=pages-1;
+ $('prevPage').style.opacity=page===0?'.45':'1';$('nextPage').style.opacity=page>=pages-1?'.45':'1';
+}
+
+const stateTilePositions = {
+ 'AC':[1,3],'RO':[2,4],'AM':[2,2],'RR':[3,1],'PA':[4,2],'AP':[5,1],'TO':[5,3],
+ 'MA':[6,3],'PI':[7,3],'CE':[8,2],'RN':[9,2],'PB':[9,3],'PE':[8,4],'AL':[9,4],'SE':[9,5],'BA':[7,5],
+ 'MT':[4,4],'MS':[4,5],'GO':[5,4],'DF':[6,4],'MG':[6,5],'ES':[7,6],'RJ':[6,6],'SP':[5,6],
+ 'PR':[4,6],'SC':[4,7],'RS':[3,7]
+};
+
+function stateColor(value,max,hasData){
+ if(!hasData)return '#eef1f5';
+ const t=max>0?value/max:0;
+ if(t<.25)return '#e9effb';if(t<.5)return '#cbd8fa';if(t<.75)return '#9bb5f6';return '#2457d6';
+}
+
+function drawInvoiceTimeline(rows){
+ const c=$('invoiceChart');if(!c)return;
+ const valid=rows.filter(r=>dateISO(r.dataNota)&&String(r.notaFiscalValor??'').trim()!==''&&Number.isFinite(Number(r.notaFiscalValor))).sort((a,b)=>dateISO(a.dataNota).localeCompare(dateISO(b.dataNota))||a.notaFiscal.localeCompare(b.notaFiscal,'pt-BR'));
+ const byDate=new Map();let running=0;
+ valid.forEach(r=>{const key=dateISO(r.dataNota);byDate.set(key,(byDate.get(key)||0)+(Number(r.notaFiscalValor)||0));});
+ const points=[...byDate.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([date,value])=>{running+=value;return {date,value:running};});
+ const {ctx,w,h}=canvasSetup('invoiceChart');
+ const left=58,right=18,top=24,bottom=44,ph=h-top-bottom,pw=w-left-right;
+ const max=Math.max(1,...points.map(p=>p.value))*1.08;
+ ctx.font='10px Segoe UI,Arial';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let i=0;i<=4;i++){const y=top+ph*i/4;ctx.strokeStyle='#d1d5db';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();ctx.fillStyle='#475569';ctx.fillText(compactMoney(max*(1-i/4)),left-7,y)}
+ const times=points.map(p=>new Date(p.date+'T12:00:00').getTime()),min=times.length?Math.min(...times):0,maxTime=times.length?Math.max(...times):0;
+ const xAt=i=>points.length===1?left+pw/2:(maxTime===min?left+pw*i/(points.length-1):left+pw*(times[i]-min)/(maxTime-min));
+ const yAt=v=>top+ph*(1-v/max);
+ if(points.length){
+  const coords=points.map((p,i)=>({x:xAt(i),y:yAt(p.value)}));
+  ctx.beginPath();ctx.moveTo(coords[0].x,coords[0].y);
+  for(let i=1;i<coords.length;i++){const mid=(coords[i-1].x+coords[i].x)/2;ctx.quadraticCurveTo(coords[i-1].x,coords[i-1].y,mid,(coords[i-1].y+coords[i].y)/2)}
+  if(coords.length>1)ctx.quadraticCurveTo(coords.at(-2).x,coords.at(-2).y,coords.at(-1).x,coords.at(-1).y);
+  ctx.strokeStyle='#111827';ctx.lineWidth=3.5;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();
+  coords.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,4.5,0,Math.PI*2);ctx.fillStyle='#111827';ctx.fill()});
+  ctx.fillStyle='#475569';ctx.textAlign='center';ctx.textBaseline='top';
+  const tickCount=Math.min(5,points.length);
+  for(let i=0;i<tickCount;i++){const idx=tickCount===1?0:Math.round(i*(points.length-1)/(tickCount-1));const d=new Date(points[idx].date+'T12:00:00');ctx.fillText(d.toLocaleDateString('pt-BR',{month:'2-digit',year:'2-digit'}),coords[idx].x,top+ph+10)}
+ } else {ctx.fillStyle='#475569';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('Não há notas fiscais com data e valor válidos no recorte.',w/2,h/2)}
+ setText('invoiceChartSummary',`${valid.length} nota(s) fiscal(is) válida(s) • total acumulado: ${money(running)}`);
+}
+
+
+// Mapa geográfico choropleth: reutiliza DATA e respeita os filtros ativos.
+let geoMapInstance = null;
+let geoStateLayer = null;
+let geoSelectedLayer = null;
+let geoCurrentRows = [];
+let geoSelectedUF = null;
+const geoStateNameToUF = {
+ 'Acre':'AC','Alagoas':'AL','Amapá':'AP','Amazonas':'AM','Bahia':'BA',
+ 'Ceará':'CE','Distrito Federal':'DF','Espírito Santo':'ES','Goiás':'GO',
+ 'Maranhão':'MA','Mato Grosso':'MT','Mato Grosso do Sul':'MS','Minas Gerais':'MG',
+ 'Pará':'PA','Paraíba':'PB','Paraná':'PR','Pernambuco':'PE','Piauí':'PI',
+ 'Rio de Janeiro':'RJ','Rio Grande do Norte':'RN','Rio Grande do Sul':'RS',
+ 'Rondônia':'RO','Roraima':'RR','Santa Catarina':'SC','São Paulo':'SP',
+ 'Sergipe':'SE','Tocantins':'TO'
+};
+function geoAggregate(rows){
+ const agg={};
+ rows.forEach(r=>{
+  const uf=r.estado;
+  if(!agg[uf])agg[uf]={faturado:0,empenhado:0,planejado:0,registros:0,fornecedores:new Map()};
+  const a=agg[uf];
+  a.faturado+=Number(r.notaFiscalValor)||0;
+  a.empenhado+=Number(r.empenhado)||0;
+  a.planejado+=Number(r.planejado)||0;
+  a.registros++;
+  const key=(r.cnpj||'')+'|'+(r.fornecedor||'');
+  if(!a.fornecedores.has(key))a.fornecedores.set(key,{nome:r.fornecedor||'Fornecedor não informado',cnpj:r.cnpj||'—',registros:0,planejado:0,empenhado:0,faturado:0,pregoes:new Set(),notas:new Set()});
+  const f=a.fornecedores.get(key);
+  f.registros++;f.planejado+=Number(r.planejado)||0;f.empenhado+=Number(r.empenhado)||0;f.faturado+=Number(r.notaFiscalValor)||0;
+  if(r.modalidade)f.pregoes.add(`${r.modalidade} ${r.numero||''}/${r.ano||''}`.trim());
+  if(r.notaFiscal)f.notas.add(r.notaFiscal);
+ });
+ return agg;
+}
+function geoColor(value,max,hasData){
+ if(!hasData)return '#eef1f5';
+ const t=max>0?value/max:0;
+ if(t<=.15)return '#deebf7';
+ if(t<=.35)return '#c6dbef';
+ if(t<=.55)return '#9ecae1';
+ if(t<=.75)return '#6baed6';
+ return '#3182bd';
+}
+function geoCurrentAggregate(){return geoAggregate(geoCurrentRows)}
+function geoStyle(feature){
+ const name=feature.properties.name||feature.properties.nome||'';
+ const uf=geoStateNameToUF[name];
+ const agg=geoCurrentAggregate();
+ const values=Object.values(agg).map(a=>a.faturado);
+ const max=Math.max(0,...values);
+ const a=agg[uf];
+ const isSelected=uf&&uf===geoSelectedUF;
+ return {fillColor:geoColor(a?a.faturado:0,max,!!a),weight:isSelected?3:1.1,color:'#334155',opacity:1,fillOpacity:isSelected ? 0.95 : 0.86};
+}
+function geoShowState(uf,stateName){
+ geoSelectedUF=uf||null;
+ const agg=geoCurrentAggregate();
+ const a=agg[uf];
+ const title=stateName||stateNames[uf]||uf||'Estado';
+ const details=document.getElementById('geoDetails');
+ if(!details)return;
+ if(geoSelectedLayer&&geoStateLayer){geoStateLayer.resetStyle(geoSelectedLayer);geoSelectedLayer=null;}
+ if(geoStateLayer){
+  geoStateLayer.eachLayer(layer=>{
+   const featureName=layer.feature.properties.name||layer.feature.properties.nome||'';
+   if(geoStateNameToUF[featureName]===uf){
+    geoSelectedLayer=layer;
+    layer.setStyle({weight:3,color:'#0f172a',fillColor:'#1d4ed8',fillOpacity:.96});
+    if(layer.bringToFront)layer.bringToFront();
+   }
+  });
+ }
+ const totalFaturado=a?a.faturado:0,totalEmpenhado=a?a.empenhado:0,totalPlanejado=a?a.planejado:0;
+ let out=`<h3>${escapeHtml(title)} (${escapeHtml(uf||'—')})</h3><div class="geo-sub">Resumo das contratações no recorte atual de filtros.</div>`;
+ out+=`<div class="geo-summary">
+  <div class="geo-metric"><small>Valor faturado</small><strong style="color:#2563eb">${money(totalFaturado)}</strong></div>
+  <div class="geo-metric"><small>Valor empenhado</small><strong style="color:#b7791f">${money(totalEmpenhado)}</strong></div>
+  <div class="geo-metric"><small>Valor planejado</small><strong>${money(totalPlanejado)}</strong></div>
+  <div class="geo-metric"><small>Registros</small><strong>${a?a.registros:0}</strong></div>
+ </div>`;
+ const suppliers=a?[...a.fornecedores.values()].sort((x,y)=>y.faturado-x.faturado):[];
+ if(!suppliers.length){
+  out+=`<div class="geo-empty">Nenhum registro encontrado para este estado com os filtros atuais. Tente limpar ou alterar os filtros da dashboard.</div>`;
+ }else{
+  out+=`<div class="geo-sub"><strong>${suppliers.length}</strong> fornecedor(es) no estado. Abra cada cartão para ver os detalhes.</div>`;
+  suppliers.forEach((f,i)=>{
+   out+=`<details class="geo-company"${i===0?' open':''}><summary>${escapeHtml(f.nome)} <span style="color:#64748b;font-weight:500">(${f.registros} registro(s))</span></summary>
+    <div class="geo-company-body">
+     <div class="geo-field full"><small>CNPJ</small><span>${escapeHtml(f.cnpj)}</span></div>
+     <div class="geo-field full"><small>Modalidade / ano</small><span>${escapeHtml([...f.pregoes].join(', ')||'—')}</span></div>
+     <div class="geo-field"><small>Valor planejado</small><span>${money(f.planejado)}</span></div>
+     <div class="geo-field"><small>Valor empenhado</small><span>${money(f.empenhado)}</span></div>
+     <div class="geo-field full"><small>Valor faturado (notas fiscais)</small><span style="color:#16803d">${money(f.faturado)}</span></div>
+     <div class="geo-field full"><small>Notas fiscais</small><span>${escapeHtml([...f.notas].join(', ')||'—')}</span></div>
+    </div></details>`;
+  });
+ }
+ details.innerHTML=out;
+}
+function geoRender(rows){
+ geoCurrentRows=rows||[];
+ if(!geoMapInstance||!geoStateLayer)return;
+ geoStateLayer.setStyle(geoStyle);
+ if(geoSelectedUF)geoShowState(geoSelectedUF,stateNames[geoSelectedUF]||geoSelectedUF);
+}
+function geoInitMap(){
+ const el=document.getElementById('geoMap');
+ if(!el||!window.L)return;
+ geoMapInstance=L.map('geoMap',{center:[-14.235,-51.9253],zoom:4,minZoom:3,maxZoom:9,scrollWheelZoom:false});
+
+ fetch('https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson')
+  .then(response=>{if(!response.ok)throw new Error('Não foi possível carregar os limites estaduais.');return response.json();})
+  .then(data=>{
+   geoStateLayer=L.geoJSON(data,{
+    style:geoStyle,
+    onEachFeature:(feature,layer)=>{
+     const stateName=feature.properties.name||feature.properties.nome||'Estado';
+     const uf=geoStateNameToUF[stateName]||'';
+     layer.bindTooltip(`<strong>${escapeHtml(stateName)}${uf?' ('+uf+')':''}</strong><br>Valor faturado: ${money((geoCurrentAggregate()[uf]||{}).faturado||0)}`,{sticky:true});
+     layer.on({
+      mouseover:e=>{if(e.target!==geoSelectedLayer)e.target.setStyle({weight:2.4,color:'#334155',fillOpacity:1});},
+      mouseout:e=>{if(e.target!==geoSelectedLayer)geoStateLayer.resetStyle(e.target);},
+      click:e=>{
+       const name=e.target.feature.properties.name||e.target.feature.properties.nome||'Estado';
+       const sigla=geoStateNameToUF[name]||'';
+       geoSelectedUF=sigla;
+       geoShowState(sigla,name);
+       if(e.target.getBounds)geoMapInstance.fitBounds(e.target.getBounds(),{padding:[18,18],maxZoom:6});
+      }
+     });
+    }
+   }).addTo(geoMapInstance);
+   geoRender(geoCurrentRows);
+  })
+  .catch(err=>{
+   el.innerHTML='<div style="padding:24px;color:#64748b;font-size:13px;line-height:1.6">Não foi possível carregar o mapa geográfico. Verifique a conexão com a internet e recarregue a página. Os demais recursos da dashboard continuam disponíveis.</div>';
+   console.error(err);
+  });
+}
+
+
+
+
+function render(){
+ const rows=getFiltered();updateKPIs(rows);drawCharts(rows);drawParetoChart(rows);drawInvoiceScatter(rows);drawInvoiceTimeline(rows);geoRender(rows);drawInsights(rows);renderTable(rows);
+ setText('filterSummary',`${rows.length.toLocaleString('pt-BR')} de ${DATA.length.toLocaleString('pt-BR')} registros • ${unique(rows.map(r=>r.estado)).length} UF(s) • ${unique(rows.map(r=>r.fornecedor)).length} fornecedor(es)`);
+}
+function reset(){stateFilter.value='';yearFilter.value='';modalityFilter.value='';supplierFilter.value='';fromDate.value='';toDate.value='';tableSearch.value='';page=0;render()}
+[stateFilter,yearFilter,modalityFilter,supplierFilter,fromDate,toDate,tableSearch].forEach(el=>el.addEventListener('input',()=>{page=0;render()}));
+$('resetFilters').addEventListener('click',reset);$('resetTop').addEventListener('click',reset);
+$('printDashboard').addEventListener('click',()=>{document.body.classList.add('printing-report');renderTable(getFiltered());setTimeout(()=>window.print(),100)});
+window.addEventListener('beforeprint',()=>{if(geoMapInstance)geoMapInstance.invalidateSize({pan:false})});
+window.addEventListener('afterprint',()=>{document.body.classList.remove('printing-report');renderTable(getFiltered());if(geoMapInstance)setTimeout(()=>geoMapInstance.invalidateSize({pan:false}),100)});
+$('prevPage').addEventListener('click',()=>{if(page>0){page--;renderTable(getFiltered())}});
+$('nextPage').addEventListener('click',()=>{if((page+1)*pageSize<getFiltered().length){page++;renderTable(getFiltered())}});
+document.querySelectorAll('th[data-sort]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.sort;if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=1}page=0;renderTable(getFiltered())}));
+function exportCSV(){
+ const rows=getFiltered(),keys=[['Modalidade','modalidade'],['Número','numero'],['Ano','ano'],['Descrição','descricao'],['Nome do Fornecedor','fornecedor'],['CNPJ','cnpj'],['Estado','estado'],['Valor Planejado','planejado'],['Número da Nota de Empenho','empenho'],['Valor Empenhado','empenhado'],['Data de Empenho','dataEmpenho'],['Número da Nota Fiscal','notaFiscal'],['Valor da Nota Fiscal','notaFiscalValor'],['Data de Emissão da Nota Fiscal','dataNota']];
+ const csv=[keys.map(x=>x[0]),...rows.map(r=>keys.map(x=>r[x[1]]))].map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\r\n');
+ const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='contratacoes_filtradas.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+$('exportTop').addEventListener('click',exportCSV);$('exportTable').addEventListener('click',exportCSV);
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>drawCharts(getFiltered()),120)});
+geoInitMap();
+const loadingNote = document.createElement('div');
+loadingNote.id = 'dataLoadStatus';
+loadingNote.style.cssText = 'position:fixed;bottom:12px;right:12px;z-index:9999;background:#fff;color:#111827;border:1px solid #111827;padding:10px 14px;border-radius:10px;font:13px system-ui;box-shadow:0 4px 18px #0002';
+loadingNote.textContent = 'Carregando base de dados…';
+document.body.appendChild(loadingNote);
+fetch('./dados.json', {cache:'no-store'})
+  .then(response => { if (!response.ok) throw new Error('Não foi possível carregar dados.json'); return response.json(); })
+  .then(rows => {
+    if (!Array.isArray(rows)) throw new Error('O arquivo dados.json precisa conter uma lista de registros.');
+    DATA = rows;
+    unique(DATA.map(d=>d.estado)).forEach(uf=>stateFilter.add(new Option(`${uf} — ${stateNames[uf]||uf}`,uf)));
+    unique(DATA.map(d=>String(d.ano??'').trim()).filter(Boolean)).forEach(year=>yearFilter.add(new Option(year,year)));
+    render();
+    loadingNote.textContent = `Base carregada: ${DATA.length.toLocaleString('pt-BR')} registros`;
+    setTimeout(() => loadingNote.remove(), 4500);
+  })
+  .catch(error => {
+    loadingNote.textContent = 'Erro ao carregar dados.json. Confira se o arquivo foi publicado.';
+    console.error(error);
+  });
+</script>
+</body>
+</html>
