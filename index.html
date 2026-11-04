@@ -1134,7 +1134,8 @@ function geoInitMap(){
     onEachFeature:(feature,layer)=>{
      const stateName=feature.properties.name||feature.properties.nome||'Estado';
      const uf=geoStateNameToUF[stateName]||'';
-     layer.bindTooltip(`<strong>${escapeHtml(stateName)}${uf?' ('+uf+')':''}</strong><br>Valor faturado: ${money((geoCurrentAggregate()[uf]||{}).faturado||0)}`,{sticky:true});
+     // Avalia o agregado ao abrir o tooltip; os dados podem chegar depois do GeoJSON.
+     layer.bindTooltip(()=>`<strong>${escapeHtml(stateName)}${uf?' ('+uf+')':''}</strong><br>Valor faturado: ${money((geoCurrentAggregate()[uf]||{}).faturado||0)}`,{sticky:true});
      layer.on({
       mouseover:e=>{if(e.target!==geoSelectedLayer)e.target.setStyle({weight:2.4,color:'#334155',fillOpacity:1});},
       mouseout:e=>{if(e.target!==geoSelectedLayer)geoStateLayer.resetStyle(e.target);},
