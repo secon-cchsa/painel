@@ -16,6 +16,7 @@ main{max-width:1494px;margin:auto;padding:22px}.toolbar{display:flex;justify-con
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.kpi{padding:15px 17px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 6px 20px rgba(22,42,78,.05);min-width:0}.kpi span{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.kpi strong{display:block;font-size:clamp(16px,1.8vw,22px);overflow-wrap:anywhere}
 .table-toolbar{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}.table-toolbar p{font-size:11px;color:var(--muted);margin:0}.table-scroll{overflow:auto;max-height:70vh;border:1px solid var(--line);border-radius:10px}table{border-collapse:separate;border-spacing:0;min-width:1800px;width:100%;font-size:11px}thead{position:sticky;top:0;z-index:2;background:#edf2fb;color:#34445e}th,td{padding:10px 11px;text-align:left;border-bottom:1px solid #e8edf4;white-space:nowrap}th{font-size:10px;text-transform:uppercase;letter-spacing:.035em;cursor:pointer;user-select:none}th:hover{background:#e3ebfa}tbody tr:nth-child(even){background:#f8faff}tbody tr:hover{background:#edf4ff}td.money{text-align:right;font-variant-numeric:tabular-nums}.empty{text-align:center;padding:30px;color:var(--muted)}
 .pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;flex-wrap:wrap;color:var(--muted);font-size:12px}.pagination-actions{display:flex;align-items:center;gap:8px}.pagination-actions button{padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:#edf2fb;color:#23406e;font-weight:700;cursor:pointer}.pagination-actions button:disabled{opacity:.45;cursor:not-allowed}.load-error{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:15px}
+.mindmap-intro{margin:-5px 0 14px;color:var(--muted);font-size:11px;line-height:1.5}.mindmap-root{display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border-radius:24px;background:#172f58;color:#fff;font-size:12px;font-weight:800;box-shadow:0 5px 15px #172f5826}.mindmap-root span{font-size:10px;color:#dbe5ff;font-weight:500}.mindmap-branches{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:15px}.mindmap-branch{border:1px solid var(--line);border-radius:12px;background:linear-gradient(150deg,#fff,#f7f9fe);padding:12px;min-width:0}.mindmap-node{width:100%;border:0;text-align:left;cursor:pointer;font:inherit}.mindmap-node.modality{display:flex;justify-content:space-between;align-items:center;gap:8px;border-radius:9px;background:#e9efff;color:#203d75;padding:10px;font-size:12px;font-weight:800}.mindmap-node small{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:4px}.mindmap-node .chevron{font-size:15px;transition:transform .15s}.mindmap-node[aria-expanded="true"] .chevron{transform:rotate(90deg)}.mindmap-children{margin:9px 0 0 9px;padding-left:12px;border-left:2px solid #dce5f5}.mindmap-proc{margin:7px 0}.mindmap-node.proc{border-radius:8px;background:#f2f5fa;color:#34445e;padding:9px;font-size:11px;font-weight:700}.mindmap-items{margin:7px 0 8px 8px;padding-left:10px;border-left:2px solid #e4eaf3}.mindmap-node.item{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:5px 0;border-radius:8px;background:#fff;border:1px solid #e8edf4;color:var(--ink);padding:8px;font-size:10px;line-height:1.45}.mindmap-node.item:hover,.mindmap-node.item[aria-expanded="true"]{border-color:#9bb4ed;background:#f5f8ff}.mindmap-commitments{margin:6px 0 7px 8px;padding-left:10px;border-left:2px solid #d8e7df}.mindmap-node.commitment{border-radius:8px;background:#edf8f2;color:#246044;padding:8px;font-size:10px;font-weight:700;margin:4px 0}.mindmap-invoices{margin:5px 0 7px 8px;padding-left:10px;border-left:2px solid #f0e3c5}.mindmap-invoice{padding:7px 9px;margin:4px 0;border-radius:7px;background:#fff9ec;color:#6d5424;font-size:10px;line-height:1.6}.mindmap-empty{color:var(--muted);font-size:10px;padding:18px;border:1px dashed var(--line);border-radius:10px;text-align:center}
 @media(max-width:900px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){main{padding:13px}header{padding:22px 17px}.panel{padding:13px}.filters{grid-template-columns:1fr}.kpis{gap:8px}.kpi{padding:12px}.pagination{align-items:flex-start}}
 </style>
@@ -55,6 +56,11 @@ main{max-width:1494px;margin:auto;padding:22px}.toolbar{display:flex;justify-con
     <div class="table-scroll"><table><thead><tr id="tableHead"></tr></thead><tbody id="tableBody"><tr><td class="empty">Carregando dados…</td></tr></tbody></table></div>
     <div class="pagination"><span id="pageInfo">—</span><div class="pagination-actions"><button id="prevPage" type="button">← Anterior</button><button id="nextPage" type="button">Próxima →</button></div></div>
   </section>
+  <section class="panel" aria-labelledby="mindmapTitle">
+    <div class="panel-title"><div><h2 id="mindmapTitle">Mapa mental dos registros</h2><p>Relação entre pregões/IRPs, produtos, notas de empenho e notas fiscais.</p></div></div>
+    <p class="mindmap-intro">Os pregões e IRPs começam recolhidos. Abra um deles para ver todos os produtos; expanda cada produto para consultar empenhos e notas fiscais. O mapa acompanha os filtros ativos.</p>
+    <div id="mindmap" aria-live="polite"><div class="mindmap-empty">Carregando mapa mental…</div></div>
+  </section>
 </main>
 <script>
 const DATA_URL='./dados_produtos.json';
@@ -85,9 +91,52 @@ function updateSummary(rows){
  $('kpiBalance').textContent=money(rows.reduce((s,r)=>s+(Number(r['Saldo dos produtos'])||0),0));
  $('filterSummary').textContent=`${rows.length.toLocaleString('pt-BR')} de ${DATA.length.toLocaleString('pt-BR')} linhas após os filtros`;
 }
+function grouped(rows,key){const map=new Map();rows.forEach(r=>{const label=String(r[key]??'').trim()||'Não informado';if(!map.has(label))map.set(label,[]);map.get(label).push(r);});return [...map.entries()].sort((a,b)=>b[1].length-a[1].length||a[0].localeCompare(b[0],'pt-BR',{numeric:true,sensitivity:'base'}));}
+function mindNode(label,meta,kind,expanded=false){const b=document.createElement('button');b.type='button';b.className=`mindmap-node ${kind}`;b.setAttribute('aria-expanded',String(expanded));b.innerHTML=`<span>${escapeHtml(label)}<small>${escapeHtml(meta)}</small></span><span class="chevron" aria-hidden="true">›</span>`;return b;}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function toggleMindNode(button,content,onOpen){button.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));content.hidden=!open;if(open&&onOpen)onOpen();});}
+function renderMindmap(rows){
+ const host=$('mindmap');host.replaceChildren();
+ if(!rows.length){host.innerHTML='<div class="mindmap-empty">Nenhum registro para representar com os filtros atuais.</div>';return;}
+ const root=document.createElement('div');root.className='mindmap-root';root.innerHTML=`Contratações <span>${rows.length.toLocaleString('pt-BR')} registros • ${money(rows.reduce((s,r)=>s+(Number(r['Valor empenhado'])||0),0))} empenhados</span>`;host.appendChild(root);
+ const branches=document.createElement('div');branches.className='mindmap-branches';host.appendChild(branches);
+ grouped(rows,'Modalidade').forEach(([modality,modRows])=>{
+  const branch=document.createElement('article');branch.className='mindmap-branch';branches.appendChild(branch);
+  const procGroups=grouped(modRows,'Número');const modNode=mindNode(modality,`${modRows.length.toLocaleString('pt-BR')} registros • ${procGroups.length.toLocaleString('pt-BR')} pregão(ões)`,'modality',true);branch.appendChild(modNode);
+  const children=document.createElement('div');children.className='mindmap-children';branch.appendChild(children);
+  procGroups.forEach(([proc,procRows])=>{
+   const wrap=document.createElement('div');wrap.className='mindmap-proc';children.appendChild(wrap);
+   const procNode=mindNode(`Pregão/IRP ${proc}`,`${procRows.length.toLocaleString('pt-BR')} registro(s) • ${[...new Set(procRows.map(r=>r.Ano).filter(Boolean))].join(', ')||'ano não informado'}`,'proc',false);wrap.appendChild(procNode);
+   const productHost=document.createElement('div');productHost.className='mindmap-items';productHost.hidden=true;wrap.appendChild(productHost);
+   toggleMindNode(procNode,productHost,()=>{if(!productHost.childElementCount)renderMindProducts(productHost,procRows);});
+  });
+  modNode.addEventListener('click',()=>{const open=modNode.getAttribute('aria-expanded')!=='true';modNode.setAttribute('aria-expanded',String(open));children.hidden=!open;});
+ });
+}
+function renderMindProducts(host,rows){
+ const products=new Map();rows.forEach(r=>{const id=`${String(r['Num. Item']??'')}\u0000${String(r['Descrição']??'')}`;if(!products.has(id))products.set(id,{label:`Item ${r['Num. Item']||'—'} · ${r['Descrição']||'Produto sem descrição'}`,rows:[]});products.get(id).rows.push(r);});
+ [...products.values()].sort((a,b)=>a.label.localeCompare(b.label,'pt-BR',{numeric:true,sensitivity:'base'})).forEach(product=>{
+  const wrap=document.createElement('div');host.appendChild(wrap);const productNode=mindNode(product.label,`${product.rows.length} linha(s) • ${money(product.rows.reduce((s,r)=>s+(Number(r['Valor empenhado'])||0),0))} empenhados`,'item',false);wrap.appendChild(productNode);
+  const commitmentHost=document.createElement('div');commitmentHost.className='mindmap-commitments';commitmentHost.hidden=true;wrap.appendChild(commitmentHost);
+  toggleMindNode(productNode,commitmentHost,()=>{if(!commitmentHost.childElementCount)renderMindCommitments(commitmentHost,product.rows);});
+ });
+}
+function renderMindCommitments(host,rows){
+ const commitments=grouped(rows,'Num. Nota Emp');commitments.forEach(([commitment,commitRows])=>{
+  const wrap=document.createElement('div');host.appendChild(wrap);const node=mindNode(`Nota de empenho ${commitment}`,`${commitRows.length} registro(s) • ${money(commitRows.reduce((s,r)=>s+(Number(r['Valor empenhado'])||0),0))}`,'commitment',false);wrap.appendChild(node);
+  const invoiceHost=document.createElement('div');invoiceHost.className='mindmap-invoices';invoiceHost.hidden=true;wrap.appendChild(invoiceHost);
+  toggleMindNode(node,invoiceHost,()=>{if(!invoiceHost.childElementCount)renderMindInvoices(invoiceHost,commitRows);});
+ });
+}
+function renderMindInvoices(host,rows){
+ const invoices=grouped(rows,'Num. Nota Fiscal');invoices.forEach(([invoice,invoiceRows])=>{
+  const box=document.createElement('div');box.className='mindmap-invoice';box.innerHTML=`<strong>Nota fiscal ${escapeHtml(invoice)}</strong><br>${invoiceRows.map(r=>`${escapeHtml(r['Nome do fornecedor']||'Fornecedor não informado')} · CNPJ ${escapeHtml(r.CNPJ||'—')} · qtd. adquirida ${escapeHtml(number(r['Qtd. adquirida']))} · saldo ${escapeHtml(money(r['Saldo dos produtos']))}`).join('<br>')}`;host.appendChild(box);
+ });
+}
 function displayValue(row,col){const value=row[col.key];if(value===null||value===undefined||value==='')return '—';if(col.type==='money')return money(value);if(col.type==='number')return number(value);return String(value);}
 function renderTable(){
  const rows=filteredRows();updateSummary(rows);
+ renderMindmap(rows);
  rows.sort((a,b)=>{const x=a[sortKey],y=b[sortKey],nx=Number(x),ny=Number(y);const numeric=x!==''&&y!==''&&Number.isFinite(nx)&&Number.isFinite(ny);const c=numeric?nx-ny:String(x??'').localeCompare(String(y??''),'pt-BR',{numeric:true,sensitivity:'base'});return c*sortDir;});
  const totalPages=Math.max(1,Math.ceil(rows.length/pageSize));page=Math.min(page,totalPages-1);
  const shown=rows.slice(page*pageSize,(page+1)*pageSize),body=$('tableBody');body.replaceChildren();

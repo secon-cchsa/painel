@@ -119,6 +119,14 @@ a { color:#7dd3fc; }
 #geoMap { height:min(68vh,650px) !important; min-height:480px !important; }
 #geoDetails { min-height:100%; box-sizing:border-box; }
 @media(max-width:900px){.geo-emphasis-grid{grid-template-columns:1fr !important;} .geo-details-column{max-height:none;} #geoMap{height:55vh !important;min-height:380px !important;}}
+.kpi-explanation {display:block;margin-top:7px;color:#526174;font-size:11px;line-height:1.45}
+.geo-map-legend {display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:10px;color:#475569;font-size:11px;line-height:1.5}
+.geo-map-legend .legend-scale {display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.geo-map-legend .legend-step {display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.geo-map-legend .legend-step i {width:15px;height:12px;border:1px solid #94a3b8;border-radius:3px;display:inline-block}
+html body main .kpi-explanation {color:#475569 !important}
+html body main .geo-map-legend {color:#475569 !important}
+@media(max-width:600px){.kpi-explanation{font-size:10px}.geo-map-legend{font-size:10px}}
 </style>
 
 
@@ -582,7 +590,7 @@ html body main .filters .procurement-field {z-index:2}
   <div class="field procurement-field"><label for="procurementFilter">Número do pregão/IRP</label><input id="procurementFilter" type="search" placeholder="Digite o número" autocomplete="off" aria-autocomplete="list" aria-controls="procurementSuggestions"><div class="procurement-suggestions" id="procurementSuggestions" role="listbox" hidden></div></div>
   <div class="field"><label for="yearFilter">Ano do pregão/IRP</label><select id="yearFilter"><option value="">Todos os anos</option></select></div>
   <div class="field"><label for="modalityFilter">Modalidade</label><select id="modalityFilter"><option value="">Todas as modalidades</option><option value="Pregão">Pregão</option><option value="IRP">IRP</option></select></div>
-  <div class="field"><label for="supplierFilter">Fornecedor</label><input id="supplierFilter" placeholder="Nome do fornecedor"></div>
+  <div class="field procurement-field supplier-field"><label for="supplierFilter">Fornecedor</label><input id="supplierFilter" placeholder="Nome do fornecedor" autocomplete="off" aria-autocomplete="list" aria-controls="supplierSuggestions"><div class="procurement-suggestions supplier-suggestions" id="supplierSuggestions" role="listbox" hidden></div></div>
   <div class="field"><label for="fromDate">Emissão da nota — de</label><input type="date" id="fromDate"></div>
   <div class="field"><label for="toDate">Emissão da nota — até</label><input type="date" id="toDate"></div>
  </div>
@@ -593,7 +601,13 @@ html body main .filters .procurement-field {z-index:2}
   <h2>Mapa geográfico de contratações por estado</h2>
   <p class="geo-emphasis-intro">Clique em um estado para consultar os fornecedores, modalidades, anos e valores associados. O conteúdo acompanha os filtros aplicados à dashboard.</p>
   <div class="geo-emphasis-grid">
-    <div class="geo-map-column"><div id="geoMap" aria-label="Mapa geográfico interativo das contratações por estado"></div></div>
+    <div class="geo-map-column"><div id="geoMap" aria-label="Mapa geográfico interativo das contratações por estado"></div>
+      <div class="geo-map-legend" aria-label="Legenda do mapa: os tons de azul indicam o valor faturado, proporcional aos estados no recorte atual; cinza indica que não há registros">
+        <strong>Valor faturado (notas fiscais) no recorte atual:</strong>
+        <span class="legend-scale"><span class="legend-step"><i style="background:#deebf7"></i>menor</span><span class="legend-step"><i style="background:#c6dbef"></i></span><span class="legend-step"><i style="background:#9ecae1"></i></span><span class="legend-step"><i style="background:#6baed6"></i></span><span class="legend-step"><i style="background:#3182bd"></i>maior</span><span class="legend-step"><i style="background:#eef1f5"></i>sem registros</span></span>
+        <span>Os tons são relativos ao maior valor faturado entre as UFs com registros; os filtros atualizam a escala.</span>
+      </div>
+    </div>
     <div class="geo-details-column"><aside class="geo-details" id="geoDetails">
    <h3>Selecione um estado</h3>
    <div class="geo-sub">Os dados de fornecedores e execução financeira aparecerão neste painel.</div>
@@ -602,10 +616,10 @@ html body main .filters .procurement-field {z-index:2}
   </div>
 </section>
 <section class="kpis">
- <article class="kpi"><div class="kpi-head"><span>Valor planejado</span><span class="kpi-icon">◎</span></div><div class="kpi-value" id="kpiPlanned">—</div><div class="kpi-foot" id="plannedFoot">Total previsto nos registros filtrados</div></article>
- <article class="kpi"><div class="kpi-head"><span>Valor empenhado</span><span class="kpi-icon">↗</span></div><div class="kpi-value" id="kpiCommitted">—</div><div class="kpi-foot" id="committedFoot">—</div></article>
- <article class="kpi"><div class="kpi-head"><span>Valor faturado</span><span class="kpi-icon">▤</span></div><div class="kpi-value" id="kpiInvoice">—</div><div class="kpi-foot" id="invoiceFoot">—</div></article>
- <article class="kpi"><div class="kpi-head"><span>Empenho convertido em nota</span><span class="kpi-icon">%</span></div><div class="kpi-value" id="kpiRate">—</div><div class="kpi-foot" id="rateFoot">Faturado ÷ empenhado</div></article>
+ <article class="kpi"><div class="kpi-head"><span>Valor planejado</span><span class="kpi-icon">◎</span></div><div class="kpi-value" id="kpiPlanned">—</div><div class="kpi-foot" id="plannedFoot">Total previsto nos registros filtrados</div><small class="kpi-explanation">Soma dos valores previstos para as contratações incluídas nos filtros.</small></article>
+ <article class="kpi"><div class="kpi-head"><span>Valor empenhado</span><span class="kpi-icon">↗</span></div><div class="kpi-value" id="kpiCommitted">—</div><div class="kpi-foot" id="committedFoot">—</div><small class="kpi-explanation">Soma dos valores empenhados. A proporção abaixo compara o total com o valor planejado.</small></article>
+ <article class="kpi"><div class="kpi-head"><span>Valor faturado</span><span class="kpi-icon">▤</span></div><div class="kpi-value" id="kpiInvoice">—</div><div class="kpi-foot" id="invoiceFoot">—</div><small class="kpi-explanation">Soma dos valores das notas fiscais nos registros filtrados; a proporção compara com o planejado.</small></article>
+ <article class="kpi"><div class="kpi-head"><span>Empenho convertido em nota</span><span class="kpi-icon">%</span></div><div class="kpi-value" id="kpiRate">—</div><div class="kpi-foot" id="rateFoot">Faturado ÷ empenhado</div><small class="kpi-explanation">Calculado como faturado ÷ empenhado × 100. Pode passar de 100% se os valores faturados excederem os empenhos no recorte.</small></article>
 </section>
 
 <section class="charts">
@@ -686,7 +700,7 @@ const unique = a=>[...new Set(a)].sort((a,b)=>a.localeCompare(b,'pt-BR'));
 const stateNames={AC:'Acre',AL:'Alagoas',AP:'Amapá',AM:'Amazonas',BA:'Bahia',CE:'Ceará',DF:'Distrito Federal',ES:'Espírito Santo',GO:'Goiás',MA:'Maranhão',MT:'Mato Grosso',MS:'Mato Grosso do Sul',MG:'Minas Gerais',PA:'Pará',PB:'Paraíba',PR:'Paraná',PE:'Pernambuco',PI:'Piauí',RJ:'Rio de Janeiro',RN:'Rio Grande do Norte',RS:'Rio Grande do Sul',RO:'Rondônia',RR:'Roraima',SC:'Santa Catarina',SP:'São Paulo',SE:'Sergipe',TO:'Tocantins'};
 const $=id=>document.getElementById(id);
 let page=0,pageSize=12,sortKey='dataNota',sortDir=-1,tableRows=[];
-const procurementFilter=$('procurementFilter'),procurementSuggestions=$('procurementSuggestions'),yearFilter=$('yearFilter'),modalityFilter=$('modalityFilter'),supplierFilter=$('supplierFilter'),fromDate=$('fromDate'),toDate=$('toDate'),tableSearch=$('tableSearch');
+const procurementFilter=$('procurementFilter'),procurementSuggestions=$('procurementSuggestions'),yearFilter=$('yearFilter'),modalityFilter=$('modalityFilter'),supplierFilter=$('supplierFilter'),supplierSuggestions=$('supplierSuggestions'),fromDate=$('fromDate'),toDate=$('toDate'),tableSearch=$('tableSearch');
 let selectedProcurementKey='';
 const procurementKey=d=>`${d.modalidade||''}|${d.numero||''}|${d.ano||''}`;
 function updateProcurementSuggestions(){
@@ -705,6 +719,20 @@ function updateProcurementSuggestions(){
   procurementSuggestions.appendChild(button);
  });
  procurementSuggestions.hidden=false;
+}
+function updateSupplierSuggestions(){
+ const q=supplierFilter.value.trim().toLocaleLowerCase('pt-BR');
+ supplierSuggestions.replaceChildren();
+ const suppliers=unique(DATA.map(d=>String(d.fornecedor??'').trim()).filter(Boolean))
+  .filter(name=>name.toLocaleLowerCase('pt-BR').includes(q));
+ if(!suppliers.length){const empty=document.createElement('div');empty.className='suggestion-empty';empty.textContent='Nenhum fornecedor encontrado';supplierSuggestions.appendChild(empty);supplierSuggestions.hidden=false;return;}
+ suppliers.forEach(name=>{
+  const option=document.createElement('button');option.type='button';option.setAttribute('role','option');option.textContent=name;
+  option.addEventListener('mousedown',e=>e.preventDefault());
+  option.addEventListener('click',()=>{supplierFilter.value=name;supplierSuggestions.hidden=true;page=0;render();supplierFilter.focus();});
+  supplierSuggestions.appendChild(option);
+ });
+ supplierSuggestions.hidden=false;
 }
 unique(DATA.map(d=>String(d.ano??'').trim()).filter(Boolean)).forEach(y=>yearFilter.add(new Option(y,y)));
 function getFiltered(){
@@ -1197,12 +1225,17 @@ function render(){
  const rows=getFiltered();updateKPIs(rows);drawCharts(rows);drawParetoChart(rows);drawInvoiceScatter(rows);drawInvoiceTimeline(rows);geoRender(rows);drawInsights(rows);renderTable(rows);
  setText('filterSummary',`${rows.length.toLocaleString('pt-BR')} de ${DATA.length.toLocaleString('pt-BR')} registros • ${unique(rows.map(r=>r.estado)).length} UF(s) • ${unique(rows.map(r=>r.fornecedor)).length} fornecedor(es)`);
 }
-function reset(){procurementFilter.value='';selectedProcurementKey='';procurementSuggestions.hidden=true;yearFilter.value='';modalityFilter.value='';supplierFilter.value='';fromDate.value='';toDate.value='';tableSearch.value='';page=0;render()}
+function reset(){procurementFilter.value='';selectedProcurementKey='';procurementSuggestions.hidden=true;supplierSuggestions.hidden=true;yearFilter.value='';modalityFilter.value='';supplierFilter.value='';fromDate.value='';toDate.value='';tableSearch.value='';page=0;render()}
 procurementFilter.addEventListener('input',()=>{selectedProcurementKey='';page=0;updateProcurementSuggestions();render()});
 procurementFilter.addEventListener('focus',updateProcurementSuggestions);
 procurementFilter.addEventListener('keydown',e=>{if(e.key==='Escape')procurementSuggestions.hidden=true;});
 document.addEventListener('click',e=>{if(!e.target.closest('.procurement-field'))procurementSuggestions.hidden=true;});
-[yearFilter,modalityFilter,supplierFilter,fromDate,toDate,tableSearch].forEach(el=>el.addEventListener('input',()=>{page=0;render()}));
+supplierFilter.addEventListener('input',()=>{page=0;updateSupplierSuggestions();render()});
+supplierFilter.addEventListener('focus',updateSupplierSuggestions);
+supplierFilter.addEventListener('click',updateSupplierSuggestions);
+supplierFilter.addEventListener('keydown',e=>{if(e.key==='Escape')supplierSuggestions.hidden=true;});
+document.addEventListener('click',e=>{if(!e.target.closest('.supplier-field'))supplierSuggestions.hidden=true;});
+[yearFilter,modalityFilter,fromDate,toDate,tableSearch].forEach(el=>el.addEventListener('input',()=>{page=0;render()}));
 $('resetFilters').addEventListener('click',reset);
 $('printDashboard').addEventListener('click',()=>{document.body.classList.add('printing-report');renderTable(getFiltered());setTimeout(()=>window.print(),100)});
 window.addEventListener('beforeprint',()=>{if(geoMapInstance)geoMapInstance.invalidateSize({pan:false})});

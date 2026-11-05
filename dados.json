@@ -936,9 +936,9 @@
     "cnpj": "32.529.845/0001-65",
     "estado": "PE",
     "planejado": 12860.5,
-    "empenho": "",
-    "empenhado": 0,
-    "dataEmpenho": "",
+    "empenho": "2026NE000174",
+    "empenhado": 12860.5,
+    "dataEmpenho": "21/10/2026",
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
@@ -1547,9 +1547,9 @@
     "empenho": "2026NE000129",
     "empenhado": 2311.05,
     "dataEmpenho": "04/09/2026",
-    "notaFiscal": "",
-    "notaFiscalValor": 0,
-    "dataNota": ""
+    "notaFiscal": "000.000.360",
+    "notaFiscalValor": 2311.05,
+    "dataNota": "21/10/2026"
   },
   {
     "modalidade": "Pregão",
@@ -2270,5 +2270,21 @@
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
+  },
+  {
+    "modalidade": "Pregão",
+    "numero": "90001",
+    "ano": "2024",
+    "descricao": "Aquisição de outsourcing de impressão",
+    "fornecedor": "COPY LINE COMERCIO SERVIÇOS LTDA.",
+    "cnpj": "02.914.690/0001-10",
+    "estado": "PB",
+    "planejado": 166056.0,
+    "empenho": "2024NE000091",
+    "empenhado": 71470.56,
+    "dataEmpenho": "08/08/2024",
+    "notaFiscal": "000.042.111",
+    "notaFiscalValor": 55231.3,
+    "dataNota": "13/09/2024"
   }
 ]
