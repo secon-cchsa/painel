@@ -557,13 +557,19 @@ html body main .filters .filter-grid {position:relative;z-index:1;overflow:visib
 html body main .filters .procurement-field {z-index:2}
 .procurement-suggestions {z-index:100}
 @media print {.procurement-suggestions {display:none !important}}
+.head-actions {align-items:center;justify-content:flex-end;gap:12px}
+.head-action-menu {display:flex;align-items:center;gap:4px;padding:5px;background:#102b54;border:1px solid #0b2142;border-radius:12px;box-shadow:0 6px 16px rgba(15,23,42,.18)}
+.head-action-menu button,.head-action-menu a {display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:10px 13px;border:0;border-radius:8px;background:transparent !important;color:#fff !important;font:700 12px Inter,Segoe UI,Arial,sans-serif;text-decoration:none;white-space:nowrap;cursor:pointer}
+.head-action-menu button:hover,.head-action-menu a:hover {background:#1c4276 !important;box-shadow:none;transform:translateY(-1px)}
+@media(max-width:800px){.head-actions{width:100%;justify-content:flex-start}.head-action-menu{flex:1;flex-wrap:wrap}.head-action-menu button,.head-action-menu a{flex:1}}
+@media(max-width:600px){.head-action-menu{width:100%;flex:1 1 100%}.head-action-menu button,.head-action-menu a{flex:1 1 100%}}
 </style>
 </head>
 <body>
 <header>
   <div class="headline">
     <div><div class="eyebrow">Painel de transparência • visão gerencial</div><h1>Painel de Contratações do CCHSA/UFPB</h1><p>Acompanhe valores planejados, empenhados e faturados. Use os filtros para explorar os registros e atualizar indicadores, gráficos, insights e tabela em tempo real.</p></div>
-    <div class="head-actions"><button class="btn-ghost" id="resetTop">↺ Limpar filtros</button><button class="btn-light" id="exportTop">↓ Exportar CSV</button><div class="head-action-stack"><button class="btn-light" id="printDashboard">▧ Imprimir relatório PDF</button><a class="btn-light" href="./PRODUTOS/index.html">CONSULTAR PRODUTOS</a></div></div>
+    <div class="head-actions"><nav class="head-action-menu" aria-label="Ações do painel"><a href="./PRODUTOS/index.html">Consulta detalhada</a><button id="exportTop" type="button">↓ Exportar CSV</button><button id="printDashboard" type="button">▧ Imprimir relatório PDF</button></nav></div>
   </div>
 </header>
 <main>
@@ -1197,7 +1203,7 @@ procurementFilter.addEventListener('focus',updateProcurementSuggestions);
 procurementFilter.addEventListener('keydown',e=>{if(e.key==='Escape')procurementSuggestions.hidden=true;});
 document.addEventListener('click',e=>{if(!e.target.closest('.procurement-field'))procurementSuggestions.hidden=true;});
 [yearFilter,modalityFilter,supplierFilter,fromDate,toDate,tableSearch].forEach(el=>el.addEventListener('input',()=>{page=0;render()}));
-$('resetFilters').addEventListener('click',reset);$('resetTop').addEventListener('click',reset);
+$('resetFilters').addEventListener('click',reset);
 $('printDashboard').addEventListener('click',()=>{document.body.classList.add('printing-report');renderTable(getFiltered());setTimeout(()=>window.print(),100)});
 window.addEventListener('beforeprint',()=>{if(geoMapInstance)geoMapInstance.invalidateSize({pan:false})});
 window.addEventListener('afterprint',()=>{document.body.classList.remove('printing-report');renderTable(getFiltered());if(geoMapInstance)setTimeout(()=>geoMapInstance.invalidateSize({pan:false}),100)});
