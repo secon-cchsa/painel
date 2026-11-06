@@ -577,7 +577,7 @@ html body main .filters .procurement-field {z-index:2}
 <header>
   <div class="headline">
     <div><div class="eyebrow">Painel de transparência • visão gerencial</div><h1>Painel de Contratações do CCHSA/UFPB</h1><p>Acompanhe valores planejados, empenhados e faturados. Use os filtros para explorar os registros e atualizar indicadores, gráficos, insights e tabela em tempo real.</p></div>
-    <div class="head-actions"><nav class="head-action-menu" aria-label="Ações do painel"><a href="./PRODUTOS/index.html">Consulta detalhada</a><button id="exportTop" type="button">↓ Exportar CSV</button><button id="printDashboard" type="button">▧ Imprimir relatório PDF</button></nav></div>
+    <div class="head-actions"><nav class="head-action-menu" aria-label="Ações do painel"><a href="./PRODUTOS/index.html">Consulta detalhada</a><button id="exportTop" type="button">↓ Exportar XLSX</button><button id="printDashboard" type="button">▧ Imprimir relatório PDF</button></nav></div>
   </div>
 </header>
 <main>
@@ -678,7 +678,7 @@ html body main .filters .procurement-field {z-index:2}
  <article class="panel"><div class="panel-title"><div><h2>Insights automáticos</h2><p>Resumo calculado a partir dos filtros ativos</p></div></div><div class="insights" id="insights"></div></article>
 </section>
 <section class="panel table-panel">
- <div class="panel-title"><div><h2>Detalhamento dos registros</h2><p>Ordene clicando no cabeçalho. A pesquisa abaixo procura em todos os campos.</p></div><div class="table-controls"><input id="tableSearch" placeholder="Pesquisar na tabela…"><button class="btn-primary" id="exportTable">Exportar CSV</button></div></div>
+ <div class="panel-title"><div><h2>Detalhamento dos registros</h2><p>Ordene clicando no cabeçalho. A pesquisa abaixo procura em todos os campos.</p></div><div class="table-controls"><input id="tableSearch" placeholder="Pesquisar na tabela…"><button class="btn-primary" id="exportTable">Exportar XLSX</button></div></div>
  <div class="table-scroll"><table><thead><tr>
   <th data-sort="modalidade">Modalidade ↕</th><th data-sort="numero">Número ↕</th><th data-sort="ano">Ano ↕</th><th data-sort="descricao">Descrição ↕</th><th data-sort="fornecedor">Fornecedor ↕</th><th data-sort="cnpj">CNPJ ↕</th><th data-sort="estado">UF ↕</th><th data-sort="planejado">Planejado ↕</th><th data-sort="empenho">Nota de empenho ↕</th><th data-sort="empenhado">Empenhado ↕</th><th data-sort="dataEmpenho">Data empenho ↕</th><th data-sort="notaFiscal">Nota fiscal ↕</th><th data-sort="notaFiscalValor">Valor da nota ↕</th><th data-sort="dataNota">Emissão ↕</th>
  </tr></thead><tbody id="tableBody"></tbody></table></div>
@@ -687,6 +687,7 @@ html body main .filters .procurement-field {z-index:2}
 </main>
 <footer>Fonte: base de dados fornecida. Os indicadores refletem apenas os registros carregados e os filtros ativos. “Valor faturado” corresponde à soma dos valores das notas fiscais; a taxa de conversão é calculada como valor faturado ÷ valor empenhado. Os dados são exibidos como recebidos, sem validação externa de CNPJ, notas ou empenhos.</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="./xlsx-export.js"></script>
 <script>
 let DATA = [];
 const money = n => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:2}).format(n||0);
@@ -1243,12 +1244,11 @@ window.addEventListener('afterprint',()=>{document.body.classList.remove('printi
 $('prevPage').addEventListener('click',()=>{if(page>0){page--;renderTable(getFiltered())}});
 $('nextPage').addEventListener('click',()=>{if((page+1)*pageSize<getFiltered().length){page++;renderTable(getFiltered())}});
 document.querySelectorAll('th[data-sort]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.sort;if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=1}page=0;renderTable(getFiltered())}));
-function exportCSV(){
- const rows=getFiltered(),keys=[['Modalidade','modalidade'],['Número','numero'],['Ano','ano'],['Descrição','descricao'],['Nome do Fornecedor','fornecedor'],['CNPJ','cnpj'],['Estado','estado'],['Valor Planejado','planejado'],['Número da Nota de Empenho','empenho'],['Valor Empenhado','empenhado'],['Data de Empenho','dataEmpenho'],['Número da Nota Fiscal','notaFiscal'],['Valor da Nota Fiscal','notaFiscalValor'],['Data de Emissão da Nota Fiscal','dataNota']];
- const csv=[keys.map(x=>x[0]),...rows.map(r=>keys.map(x=>r[x[1]]))].map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\r\n');
- const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='contratacoes_filtradas.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+function exportXLSX(){
+ const rows=getFiltered(),keys=[['Modalidade','modalidade','text'],['Número','numero','text'],['Ano','ano','text'],['Descrição','descricao','text'],['Nome do Fornecedor','fornecedor','text'],['CNPJ','cnpj','text'],['Estado','estado','text'],['Valor Planejado','planejado','money'],['Número da Nota de Empenho','empenho','text'],['Valor Empenhado','empenhado','money'],['Data de Empenho','dataEmpenho','date'],['Número da Nota Fiscal','notaFiscal','text'],['Valor da Nota Fiscal','notaFiscalValor','money'],['Data de Emissão da Nota Fiscal','dataNota','date']];
+ createXlsx(keys.map(([value,,type])=>({value,type})),rows.map(r=>keys.map(([,key])=>r[key]??'')),'contratacoes_filtradas.xlsx');
 }
-$('exportTop').addEventListener('click',exportCSV);$('exportTable').addEventListener('click',exportCSV);
+$('exportTop').addEventListener('click',exportXLSX);$('exportTable').addEventListener('click',exportXLSX);
 let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>drawCharts(getFiltered()),120)});
 geoInitMap();
 const loadingNote = document.createElement('div');

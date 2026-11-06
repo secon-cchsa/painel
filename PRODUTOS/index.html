@@ -19,6 +19,24 @@ main{max-width:1494px;margin:auto;padding:22px}.toolbar{display:flex;justify-con
 .mindmap-intro{margin:-5px 0 14px;color:var(--muted);font-size:11px;line-height:1.5}.mindmap-root{display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border-radius:24px;background:#172f58;color:#fff;font-size:12px;font-weight:800;box-shadow:0 5px 15px #172f5826}.mindmap-root span{font-size:10px;color:#dbe5ff;font-weight:500}.mindmap-branches{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:15px}.mindmap-branch{border:1px solid var(--line);border-radius:12px;background:linear-gradient(150deg,#fff,#f7f9fe);padding:12px;min-width:0}.mindmap-node{width:100%;border:0;text-align:left;cursor:pointer;font:inherit}.mindmap-node.modality{display:flex;justify-content:space-between;align-items:center;gap:8px;border-radius:9px;background:#e9efff;color:#203d75;padding:10px;font-size:12px;font-weight:800}.mindmap-node small{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:4px}.mindmap-node .chevron{font-size:15px;transition:transform .15s}.mindmap-node[aria-expanded="true"] .chevron{transform:rotate(90deg)}.mindmap-children{margin:9px 0 0 9px;padding-left:12px;border-left:2px solid #dce5f5}.mindmap-proc{margin:7px 0}.mindmap-node.proc{border-radius:8px;background:#f2f5fa;color:#34445e;padding:9px;font-size:11px;font-weight:700}.mindmap-items,.mindmap-products{margin:7px 0 8px 8px;padding-left:10px;border-left:2px solid #e4eaf3}.mindmap-node.supplier{display:flex;justify-content:space-between;align-items:center;gap:8px;border-radius:8px;background:#eef6f5;color:#24554e;padding:8px;font-size:10px;font-weight:700;margin:5px 0}.mindmap-node.item{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:5px 0;border-radius:8px;background:#fff;border:1px solid #e8edf4;color:var(--ink);padding:8px;font-size:10px;line-height:1.45}.mindmap-node.item:hover,.mindmap-node.item[aria-expanded="true"]{border-color:#9bb4ed;background:#f5f8ff}.mindmap-commitments{margin:6px 0 7px 8px;padding-left:10px;border-left:2px solid #d8e7df}.mindmap-node.commitment{border-radius:8px;background:#edf8f2;color:#246044;padding:8px;font-size:10px;font-weight:700;margin:4px 0}.mindmap-invoices{margin:5px 0 7px 8px;padding-left:10px;border-left:2px solid #f0e3c5}.mindmap-invoice{padding:7px 9px;margin:4px 0;border-radius:7px;background:#fff9ec;color:#6d5424;font-size:10px;line-height:1.6}.mindmap-empty{color:var(--muted);font-size:10px;padding:18px;border:1px dashed var(--line);border-radius:10px;text-align:center}
 @media(max-width:900px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){main{padding:13px}header{padding:22px 17px}.panel{padding:13px}.filters{grid-template-columns:1fr}.kpis{gap:8px}.kpi{padding:12px}.pagination{align-items:flex-start}}
+.print-report{display:none}
+@media print{
+ @page{size:A4 landscape;margin:8mm}
+ body{background:#fff;color:#111;font-family:Arial,sans-serif}
+ body>*:not(.print-report){display:none!important}
+ .print-report{display:block!important}
+ .print-report h1{font-size:16pt;margin:0 0 3mm}
+ .print-report p{font-size:8pt;margin:0 0 2mm}
+ .print-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3mm;margin:3mm 0 4mm}
+ .print-card{border:.25mm solid #9aa8bb;border-radius:2mm;padding:2.5mm 3mm;break-inside:avoid}
+ .print-card span{display:block;font-size:6.5pt;color:#4b596c;margin-bottom:1mm}
+ .print-card strong{display:block;font-size:10pt;color:#17263c}
+ .print-report table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;font-size:5.5pt}
+ .print-report th,.print-report td{padding:1.1mm .7mm;border:0.2mm solid #999;white-space:normal;overflow-wrap:anywhere;word-break:break-word;line-height:1.15}
+ .print-report th{background:#e8edf5!important;font-size:5pt}
+ .print-report thead{display:table-header-group}
+ .print-report tr{break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -28,7 +46,7 @@ main{max-width:1494px;margin:auto;padding:22px}.toolbar{display:flex;justify-con
   <p class="intro">Filtre os produtos e consulte quantidades, empenhos e saldos da base de contratações.</p>
 </header>
 <main>
-  <div class="toolbar"><a class="button" href="../index.html">← Voltar à dashboard</a><button class="button primary" id="exportCsv" type="button">↓ Exportar CSV</button></div>
+  <div class="toolbar"><a class="button" href="../index.html">← Voltar à dashboard</a><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="button" id="printReport" type="button">▧ Imprimir relatório completo</button><button class="button primary" id="exportCsv" type="button">↓ Exportar XLSX</button></div></div>
   <section class="panel">
     <div class="panel-title"><div><h2>Filtros da consulta</h2><p>A tabela e os indicadores são atualizados enquanto você altera os filtros.</p></div><button class="button" id="clearFilters" type="button">Limpar filtros</button></div>
     <div class="filters">
@@ -62,6 +80,8 @@ main{max-width:1494px;margin:auto;padding:22px}.toolbar{display:flex;justify-con
     <div id="mindmap" aria-live="polite"><div class="mindmap-empty">Carregando mapa mental…</div></div>
   </section>
 </main>
+<div class="print-report" id="printReportContent" aria-hidden="true"></div>
+<script src="../xlsx-export.js"></script>
 <script>
 const DATA_URL='./dados_produtos.json';
 const columns=[
@@ -155,7 +175,9 @@ function renderTable(){
  $('prevPage').disabled=page===0;$('nextPage').disabled=page>=totalPages-1;
 }
 function buildHeaders(){const head=$('tableHead');columns.forEach(col=>{const th=document.createElement('th');th.textContent=col.label+' ↕';th.addEventListener('click',()=>{if(sortKey===col.key)sortDir*=-1;else{sortKey=col.key;sortDir=1;}renderTable();});head.appendChild(th);});}
-function exportCsv(){const rows=filteredRows(),csv=[columns.map(c=>c.label),...rows.map(r=>columns.map(c=>r[c.key]??''))].map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(';')).join('\r\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='produtos_filtrados.csv';a.click();URL.revokeObjectURL(url);}
+function exportXlsx(){const rows=filteredRows();createXlsx(columns.map(c=>({value:c.label,type:c.type||'text'})),rows.map(r=>columns.map(c=>r[c.key]??'')),'produtos_filtrados.xlsx');}
+function uniqueTotal(rows,field){const byAta=new Map();rows.forEach(row=>{const ata=[row['Modalidade'],row['Número'],row['Ano'],row.CNPJ].map(v=>String(v??'').trim()).join('\u0000');if(!byAta.has(ata))byAta.set(ata,Number(row[field])||0);});return [...byAta.values()].reduce((sum,value)=>sum+value,0);}
+function printReport(){const rows=filteredRows();rows.sort((a,b)=>{const x=a[sortKey],y=b[sortKey],nx=Number(x),ny=Number(y),numeric=x!==''&&y!==''&&Number.isFinite(nx)&&Number.isFinite(ny);const c=numeric?nx-ny:String(x??'').localeCompare(String(y??''),'pt-BR',{numeric:true,sensitivity:'base'});return c*sortDir;});const active=filterIds.map(id=>{const el=$(id);if(!el.value)return '';const label=document.querySelector(`label[for="${id}"]`).textContent;return `${label}: ${el.value}`;}).filter(Boolean);const host=$('printReportContent');host.replaceChildren();const title=document.createElement('h1');title.textContent='Relatório completo — Consulta Detalhada';host.appendChild(title);const info=document.createElement('p');info.textContent=`${rows.length.toLocaleString('pt-BR')} linha(s) • ${new Date().toLocaleString('pt-BR')}${active.length?' • Filtros: '+active.join(' | '):' • Sem filtros ativos'}`;host.appendChild(info);const cards=document.createElement('div');cards.className='print-cards';[['Valor total planejado (atas)',uniqueTotal(rows,'Valor total da ata')],['Valor total empenhado',rows.reduce((sum,row)=>sum+(Number(row['Valor empenhado'])||0),0)],['Valor total adquirido (atas únicas)',uniqueTotal(rows,'Valor total adquirido')],['Saldo total dos produtos',rows.reduce((sum,row)=>sum+(Number(row['Saldo dos produtos'])||0),0)]].forEach(([label,value])=>{const card=document.createElement('div');card.className='print-card';const name=document.createElement('span');name.textContent=label;const total=document.createElement('strong');total.textContent=money(value);card.append(name,total);cards.appendChild(card);});host.appendChild(cards);const table=document.createElement('table'),thead=document.createElement('thead'),head=document.createElement('tr');columns.forEach(col=>{const th=document.createElement('th');th.textContent=col.label;head.appendChild(th);});thead.appendChild(head);table.appendChild(thead);const tbody=document.createElement('tbody');rows.forEach(row=>{const tr=document.createElement('tr');columns.forEach(col=>{const td=document.createElement('td');td.textContent=displayValue(row,col);tr.appendChild(td);});tbody.appendChild(tr);});table.appendChild(tbody);host.appendChild(table);window.print();}
 function clearFilters(){filterIds.forEach(id=>$(id).value='');page=0;renderTable();}
 fetch(DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Não foi possível carregar dados_produtos.json');return r.json();}).then(rows=>{
  if(!Array.isArray(rows))throw new Error('A base de produtos precisa conter uma lista de registros.');DATA=rows;
@@ -170,7 +192,7 @@ fetch(DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Não foi p
 filterIds.forEach(id=>$(id).addEventListener('input',()=>{page=0;renderTable();}));
 ['yearFilter','modalityFilter'].forEach(id=>$(id).addEventListener('change',()=>{page=0;renderTable();}));
 $('pageSize').addEventListener('change',e=>{pageSize=Number(e.target.value)||25;page=0;renderTable();});
-$('clearFilters').addEventListener('click',clearFilters);$('prevPage').addEventListener('click',()=>{if(page>0){page--;renderTable();}});$('nextPage').addEventListener('click',()=>{if((page+1)*pageSize<filteredRows().length){page++;renderTable();}});$('exportCsv').addEventListener('click',exportCsv);
+ $('clearFilters').addEventListener('click',clearFilters);$('prevPage').addEventListener('click',()=>{if(page>0){page--;renderTable();}});$('nextPage').addEventListener('click',()=>{if((page+1)*pageSize<filteredRows().length){page++;renderTable();}});$('exportCsv').addEventListener('click',exportXlsx);$('printReport').addEventListener('click',printReport);
 </script>
 </body>
 </html>
