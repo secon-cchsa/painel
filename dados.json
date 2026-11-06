@@ -283,9 +283,9 @@
     "empenho": "2026NE000145",
     "empenhado": 3638.9,
     "dataEmpenho": "10/09/2026",
-    "notaFiscal": "",
-    "notaFiscalValor": 0,
-    "dataNota": ""
+    "notaFiscal": "000.013.661",
+    "notaFiscalValor": 3638.9,
+    "dataNota": "13/10/2026"
   },
   {
     "modalidade": "Pregão",
@@ -555,9 +555,9 @@
     "empenho": "2026NE000158",
     "empenhado": 5474.0,
     "dataEmpenho": "24/09/2026",
-    "notaFiscal": "",
-    "notaFiscalValor": 0,
-    "dataNota": ""
+    "notaFiscal": "000.000.194",
+    "notaFiscalValor": 5474.0,
+    "dataNota": "16/10/2026"
   },
   {
     "modalidade": "Pregão",
@@ -904,9 +904,9 @@
     "cnpj": "11.227.424/0001-00",
     "estado": "GO",
     "planejado": 1013.88,
-    "empenho": "",
-    "empenhado": 0,
-    "dataEmpenho": "",
+    "empenho": "2026NE000183",
+    "empenhado": 1013.88,
+    "dataEmpenho": "22/10/2026",
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
@@ -2270,21 +2270,5 @@
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
-  },
-  {
-    "modalidade": "Pregão",
-    "numero": "90001",
-    "ano": "2024",
-    "descricao": "Aquisição de outsourcing de impressão",
-    "fornecedor": "COPY LINE COMERCIO SERVIÇOS LTDA.",
-    "cnpj": "02.914.690/0001-10",
-    "estado": "PB",
-    "planejado": 166056.0,
-    "empenho": "2024NE000091",
-    "empenhado": 71470.56,
-    "dataEmpenho": "08/08/2024",
-    "notaFiscal": "000.042.111",
-    "notaFiscalValor": 55231.3,
-    "dataNota": "13/09/2024"
   }
 ]
