@@ -775,6 +775,7 @@ function drawInvoiceScatter(rows){
  if(!canvas)return;
  const points=rows.map((r,index)=>({
   fornecedor:String(r.fornecedor??'Não informado'),
+  notaFiscal:String(r.notaFiscal??'Não informada'),
   cnpj:String(r.cnpj??'Não informado'),
   contratacao:`${r.modalidade??'Não informada'} ${r.numero??''}/${r.ano??'Ano não informado'}`,
   valor:Number(r.notaFiscalValor),
@@ -852,6 +853,7 @@ function drawInvoiceScatter(rows){
   if(!best){if(tooltip)tooltip.style.display='none';return;}
   if(!tooltip)return;
   tooltip.innerHTML=`<strong style="display:block;color:#111827;margin-bottom:5px">${esc(best.fornecedor)}</strong>
+   <div><span style="color:#475569">Número da nota fiscal:</span> <strong>${esc(best.notaFiscal)}</strong></div>
    <div><span style="color:#475569">CNPJ:</span> ${esc(best.cnpj)}</div>
    <div><span style="color:#475569">Modalidade / ano:</span> ${esc(best.contratacao)}</div>
    <div><span style="color:#475569">Valor da nota fiscal:</span> <strong>${moneyFmt(best.valor)}</strong></div>

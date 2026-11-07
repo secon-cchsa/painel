@@ -16,6 +16,7 @@ main{max-width:1500px;margin:auto;padding:22px}.filters{background:var(--panel);
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}.kpi{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:var(--shadow);min-width:0}.kpi-head{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:650}.kpi-icon{display:grid;place-items:center;width:33px;height:33px;border-radius:10px;background:#edf2ff;color:var(--blue);font-size:17px}.kpi-value{font-size:clamp(19px,2vw,28px);font-weight:800;letter-spacing:-.04em;margin:13px 0 6px;overflow-wrap:anywhere}.kpi-foot{font-size:11px;color:var(--muted)}.kpi-foot strong{color:var(--teal)}
 .charts{display:grid;grid-template-columns:1.15fr 1fr;gap:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:var(--shadow);min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}.panel-title h2{font-size:14px;margin:0 0 5px}.panel-title p{font-size:11px;color:var(--muted);margin:0}.chart-wrap{position:relative;width:100%;height:300px}.chart-wrap canvas{width:100%;height:100%;display:block}.chart-note{font-size:11px;color:var(--muted);margin-top:7px}.lower{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.insights{display:grid;gap:10px}.insight{display:flex;gap:11px;padding:11px;border-radius:11px;background:#f7f9fd;border:1px solid #edf1f7}.insight-mark{width:28px;height:28px;flex:0 0 28px;display:grid;place-items:center;border-radius:8px;background:#e7eeff;color:var(--blue);font-weight:800}.insight b{display:block;font-size:12px;margin:1px 0 4px}.insight p{margin:0;font-size:12px;color:var(--muted);line-height:1.45}
 .table-panel{margin-top:14px}.table-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.table-controls input{border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-width:210px;font:inherit}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:12px}thead{background:#f4f7fc;color:#506078}th,td{padding:12px 13px;text-align:left;border-bottom:1px solid #edf1f6}th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer}tbody tr:hover{background:#f8faff}td.money{text-align:right;font-variant-numeric:tabular-nums}tbody tr:last-child td{border-bottom:0}.tag{display:inline-block;padding:4px 7px;border-radius:6px;background:#edf2ff;color:#2852b6;font-weight:700;font-size:10px}.pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:13px;color:var(--muted);font-size:12px}.pagination-actions{display:flex;gap:7px}.pagination-actions button{padding:8px 11px}.empty{padding:28px;text-align:center;color:var(--muted)}footer{max-width:1500px;margin:auto;padding:0 22px 24px;color:var(--muted);font-size:11px;line-height:1.6}
+.dashboard-financial-report{display:none}.dashboard-financial-report h2{font-size:17pt;margin:0 0 2mm}.dashboard-financial-report h3{font-size:11pt;margin:5mm 0 2mm}.dashboard-financial-report p,.dashboard-financial-report li{font-size:8pt;line-height:1.5}.report-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm;margin:3mm 0}.report-kpi{border:1px solid #9aa8bb;border-radius:2mm;padding:2.5mm}.report-kpi span,.report-kpi strong{display:block}.report-kpi span{font-size:7pt;color:#475569}.report-kpi strong{font-size:10pt;margin-top:1mm}.report-table{width:100%;border-collapse:collapse;white-space:normal;font-size:7pt;margin:2mm 0 4mm}.report-table th,.report-table td{padding:1.5mm 1.2mm;border:0.2mm solid #9aa8bb;text-align:left;white-space:normal;overflow-wrap:anywhere}.report-table th{background:#e8edf5}
 @media(max-width:1050px){.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.charts,.lower{grid-template-columns:1fr}}
 @media(max-width:600px){main{padding:13px}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{gap:9px}.kpi{padding:13px}.kpi-value{font-size:19px}.panel{padding:14px}.chart-wrap{height:260px}header{padding:23px 17px}.head-actions{width:100%}.head-actions button{flex:1}.filter-grid{gap:9px}}
 
@@ -557,6 +558,10 @@ html body main #supplier-map-feature .geo-emphasis-intro {color:#111827 !importa
   th,td {padding:1.4mm 1mm !important;white-space:normal !important;overflow-wrap:anywhere !important}
   th {font-size:6pt !important}
   .tag {font-size:6pt !important;padding:1mm !important}
+  .dashboard-financial-report {display:block !important;break-before:page !important;page-break-before:always !important;border-top:1.5pt solid #111827 !important;padding-top:5mm !important}
+  .dashboard-financial-report .report-kpis {grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+  .dashboard-financial-report .report-table {white-space:normal !important;font-size:6.5pt !important;table-layout:fixed !important}
+  .dashboard-financial-report .report-table th,.dashboard-financial-report .report-table td {padding:1.1mm .8mm !important;white-space:normal !important}
 }
 </style>
 <style id="procurement-suggestions-overflow-fix">
@@ -684,6 +689,7 @@ html body main .filters .procurement-field {z-index:2}
  </tr></thead><tbody id="tableBody"></tbody></table></div>
  <div class="pagination"><span id="pageInfo">—</span><div class="pagination-actions"><button class="btn-secondary" id="prevPage">← Anterior</button><button class="btn-secondary" id="nextPage">Próxima →</button></div></div>
 </section>
+<section class="dashboard-financial-report" id="dashboardFinancialReport" aria-label="Relatório financeiro detalhado para impressão"></section>
 </main>
 <footer>Fonte: base de dados fornecida. Os indicadores refletem apenas os registros carregados e os filtros ativos. “Valor faturado” corresponde à soma dos valores das notas fiscais; a taxa de conversão é calculada como valor faturado ÷ valor empenhado. Os dados são exibidos como recebidos, sem validação externa de CNPJ, notas ou empenhos.</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -837,6 +843,7 @@ function drawInvoiceScatter(rows){
  if(!canvas)return;
  const points=rows.map((r,index)=>({
   fornecedor:String(r.fornecedor??'Não informado'),
+  notaFiscal:String(r.notaFiscal??'Não informada'),
   cnpj:String(r.cnpj??'Não informado'),
   contratacao:`${r.modalidade??'Não informada'} ${r.numero??''}/${r.ano??'Ano não informado'}`,
   valor:Number(r.notaFiscalValor),
@@ -914,6 +921,7 @@ function drawInvoiceScatter(rows){
   if(!best){if(tooltip)tooltip.style.display='none';return;}
   if(!tooltip)return;
   tooltip.innerHTML=`<strong style="display:block;color:#111827;margin-bottom:5px">${esc(best.fornecedor)}</strong>
+   <div><span style="color:#475569">Número da nota fiscal:</span> <strong>${esc(best.notaFiscal)}</strong></div>
    <div><span style="color:#475569">CNPJ:</span> ${esc(best.cnpj)}</div>
    <div><span style="color:#475569">Modalidade / ano:</span> ${esc(best.contratacao)}</div>
    <div><span style="color:#475569">Valor da nota fiscal:</span> <strong>${moneyFmt(best.valor)}</strong></div>
@@ -1222,6 +1230,41 @@ function geoInitMap(){
 
 
 
+function dashboardActiveFilters(){
+ const values=[['Pregão/IRP',procurementFilter.value.trim()],['Ano',yearFilter.value],['Modalidade',modalityFilter.value],['Fornecedor',supplierFilter.value.trim()],['Nota fiscal de',fromDate.value],['Nota fiscal até',toDate.value],['Pesquisa na tabela',tableSearch.value.trim()]];
+ return values.filter(([,v])=>v).map(([k,v])=>`${k}: ${v}`);
+}
+function dashboardReportTable(headers,rows){return `<table class="report-table"><thead><tr>${headers.map(h=>`<th>${escapeHtml(h)}</th>`).join('')}</tr></thead><tbody>${rows.length?rows.map(row=>`<tr>${row.map(v=>`<td>${v}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${headers.length}">Sem registros neste recorte.</td></tr>`}</tbody></table>`}
+function buildDashboardFinancialReport(rows){
+ const host=$('dashboardFinancialReport');if(!host)return;
+ if(!rows.length){host.innerHTML='<h2>Relatório Financeiro Detalhado</h2><p>Nenhum registro corresponde aos filtros ativos.</p>';return;}
+ const planned=sum(rows,'planejado'),committed=sum(rows,'empenhado'),invoiced=sum(rows,'notaFiscalValor'),balance=Math.max(0,planned-invoiced),suppliers=new Set(rows.map(r=>r.fornecedor).filter(Boolean)).size,procMap=new Map(),supplierMap=new Map();
+ rows.forEach(r=>{const proc=`${r.modalidade||'—'}|${r.numero||'—'}|${r.ano||'—'}`;if(!procMap.has(proc))procMap.set(proc,{mod:r.modalidade||'—',num:r.numero||'—',year:r.ano||'—',planned:0,committed:0,invoiced:0,desc:r.descricao||'—'});const p=procMap.get(proc);p.planned+=Number(r.planejado)||0;p.committed+=Number(r.empenhado)||0;p.invoiced+=Number(r.notaFiscalValor)||0;const name=r.fornecedor||'Fornecedor não informado';if(!supplierMap.has(name))supplierMap.set(name,{name,planned:0,committed:0,invoiced:0,rows:0,states:new Set()});const s=supplierMap.get(name);s.planned+=Number(r.planejado)||0;s.committed+=Number(r.empenhado)||0;s.invoiced+=Number(r.notaFiscalValor)||0;s.rows++;if(r.estado)s.states.add(r.estado);});
+ const suppliersList=[...supplierMap.values()],top=(field)=>[...suppliersList].sort((a,b)=>b[field]-a[field]).slice(0,10),supplierTable=(field,total)=>top(field).map(s=>[escapeHtml(s.name),money(s[field]),String(s.rows),`${pct(s[field],total).toLocaleString('pt-BR',{maximumFractionDigits:1})}%`,escapeHtml([...s.states].join(', ')||'—')]);
+ const procurements=[...procMap.values()],topProcs=(field)=>[...procurements].sort((a,b)=>b[field]-a[field]).slice(0,10),procRows=field=>topProcs(field).map(p=>[escapeHtml(`${p.mod} ${p.num}/${p.year}`),escapeHtml(p.desc),money(p[field]),money(p.committed),money(p.invoiced)]);
+ const monthly=new Map();rows.forEach(r=>{const key=monthKey(r.dataNota);if(key)monthly.set(key,(monthly.get(key)||0)+(Number(r.notaFiscalValor)||0));});let months=[];
+ if(monthly.size){const start=monthly.keys().reduce((a,b)=>a<b?a:b),end=monthly.keys().reduce((a,b)=>a>b?a:b),[sy,sm]=start.split('-').map(Number),[ey,em]=end.split('-').map(Number);let y=sy,m=sm;while(y<ey||(y===ey&&m<=em)){const key=`${y}-${String(m).padStart(2,'0')}`;months.push([key,monthly.get(key)||0]);m++;if(m===13){m=1;y++;}}}
+ const monthsWithInvoices=months.filter(([,v])=>v>0);let trend='A base filtrada não contém pelo menos três meses com notas fiscais datadas e valores positivos; não há histórico mensal suficiente para estimar tendência.';let forecastRows=[];
+ if(monthsWithInvoices.length>=3){const ys=months.map(([,v])=>v),n=ys.length,xMean=(n-1)/2,yMean=ys.reduce((a,b)=>a+b,0)/n,slope=ys.reduce((s,y,i)=>s+(i-xMean)*(y-yMean),0)/(ys.reduce((s,_,i)=>s+(i-xMean)**2,0)||1),intercept=yMean-slope*xMean,rawNext=intercept+slope*n,rawThree=Array.from({length:3},(_,i)=>intercept+slope*(n+i)).reduce((a,b)=>a+b,0),recent=monthsWithInvoices.slice(-3),recentAverage=recent.reduce((s,[,v])=>s+v,0)/recent.length;
+  if(rawNext>0&&rawThree>0){trend=`Tendência linear descritiva calculada sobre ${n} competências mensais consecutivas, incluindo meses sem faturamento registrado: ${slope>=0?'alta':'queda'} aproximada de ${money(Math.abs(slope))} por mês. A projeção é sensível a poucos pontos e não representa garantia de faturamento.`;forecastRows=[['Extrapolação linear para o próximo mês',money(rawNext)],['Extrapolação linear para os próximos 3 meses',money(rawThree)]];}
+  else{trend=`A regressão linear sobre ${n} competências consecutivas indicou valores futuros negativos, influenciada pela forte variação entre os meses. Para não apresentar R$ 0,00 como previsão, o relatório usa uma referência de curto prazo: média simples dos três meses mais recentes com faturamento registrado (${recent.map(([k])=>monthLabel(k)).join(', ')}). Meses sem nota fiscal foram mantidos como competências sem faturamento na regressão.`;forecastRows=[['Referência para o próximo mês — média dos 3 últimos meses faturados',money(recentAverage)],['Referência para os próximos 3 meses — média × 3',money(recentAverage*3)]];}
+ }
+ const scenarios=[['Faturado até agora',money(invoiced),`${pct(invoiced,planned).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do planejado`],['Cenário: faturar 25% do saldo planejado',money(invoiced+balance*.25),`${pct(invoiced+balance*.25,planned).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do planejado`],['Cenário: faturar 50% do saldo planejado',money(invoiced+balance*.5),`${pct(invoiced+balance*.5,planned).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do planejado`],['Cenário: usar todo o saldo planejado',money(invoiced+balance),`${pct(invoiced+balance,planned).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do planejado`]];
+ const byYear=[...new Set(rows.map(r=>String(r.ano||'').trim()).filter(Boolean))].sort((a,b)=>Number(a)-Number(b)).map(year=>{const rs=rows.filter(r=>String(r.ano||'').trim()===year);return [escapeHtml(year),String(rs.length),money(sum(rs,'planejado')),money(sum(rs,'empenhado')),money(sum(rs,'notaFiscalValor'))];});
+ const invoiceRows=[...rows].filter(r=>Number(r.notaFiscalValor)>0).sort((a,b)=>(Number(b.notaFiscalValor)||0)-(Number(a.notaFiscalValor)||0)).slice(0,10).map(r=>[escapeHtml(r.fornecedor||'—'),escapeHtml(r.notaFiscal||'—'),escapeHtml(`${r.numero||'—'}/${r.ano||'—'}`),escapeHtml(r.dataNota||'—'),money(r.notaFiscalValor)]);
+ const active=dashboardActiveFilters();host.innerHTML=`<h2>Relatório Financeiro Detalhado — Dashboard de Contratações</h2><p>${rows.length.toLocaleString('pt-BR')} registros analisados · ${suppliers.toLocaleString('pt-BR')} fornecedores · ${procurements.length.toLocaleString('pt-BR')} pregões/IRPs · ${active.length?'Filtros ativos: '+active.map(escapeHtml).join(' | '):'Sem filtros ativos: análise de toda a base.'}</p>
+ <div class="report-kpis"><div class="report-kpi"><span>Valor planejado</span><strong>${money(planned)}</strong></div><div class="report-kpi"><span>Valor empenhado</span><strong>${money(committed)}</strong></div><div class="report-kpi"><span>Valor faturado</span><strong>${money(invoiced)}</strong></div><div class="report-kpi"><span>Saldo planejado após faturamento</span><strong>${money(balance)}</strong></div></div>
+ <h3>Resumo financeiro e execução</h3><p>Empenhos representam ${pct(committed,planned).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do valor planejado. Notas fiscais registradas representam ${pct(invoiced,planned).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do planejado e ${pct(invoiced,committed).toLocaleString('pt-BR',{maximumFractionDigits:1})}% do empenhado. O saldo acima é uma diferença indicativa entre planejado e faturado.</p>
+ <h3>Fornecedores com maior valor planejado</h3>${dashboardReportTable(['Fornecedor','Valor planejado','Registros','Participação no planejado','UF(s)'],supplierTable('planned',planned))}
+ <h3>Fornecedores com maior valor empenhado</h3>${dashboardReportTable(['Fornecedor','Valor empenhado','Registros','Participação no empenhado','UF(s)'],supplierTable('committed',committed))}
+ <h3>Fornecedores com maior valor faturado</h3>${dashboardReportTable(['Fornecedor','Valor faturado','Registros','Participação no faturado','UF(s)'],supplierTable('invoiced',invoiced))}
+ <h3>Pregões/IRPs com maior valor planejado</h3>${dashboardReportTable(['Pregão/IRP','Objeto','Planejado','Empenhado','Faturado'],procRows('planned'))}
+ <h3>Pregões/IRPs com maior valor adquirido (faturado)</h3>${dashboardReportTable(['Pregão/IRP','Objeto','Planejado','Empenhado','Faturado'],procRows('invoiced'))}
+ <h3>Maiores notas fiscais</h3>${dashboardReportTable(['Fornecedor','Nota fiscal','Pregão/IRP','Emissão','Valor'],invoiceRows)}
+ <h3>Comparativo por exercício</h3>${dashboardReportTable(['Ano','Registros','Planejado','Empenhado','Faturado'],byYear)}
+ <h3>Análise preditiva e cenários financeiros</h3><p>${escapeHtml(trend)}</p>${forecastRows.length?dashboardReportTable(['Extrapolação temporal (referência)','Estimativa'],forecastRows):''}${dashboardReportTable(['Cenário de faturamento','Valor estimado','Parcela do planejado'],scenarios)}<p>Os cenários de saldo são simulações aritméticas, não previsões garantidas. A extrapolação temporal só aparece quando há pelo menos três meses com notas fiscais datadas no recorte.</p>
+ <p>Valores e classificações refletem os registros carregados em dados.json, sem validação externa de empenhos, fornecedores ou notas fiscais.</p>`;
+}
 function render(){
  const rows=getFiltered();updateKPIs(rows);drawCharts(rows);drawParetoChart(rows);drawInvoiceScatter(rows);drawInvoiceTimeline(rows);geoRender(rows);drawInsights(rows);renderTable(rows);
  setText('filterSummary',`${rows.length.toLocaleString('pt-BR')} de ${DATA.length.toLocaleString('pt-BR')} registros • ${unique(rows.map(r=>r.estado)).length} UF(s) • ${unique(rows.map(r=>r.fornecedor)).length} fornecedor(es)`);
@@ -1238,7 +1281,7 @@ supplierFilter.addEventListener('keydown',e=>{if(e.key==='Escape')supplierSugges
 document.addEventListener('click',e=>{if(!e.target.closest('.supplier-field'))supplierSuggestions.hidden=true;});
 [yearFilter,modalityFilter,fromDate,toDate,tableSearch].forEach(el=>el.addEventListener('input',()=>{page=0;render()}));
 $('resetFilters').addEventListener('click',reset);
-$('printDashboard').addEventListener('click',()=>{document.body.classList.add('printing-report');renderTable(getFiltered());setTimeout(()=>window.print(),100)});
+ $('printDashboard').addEventListener('click',()=>{const rows=getFiltered();document.body.classList.add('printing-report');renderTable(rows);buildDashboardFinancialReport(rows);setTimeout(()=>window.print(),100)});
 window.addEventListener('beforeprint',()=>{if(geoMapInstance)geoMapInstance.invalidateSize({pan:false})});
 window.addEventListener('afterprint',()=>{document.body.classList.remove('printing-report');renderTable(getFiltered());if(geoMapInstance)setTimeout(()=>geoMapInstance.invalidateSize({pan:false}),100)});
 $('prevPage').addEventListener('click',()=>{if(page>0){page--;renderTable(getFiltered())}});
