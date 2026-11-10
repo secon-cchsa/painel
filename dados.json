@@ -520,9 +520,9 @@
     "cnpj": "49.569.068/0001-85",
     "estado": "PE",
     "planejado": 2300.0,
-    "empenho": "",
-    "empenhado": 0,
-    "dataEmpenho": "",
+    "empenho": "2026NE000190",
+    "empenhado": 2300.0,
+    "dataEmpenho": "29/10/2026",
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
@@ -539,9 +539,9 @@
     "empenho": "2026NE000159",
     "empenhado": 19435.0,
     "dataEmpenho": "24/09/2026",
-    "notaFiscal": "",
-    "notaFiscalValor": 0,
-    "dataNota": ""
+    "notaFiscal": "000.005.773",
+    "notaFiscalValor": 19435.0,
+    "dataNota": "08/10/2026"
   },
   {
     "modalidade": "Pregão",
@@ -1080,9 +1080,9 @@
     "cnpj": "64.342.015/0001-10",
     "estado": "PE",
     "planejado": 3080.0,
-    "empenho": "",
-    "empenhado": 0,
-    "dataEmpenho": "",
+    "empenho": "2026NE000193",
+    "empenhado": 3080.0,
+    "dataEmpenho": "29/10/2026",
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
@@ -1787,9 +1787,9 @@
     "empenho": "2026NE000121",
     "empenhado": 1400.0,
     "dataEmpenho": "04/09/2026",
-    "notaFiscal": "",
-    "notaFiscalValor": 0,
-    "dataNota": ""
+    "notaFiscal": "000.003.529",
+    "notaFiscalValor": 1400.0,
+    "dataNota": "15/10/2026"
   },
   {
     "modalidade": "Pregão",
