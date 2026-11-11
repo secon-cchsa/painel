@@ -541,6 +541,46 @@
   },
   {
     "Modalidade": "IRP",
+    "Número": "01",
+    "Ano": 2025,
+    "Nome do fornecedor": "ANDRE AUGUSTO TRUTA FELIPE",
+    "CNPJ": "18.474.659/0002-26",
+    "Valor total da ata": 72500,
+    "Valor total adquirido": 4695,
+    "Num. Item": 5,
+    "Descrição": "Gás GLP, botijão 13kg",
+    "Qtd. ARP": 300,
+    "Valor unitário": 105,
+    "Qtd empenhada": 69,
+    "Valor empenhado": 7245,
+    "Num. Nota Emp": "2026NE000059",
+    "Num. Nota Fiscal": "000.001.034",
+    "Qtd. adquirida": 33,
+    "Qtd. restante": 36,
+    "Saldo dos produtos": 3780
+  },
+  {
+    "Modalidade": "IRP",
+    "Número": "01",
+    "Ano": 2025,
+    "Nome do fornecedor": "ANDRE AUGUSTO TRUTA FELIPE",
+    "CNPJ": "18.474.659/0002-26",
+    "Valor total da ata": 72500,
+    "Valor total adquirido": 4695,
+    "Num. Item": 7,
+    "Descrição": "Gás GLP, cilindro 45kg",
+    "Qtd. ARP": 100,
+    "Valor unitário": 410,
+    "Qtd empenhada": 10,
+    "Valor empenhado": 4100,
+    "Num. Nota Emp": "2026NE000059",
+    "Num. Nota Fiscal": "000.001.034",
+    "Qtd. adquirida": 3,
+    "Qtd. restante": 7,
+    "Saldo dos produtos": 2870
+  },
+  {
+    "Modalidade": "IRP",
     "Número": "03",
     "Ano": 2026,
     "Nome do fornecedor": "Andreya Bispo de Lima",
@@ -1451,13 +1491,13 @@
     "Descrição": "Farelo de trigo",
     "Qtd. ARP": 48,
     "Valor unitário": 65,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 48,
+    "Valor empenhado": 3120,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 48,
+    "Saldo dos produtos": 3120
   },
   {
     "Modalidade": "pregão",
@@ -1471,13 +1511,13 @@
     "Descrição": "Núcleo mineral - suino",
     "Qtd. ARP": 17,
     "Valor unitário": 213,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 17,
+    "Valor empenhado": 3621,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 17,
+    "Saldo dos produtos": 3621
   },
   {
     "Modalidade": "pregão",
@@ -1491,13 +1531,13 @@
     "Descrição": "Óleo de soja",
     "Qtd. ARP": 36,
     "Valor unitário": 11.49,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 36,
+    "Valor empenhado": 413.64,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 36,
+    "Saldo dos produtos": 413.64
   },
   {
     "Modalidade": "pregão",
@@ -1511,13 +1551,13 @@
     "Descrição": "Ração para bezerro lactante",
     "Qtd. ARP": 80,
     "Valor unitário": 78,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 80,
+    "Valor empenhado": 6240,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 80,
+    "Saldo dos produtos": 6240
   },
   {
     "Modalidade": "pregão",
@@ -1531,13 +1571,13 @@
     "Descrição": "Ração para bovino - fase inicial",
     "Qtd. ARP": 274,
     "Valor unitário": 125,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 274,
+    "Valor empenhado": 34250,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 274,
+    "Saldo dos produtos": 34250
   },
   {
     "Modalidade": "pregão",
@@ -1551,13 +1591,13 @@
     "Descrição": "Ração para bovino - novilha",
     "Qtd. ARP": 350,
     "Valor unitário": 117,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 350,
+    "Valor empenhado": 40950,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 350,
+    "Saldo dos produtos": 40950
   },
   {
     "Modalidade": "pregão",
@@ -1571,13 +1611,13 @@
     "Descrição": "Ração para bovinos - fase lactação",
     "Qtd. ARP": 675,
     "Valor unitário": 116.6,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 675,
+    "Valor empenhado": 78705,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 675,
+    "Saldo dos produtos": 78705
   },
   {
     "Modalidade": "pregão",
@@ -1591,13 +1631,13 @@
     "Descrição": "Ração para bovinos - fase lactação",
     "Qtd. ARP": 75,
     "Valor unitário": 116.6,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 75,
+    "Valor empenhado": 8745,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 75,
+    "Saldo dos produtos": 8745
   },
   {
     "Modalidade": "pregão",
@@ -1611,13 +1651,13 @@
     "Descrição": "Ração para cabras - fase lactação",
     "Qtd. ARP": 540,
     "Valor unitário": 127,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 540,
+    "Valor empenhado": 68580,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 540,
+    "Saldo dos produtos": 68580
   },
   {
     "Modalidade": "pregão",
@@ -1631,13 +1671,13 @@
     "Descrição": "Ração para galinhas",
     "Qtd. ARP": 407,
     "Valor unitário": 113,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 407,
+    "Valor empenhado": 45991,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 407,
+    "Saldo dos produtos": 45991
   },
   {
     "Modalidade": "pregão",
@@ -1651,13 +1691,13 @@
     "Descrição": "Ração para ovinos",
     "Qtd. ARP": 240,
     "Valor unitário": 78,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 240,
+    "Valor empenhado": 18720,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 240,
+    "Saldo dos produtos": 18720
   },
   {
     "Modalidade": "pregão",
@@ -1671,13 +1711,13 @@
     "Descrição": "Ração para ovinos",
     "Qtd. ARP": 150,
     "Valor unitário": 114,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 150,
+    "Valor empenhado": 17100,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 150,
+    "Saldo dos produtos": 17100
   },
   {
     "Modalidade": "pregão",
@@ -1691,13 +1731,13 @@
     "Descrição": "Ração para ovinos - fase lactação",
     "Qtd. ARP": 100,
     "Valor unitário": 119,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 100,
+    "Valor empenhado": 11900,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 100,
+    "Saldo dos produtos": 11900
   },
   {
     "Modalidade": "pregão",
@@ -1711,13 +1751,13 @@
     "Descrição": "Ração para suinos - fase lactação",
     "Qtd. ARP": 329,
     "Valor unitário": 111,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 329,
+    "Valor empenhado": 36519,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 329,
+    "Saldo dos produtos": 36519
   },
   {
     "Modalidade": "pregão",
@@ -1731,13 +1771,13 @@
     "Descrição": "Suplemento para bovinos",
     "Qtd. ARP": 20,
     "Valor unitário": 123,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 20,
+    "Valor empenhado": 2460,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 20,
+    "Saldo dos produtos": 2460
   },
   {
     "Modalidade": "pregão",
@@ -1751,13 +1791,13 @@
     "Descrição": "Suplemento para equinos",
     "Qtd. ARP": 10,
     "Valor unitário": 38,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 10,
+    "Valor empenhado": 380,
+    "Num. Nota Emp": "2026NE000107",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 10,
+    "Saldo dos produtos": 380
   },
   {
     "Modalidade": "IRP",
@@ -3971,13 +4011,13 @@
     "Descrição": "Ração para bovinos - fase pré-parto",
     "Qtd. ARP": 100,
     "Valor unitário": 129.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 100,
+    "Valor empenhado": 12980,
+    "Num. Nota Emp": "2026NE000106",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 100,
+    "Saldo dos produtos": 12980
   },
   {
     "Modalidade": "pregão",
@@ -3991,13 +4031,13 @@
     "Descrição": "Ração para frango - fase engorda",
     "Qtd. ARP": 98,
     "Valor unitário": 113.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 98,
+    "Valor empenhado": 11152.4,
+    "Num. Nota Emp": "2026NE000106",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 98,
+    "Saldo dos produtos": 11152.4
   },
   {
     "Modalidade": "pregão",
@@ -4011,13 +4051,13 @@
     "Descrição": "Ração para frango - fase final",
     "Qtd. ARP": 35,
     "Valor unitário": 124.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 35,
+    "Valor empenhado": 4368,
+    "Num. Nota Emp": "2026NE000106",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 35,
+    "Saldo dos produtos": 4368
   },
   {
     "Modalidade": "pregão",
@@ -4031,13 +4071,13 @@
     "Descrição": "Ração para frango - fase inicial",
     "Qtd. ARP": 3,
     "Valor unitário": 137.23,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 3,
+    "Valor empenhado": 411.6899999999999,
+    "Num. Nota Emp": "2026NE000106",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 3,
+    "Saldo dos produtos": 411.6899999999999
   },
   {
     "Modalidade": "pregão",
@@ -4051,13 +4091,13 @@
     "Descrição": "Ração para galinhas - fase de crescimento",
     "Qtd. ARP": 85,
     "Valor unitário": 129.4,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 85,
+    "Valor empenhado": 10999,
+    "Num. Nota Emp": "2026NE000106",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 85,
+    "Saldo dos produtos": 10999
   },
   {
     "Modalidade": "pregão",
@@ -4071,13 +4111,13 @@
     "Descrição": "Ração para galinhas - fase inicial",
     "Qtd. ARP": 37,
     "Valor unitário": 139.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 37,
+    "Valor empenhado": 5172.6,
+    "Num. Nota Emp": "2026NE000106",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 37,
+    "Saldo dos produtos": 5172.6
   },
   {
     "Modalidade": "pregão",
@@ -4091,13 +4131,13 @@
     "Descrição": "Suplementos para bezerros lactantes",
     "Qtd. ARP": 40,
     "Valor unitário": 144.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 40,
+    "Valor empenhado": 5792,
+    "Num. Nota Emp": "2026NE000106",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 40,
+    "Saldo dos produtos": 5792
   },
   {
     "Modalidade": "pregão",
@@ -4611,13 +4651,13 @@
     "Descrição": "Ração para alevinos",
     "Qtd. ARP": 44,
     "Valor unitário": 188.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 44,
+    "Valor empenhado": 8307.2,
+    "Num. Nota Emp": "2026NE000105",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 44,
+    "Saldo dos produtos": 8307.2
   },
   {
     "Modalidade": "pregão",
@@ -4631,13 +4671,13 @@
     "Descrição": "Ração para peixes - fase inicial",
     "Qtd. ARP": 20,
     "Valor unitário": 208.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 20,
+    "Valor empenhado": 4176,
+    "Num. Nota Emp": "2026NE000105",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 20,
+    "Saldo dos produtos": 4176
   },
   {
     "Modalidade": "pregão",
@@ -4651,13 +4691,13 @@
     "Descrição": "Ração para suinos - fase pré-inicial",
     "Qtd. ARP": 64,
     "Valor unitário": 210.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 64,
+    "Valor empenhado": 13491.2,
+    "Num. Nota Emp": "2026NE000105",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 64,
+    "Saldo dos produtos": 13491.2
   },
   {
     "Modalidade": "pregão",
@@ -8871,13 +8911,13 @@
     "Descrição": "Ração para cabras - fase lactação",
     "Qtd. ARP": 60,
     "Valor unitário": 125.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 60,
+    "Valor empenhado": 7548,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 60,
+    "Saldo dos produtos": 7548
   },
   {
     "Modalidade": "pregão",
@@ -8891,13 +8931,13 @@
     "Descrição": "Ração para camarões",
     "Qtd. ARP": 64,
     "Valor unitário": 149,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 64,
+    "Valor empenhado": 9536,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 64,
+    "Saldo dos produtos": 9536
   },
   {
     "Modalidade": "pregão",
@@ -8911,13 +8951,13 @@
     "Descrição": "Ração para codornas - fase crescimento",
     "Qtd. ARP": 4,
     "Valor unitário": 189,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 4,
+    "Valor empenhado": 756,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 4,
+    "Saldo dos produtos": 756
   },
   {
     "Modalidade": "pregão",
@@ -8931,13 +8971,13 @@
     "Descrição": "Ração para codornas - fase postura",
     "Qtd. ARP": 7,
     "Valor unitário": 148,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 7,
+    "Valor empenhado": 1036,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 7,
+    "Saldo dos produtos": 1036
   },
   {
     "Modalidade": "pregão",
@@ -8951,13 +8991,13 @@
     "Descrição": "Ração para codornas - fase postura",
     "Qtd. ARP": 99,
     "Valor unitário": 128,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 99,
+    "Valor empenhado": 12672,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 99,
+    "Saldo dos produtos": 12672
   },
   {
     "Modalidade": "pregão",
@@ -8971,13 +9011,13 @@
     "Descrição": "Ração para coelhos",
     "Qtd. ARP": 108,
     "Valor unitário": 107.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 108,
+    "Valor empenhado": 11642.4,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 108,
+    "Saldo dos produtos": 11642.4
   },
   {
     "Modalidade": "pregão",
@@ -8991,13 +9031,13 @@
     "Descrição": "Ração para equinos",
     "Qtd. ARP": 50,
     "Valor unitário": 124,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 50,
+    "Valor empenhado": 6200,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 50,
+    "Saldo dos produtos": 6200
   },
   {
     "Modalidade": "pregão",
@@ -9011,13 +9051,13 @@
     "Descrição": "Ração para galinhas - fase produção",
     "Qtd. ARP": 46,
     "Valor unitário": 139,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 46,
+    "Valor empenhado": 6394,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 46,
+    "Saldo dos produtos": 6394
   },
   {
     "Modalidade": "pregão",
@@ -9031,13 +9071,13 @@
     "Descrição": "Ração para peixes - fase engorda",
     "Qtd. ARP": 120,
     "Valor unitário": 146,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 120,
+    "Valor empenhado": 17520,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 120,
+    "Saldo dos produtos": 17520
   },
   {
     "Modalidade": "pregão",
@@ -9051,13 +9091,13 @@
     "Descrição": "Ração para pós-larvas",
     "Qtd. ARP": 13,
     "Valor unitário": 184,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 13,
+    "Valor empenhado": 2392,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 13,
+    "Saldo dos produtos": 2392
   },
   {
     "Modalidade": "pregão",
@@ -9071,13 +9111,13 @@
     "Descrição": "Ração para suinos - fase inicial",
     "Qtd. ARP": 317,
     "Valor unitário": 136.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 317,
+    "Valor empenhado": 43365.60000000001,
+    "Num. Nota Emp": "2026NE000109",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 317,
+    "Saldo dos produtos": 43365.60000000001
   },
   {
     "Modalidade": "pregão",
@@ -9991,13 +10031,13 @@
     "Descrição": "Cistos de artemia",
     "Qtd. ARP": 5,
     "Valor unitário": 717,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 5,
+    "Valor empenhado": 3585,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 5,
+    "Saldo dos produtos": 3585
   },
   {
     "Modalidade": "pregão",
@@ -10011,13 +10051,13 @@
     "Descrição": "Núcleo para suíno",
     "Qtd. ARP": 20,
     "Valor unitário": 159,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 20,
+    "Valor empenhado": 3180,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 20,
+    "Saldo dos produtos": 3180
   },
   {
     "Modalidade": "pregão",
@@ -10031,13 +10071,13 @@
     "Descrição": "Ração para peixes - extrusada",
     "Qtd. ARP": 8,
     "Valor unitário": 199.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 8,
+    "Valor empenhado": 1598.4,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 8,
+    "Saldo dos produtos": 1598.4
   },
   {
     "Modalidade": "pregão",
@@ -10051,13 +10091,13 @@
     "Descrição": "Ração para peixes - extrusada",
     "Qtd. ARP": 91,
     "Valor unitário": 279,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 91,
+    "Valor empenhado": 25389,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 91,
+    "Saldo dos produtos": 25389
   },
   {
     "Modalidade": "pregão",
@@ -10071,13 +10111,13 @@
     "Descrição": "Ração para peixes - fase de engorda",
     "Qtd. ARP": 120,
     "Valor unitário": 90,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 120,
+    "Valor empenhado": 10800,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 120,
+    "Saldo dos produtos": 10800
   },
   {
     "Modalidade": "pregão",
@@ -10091,13 +10131,13 @@
     "Descrição": "Ração para peixes - fase de engorda",
     "Qtd. ARP": 500,
     "Valor unitário": 90,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 500,
+    "Valor empenhado": 45000,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 500,
+    "Saldo dos produtos": 45000
   },
   {
     "Modalidade": "pregão",
@@ -10111,13 +10151,13 @@
     "Descrição": "Ração para peixes - fase de recria",
     "Qtd. ARP": 30,
     "Valor unitário": 108,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 30,
+    "Valor empenhado": 3240,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 30,
+    "Saldo dos produtos": 3240
   },
   {
     "Modalidade": "pregão",
@@ -10131,13 +10171,13 @@
     "Descrição": "Suplemento para bovinos - fase lactação",
     "Qtd. ARP": 30,
     "Valor unitário": 152.8,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 30,
+    "Valor empenhado": 4584,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 30,
+    "Saldo dos produtos": 4584
   },
   {
     "Modalidade": "pregão",
@@ -10151,13 +10191,13 @@
     "Descrição": "Suplemento para bovinos de corte",
     "Qtd. ARP": 30,
     "Valor unitário": 234.4,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 30,
+    "Valor empenhado": 7032,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 30,
+    "Saldo dos produtos": 7032
   },
   {
     "Modalidade": "pregão",
@@ -10171,13 +10211,13 @@
     "Descrição": "Suplementos para vacas no pré-parto",
     "Qtd. ARP": 20,
     "Valor unitário": 230,
-    "Qtd empenhada": 0,
-    "Valor empenhado": 0,
-    "Num. Nota Emp": "N/A",
+    "Qtd empenhada": 20,
+    "Valor empenhado": 4600,
+    "Num. Nota Emp": "2026NE000108",
     "Num. Nota Fiscal": "N/A",
     "Qtd. adquirida": 0,
-    "Qtd. restante": 0,
-    "Saldo dos produtos": 0
+    "Qtd. restante": 20,
+    "Saldo dos produtos": 4600
   },
   {
     "Modalidade": "pregão",

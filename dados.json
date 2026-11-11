@@ -2270,5 +2270,21 @@
     "notaFiscal": "",
     "notaFiscalValor": 0,
     "dataNota": ""
+  },
+  {
+    "modalidade": "IRP",
+    "numero": "01",
+    "ano": "2025",
+    "descricao": "Aquisição de gás GLP",
+    "fornecedor": "ANDRE AUGUSTO TRUTA FELIPE",
+    "cnpj": "18.474.659/0002-26",
+    "estado": "PB",
+    "planejado": 72500.0,
+    "empenho": "2026NE000059",
+    "empenhado": 11345.0,
+    "dataEmpenho": "13/07/2026",
+    "notaFiscal": "000.001.034",
+    "notaFiscalValor": 4695.0,
+    "dataNota": "11/08/2026"
   }
 ]

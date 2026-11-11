@@ -39,15 +39,60 @@ main{max-width:1494px;margin:auto;padding:22px}.toolbar{display:flex;justify-con
  .print-report .financial-report{break-before:page;page-break-before:always}
 }
 </style>
+<style id="campus-inspired-detail">
+:root{--ink:#17251e;--muted:#65736a;--line:#e3e9e4;--blue:#287848;--panel:#fff;--bg:#f3f5f2;--teal:#16856a}
+body{background:#f3f5f2!important;color:#17251e!important}
+header{padding:14px max(22px,calc((100% - 1500px)/2))!important;background:#fff!important;color:#17251e!important;border:0!important;border-bottom:1px solid #e7ebe7!important;box-shadow:0 2px 10px rgba(25,48,34,.04)!important}
+.masthead-inner{max-width:1500px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:104px}
+.institution-logos{display:flex;align-items:center;gap:20px;flex:0 0 auto}
+.institution-logos img{display:block;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(15,23,42,.15))}
+.institution-logos .logo-ufpb{height:88px;width:auto}
+.institution-logos .logo-cchsa{height:78px;width:94px}
+.top-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.button{border:1px solid #d7e0d8!important;border-radius:7px!important;background:#f7f9f7!important;color:#33443a!important;padding:10px 14px!important}
+.button:hover{background:#edf5ee!important;color:#17743f!important}
+.button.primary{background:#287848!important;border-color:#21663e!important;color:#fff!important}
+.button.primary:hover{background:#21663e!important;color:#fff!important}
+.campus-banner{height:270px;background:linear-gradient(90deg,rgba(12,30,18,.08),rgba(12,30,18,.02)),url('../background.png') center 46%/cover no-repeat}
+main{max-width:1544px!important;padding:0 22px 22px!important;margin:-82px auto 0!important;position:relative;z-index:2;background:transparent!important}
+.detail-welcome{padding:27px 34px 25px;margin:0 0 20px;background:#fff;border:0;border-top:4px solid #21844b;border-radius:2px;box-shadow:0 8px 28px rgba(25,48,34,.10)}
+.detail-welcome .eyebrow{color:#21844b;letter-spacing:.12em}
+.detail-welcome h1{color:#17251e;font-size:clamp(24px,3vw,32px);margin:5px 0 7px;letter-spacing:-.025em}
+.detail-welcome .intro{max-width:850px;color:#58665d;margin:0;line-height:1.55}
+.panel{padding:18px;border:1px solid #e2e8e3;border-radius:10px;background:#fff;box-shadow:0 5px 18px rgba(25,48,34,.055);margin-bottom:14px}
+.panel-title{border-bottom:1px solid #e6ebe7;padding-bottom:10px}
+.panel-title h2{color:#24382b}
+.filters{gap:12px}
+.field input,.field select{background:#fff;border:1px solid #d5dfd7;border-radius:7px}
+.field input:focus,.field select:focus{border-color:#43925c;box-shadow:0 0 0 3px rgba(54,137,77,.13)}
+.kpi{border:1px solid #e2e8e3;border-top:3px solid #5a9b6c;border-radius:10px;box-shadow:0 5px 18px rgba(25,48,34,.055)}
+.kpi span{color:#65736a}
+.kpi strong{color:#24382b}
+.table-scroll{border:1px solid #e1e7e2;border-radius:9px}
+thead{background:#f0f5f1;color:#34483a}
+th,td{border-bottom-color:#e6ebe7}
+th:hover{background:#e7f1e9}
+tbody tr:nth-child(even){background:#f9fbf9}
+tbody tr:hover{background:#edf6ef}
+.pagination-actions button{border:1px solid #d7e0d8;border-radius:7px;background:#f4f7f4;color:#33443a}
+.pagination-actions button:hover:not(:disabled){background:#edf5ee;color:#17743f}
+.financial-kpi{border-color:#e2e8e3;border-radius:9px;background:#fbfcfb}
+.financial-table th{background:#f0f5f1}
+.financial-note{background:#f3f8f3;border-left-color:#287848}
+@media(max-width:800px){header{padding:12px 16px!important}.masthead-inner{min-height:0;align-items:flex-start;flex-direction:column;gap:8px}.institution-logos .logo-ufpb{height:64px}.institution-logos .logo-cchsa{height:58px;width:70px}.top-toolbar{width:100%;justify-content:flex-start}.campus-banner{height:210px;background-position:center 46%}main{padding:0 13px 18px!important;margin:-58px auto 0!important}.detail-welcome{padding:23px 22px;margin-bottom:14px}}
+@media(max-width:600px){.top-toolbar{display:grid;grid-template-columns:1fr 1fr}.top-toolbar .button:first-child{grid-column:1/-1}.campus-banner{height:170px}.detail-welcome{padding:20px 18px}.panel{padding:13px}.filters{grid-template-columns:1fr}.kpis,.financial-kpis{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
 <header>
-  <div class="eyebrow">Painel de Contratações • CCHSA/UFPB</div>
-  <h1>Consulta Detalhada</h1>
-  <p class="intro">Filtre os produtos e consulte quantidades, empenhos e saldos da base de contratações.</p>
+  <div class="masthead-inner">
+    <div class="institution-logos" aria-label="Logos institucionais"><img class="logo-ufpb" src="../logo_ufpb_transparente.png" alt="Universidade Federal da Paraíba"><img class="logo-cchsa" src="../logo_cchsa_transparente.png" alt="Centro de Ciências Humanas, Sociais e Agrárias"></div>
+    <div class="top-toolbar"><a class="button" href="../index.html">← Voltar à dashboard</a><button class="button" id="printReport" type="button">▧ Imprimir relatório completo</button><button class="button primary" id="exportCsv" type="button">↓ Exportar XLSX</button></div>
+  </div>
 </header>
+<div class="campus-banner" aria-hidden="true"></div>
 <main>
-  <div class="toolbar"><a class="button" href="../index.html">← Voltar à dashboard</a><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="button" id="printReport" type="button">▧ Imprimir relatório completo</button><button class="button primary" id="exportCsv" type="button">↓ Exportar XLSX</button></div></div>
+  <section class="detail-welcome"><div class="eyebrow">Painel de Contratações • CCHSA/UFPB</div><h1>Consulta Detalhada</h1><p class="intro">Filtre os produtos e consulte quantidades, empenhos e saldos da base de contratações.</p></section>
   <section class="panel">
     <div class="panel-title"><div><h2>Filtros da consulta</h2><p>A tabela e os indicadores são atualizados enquanto você altera os filtros.</p></div><button class="button" id="clearFilters" type="button">Limpar filtros</button></div>
     <div class="filters">

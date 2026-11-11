@@ -7,7 +7,7 @@
 <style>
 :root{--bg:#f4f7fb;--panel:#fff;--ink:#17263c;--muted:#68778d;--line:#e4eaf2;--blue:#2457d6;--blue2:#6487ef;--teal:#0f9f8f;--orange:#e99a37;--red:#dc5c67;--shadow:0 8px 28px rgba(22,42,78,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:14px}
-header{background:linear-gradient(115deg,#13294b,#2457d6);color:white;padding:28px max(22px,calc((100% - 1500px)/2)) 26px}
+header{background:linear-gradient(115deg,rgba(19,41,75,.78),rgba(36,87,214,.58)),url('background.png') center/cover no-repeat;color:white;padding:64px max(22px,calc((100% - 1500px)/2)) 62px}
 .headline{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:#b9ccff}.headline h1{margin:8px 0 7px;font-size:clamp(24px,3vw,34px);letter-spacing:-.03em}.headline p{margin:0;color:#dbe5ff;max-width:760px;line-height:1.55}.head-actions{display:flex;gap:9px;flex-wrap:wrap}.head-action-stack{display:flex;flex-direction:column;gap:9px}.head-action-stack a{text-align:center;text-decoration:none}@media(max-width:600px){.head-action-stack{flex:1 1 100%}.head-action-stack .btn-light{width:100%;flex:none}}
 button{border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;font-size:12px;transition:.15s}button:hover{transform:translateY(-1px)}.btn-light{background:#fff;color:#1d3f85}.btn-ghost{background:#ffffff1a;color:white;border:1px solid #ffffff42}
 main{max-width:1500px;margin:auto;padding:22px}.filters{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:var(--shadow);margin-top:-2px}.section-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-top h2{font-size:14px;margin:0}.hint{font-size:11px;color:var(--muted)}
@@ -18,7 +18,7 @@ main{max-width:1500px;margin:auto;padding:22px}.filters{background:var(--panel);
 .table-panel{margin-top:14px}.table-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.table-controls input{border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-width:210px;font:inherit}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:12px}thead{background:#f4f7fc;color:#506078}th,td{padding:12px 13px;text-align:left;border-bottom:1px solid #edf1f6}th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer}tbody tr:hover{background:#f8faff}td.money{text-align:right;font-variant-numeric:tabular-nums}tbody tr:last-child td{border-bottom:0}.tag{display:inline-block;padding:4px 7px;border-radius:6px;background:#edf2ff;color:#2852b6;font-weight:700;font-size:10px}.pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:13px;color:var(--muted);font-size:12px}.pagination-actions{display:flex;gap:7px}.pagination-actions button{padding:8px 11px}.empty{padding:28px;text-align:center;color:var(--muted)}footer{max-width:1500px;margin:auto;padding:0 22px 24px;color:var(--muted);font-size:11px;line-height:1.6}
 .dashboard-financial-report{display:none}.dashboard-financial-report h2{font-size:17pt;margin:0 0 2mm}.dashboard-financial-report h3{font-size:11pt;margin:5mm 0 2mm}.dashboard-financial-report p,.dashboard-financial-report li{font-size:8pt;line-height:1.5}.report-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm;margin:3mm 0}.report-kpi{border:1px solid #9aa8bb;border-radius:2mm;padding:2.5mm}.report-kpi span,.report-kpi strong{display:block}.report-kpi span{font-size:7pt;color:#475569}.report-kpi strong{font-size:10pt;margin-top:1mm}.report-table{width:100%;border-collapse:collapse;white-space:normal;font-size:7pt;margin:2mm 0 4mm}.report-table th,.report-table td{padding:1.5mm 1.2mm;border:0.2mm solid #9aa8bb;text-align:left;white-space:normal;overflow-wrap:anywhere}.report-table th{background:#e8edf5}
 @media(max-width:1050px){.filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.charts,.lower{grid-template-columns:1fr}}
-@media(max-width:600px){main{padding:13px}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{gap:9px}.kpi{padding:13px}.kpi-value{font-size:19px}.panel{padding:14px}.chart-wrap{height:260px}header{padding:23px 17px}.head-actions{width:100%}.head-actions button{flex:1}.filter-grid{gap:9px}}
+@media(max-width:600px){main{padding:13px}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{gap:9px}.kpi{padding:13px}.kpi-value{font-size:19px}.panel{padding:14px}.chart-wrap{height:260px}header{padding:44px 17px 42px}.head-actions{width:100%}.head-actions button{flex:1}.filter-grid{gap:9px}}
 
 /* Mapa interativo por UF */
 .map-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:18px;align-items:stretch}
@@ -445,7 +445,7 @@ html body ::-webkit-scrollbar-thumb:hover {background:#476486}
 <style id="dashboard-full-light-theme">
 :root {color-scheme:light;--bg:#f3f5f8;--panel:#fff;--line:#111827;--ink:#111827;--muted:#475569;--blue:#2457d6;--teal:#087f5b;--shadow:0 8px 24px rgba(15,23,42,.08)}
 html,body {background:#f1f3f6 !important;background-image:linear-gradient(180deg,#f8fafc 0%,#edf1f5 100%) !important;background-attachment:scroll !important;color:#111827 !important}
-header {background:linear-gradient(112deg,#fff 0%,#f1f5f9 65%,#e9eef5 100%) !important;color:#111827 !important;border-bottom:1px solid #111827 !important;box-shadow:0 8px 22px rgba(15,23,42,.08) !important}
+header {background:linear-gradient(112deg,rgba(248,250,252,.78) 0%,rgba(241,245,249,.68) 65%,rgba(233,238,245,.62) 100%),url('background.png') center/cover no-repeat !important;color:#111827 !important;border-bottom:1px solid #111827 !important;box-shadow:0 8px 22px rgba(15,23,42,.08) !important}
 header .eyebrow {background:#e8f0ff !important;color:#1e40af !important;border-color:#111827 !important}
 header .headline h1,header .headline p,header h1 {color:#111827 !important;text-shadow:none !important}
 header .headline p {color:#475569 !important}
@@ -576,19 +576,63 @@ html body main .filters .procurement-field {z-index:2}
 .head-action-menu button:hover,.head-action-menu a:hover {background:#1c4276 !important;box-shadow:none;transform:translateY(-1px)}
 @media(max-width:800px){.head-actions{width:100%;justify-content:flex-start}.head-action-menu{flex:1;flex-wrap:wrap}.head-action-menu button,.head-action-menu a{flex:1}}
 @media(max-width:600px){.head-action-menu{width:100%;flex:1 1 100%}.head-action-menu button,.head-action-menu a{flex:1 1 100%}}
+.head-actions{flex-direction:column;align-items:flex-end;gap:8px}
+.institution-logos{display:flex;align-items:center;justify-content:flex-end;gap:14px;padding-right:8px}
+.institution-logos img{display:block;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(15,23,42,.18))}
+.institution-logos .logo-ufpb{height:58px;width:auto}
+.institution-logos .logo-cchsa{height:62px;width:76px}
+@media(max-width:800px){.head-actions{align-items:flex-start}.institution-logos{justify-content:flex-start;padding:0 0 2px}.institution-logos .logo-ufpb{height:52px}.institution-logos .logo-cchsa{height:56px;width:68px}}
+</style>
+<style id="campus-inspired-dashboard">
+:root{--bg:#f3f5f2;--panel:#fff;--ink:#17251e;--muted:#65736a;--line:#e3e9e4;--blue:#287848;--blue2:#499667;--teal:#16856a;--shadow:0 8px 24px rgba(25,48,34,.07)}
+html,body{background:#f3f5f2!important;color:#17251e!important}
+header{padding:14px max(22px,calc((100% - 1500px)/2))!important;background:#fff!important;color:#17251e!important;border:0!important;border-bottom:1px solid #e7ebe7!important;box-shadow:0 2px 10px rgba(25,48,34,.04)!important}
+.masthead-inner{max-width:1500px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:104px}
+.institution-logos{justify-content:flex-start!important;gap:20px!important;padding:0!important;flex:0 0 auto}
+.institution-logos .logo-ufpb{height:88px!important;width:auto!important}
+.institution-logos .logo-cchsa{height:78px!important;width:94px!important}
+.head-actions{width:auto!important;align-items:flex-end!important;justify-content:center!important;gap:0!important}
+.head-action-menu{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;gap:4px!important}
+.head-action-menu button,.head-action-menu a{min-height:42px!important;padding:10px 14px!important;border-radius:5px!important;color:#33433a!important;background:transparent!important;border:0!important;font-size:13px!important;font-weight:600!important}
+.head-action-menu button:hover,.head-action-menu a:hover{color:#17743f!important;background:#eff6f0!important;transform:none!important;box-shadow:none!important}
+.campus-banner{height:270px;background:linear-gradient(90deg,rgba(12,30,18,.08),rgba(12,30,18,.02)),url('background.png') center 46%/cover no-repeat}
+html body main{max-width:1500px!important;padding:0 22px 22px!important;margin:-82px auto 0!important;position:relative;z-index:2;background:transparent!important}
+.dashboard-welcome{min-height:132px;padding:27px 34px 25px;margin:0 0 20px;background:#fff!important;border:0!important;border-top:4px solid #21844b!important;border-radius:2px!important;box-shadow:0 8px 28px rgba(25,48,34,.10)!important}
+.dashboard-welcome .eyebrow{display:inline-block;color:#21844b!important;background:transparent!important;border:0!important;letter-spacing:.12em}
+.dashboard-welcome h1{margin:5px 0 7px!important;color:#17251e!important;font-size:clamp(24px,3vw,32px)!important;letter-spacing:-.025em}
+.dashboard-welcome p{max-width:850px;margin:0!important;color:#58665d!important;line-height:1.55}
+html body main .filters,html body main .panel,html body main .kpi,html body main .geo-emphasis-section,html body main #supplier-map-feature{border:1px solid #e2e8e3!important;border-radius:10px!important;box-shadow:0 5px 18px rgba(25,48,34,.055)!important}
+html body main .filters{background:#fff!important}
+html body main .panel,html body main .kpi{background:#fff!important}
+html body main .panel:hover,html body main .kpi:hover{border-color:#c6d8ca!important;box-shadow:0 8px 22px rgba(25,48,34,.09)!important}
+html body main .section-top{border-bottom:1px solid #e6ebe7!important;padding-bottom:10px}
+html body main .section-top h2,html body main .panel-title h2{color:#24382b!important}
+html body main .kpi:nth-child(n){border-top:3px solid #5a9b6c!important}
+html body main .kpi-icon,html body main .insight-mark{background:#edf5ee!important;color:#287848!important}
+html body main .field input,html body main .field select,html body main .table-controls input,html body main input,html body main select{border:1px solid #d5dfd7!important;border-radius:7px!important}
+html body main .field input:focus,html body main .field select:focus,html body main .table-controls input:focus{border-color:#43925c!important;box-shadow:0 0 0 3px rgba(54,137,77,.13)!important}
+html body main button,html body main .btn-secondary{border:1px solid #d7e0d8!important;border-radius:7px!important;background:#f4f7f4!important;color:#33443a!important}
+html body main .btn-primary{background:#287848!important;border-color:#21663e!important;color:#fff!important}
+html body main .table-scroll{border:1px solid #e1e7e2!important;border-radius:9px!important}
+html body main thead th{background:#f0f5f1!important;color:#34483a!important;border-bottom:1px solid #dde5de!important}
+html body main tbody tr:nth-child(even) td{background:#f9fbf9!important}
+html body main tbody tr:hover td{background:#edf6ef!important}
+html body main .chart-wrap{background:#fbfcfb!important;border-color:#e4eae5!important}
+@media(max-width:800px){header{padding:12px 16px!important}.masthead-inner{min-height:0;align-items:flex-start;flex-direction:column;gap:8px}.institution-logos .logo-ufpb{height:64px!important}.institution-logos .logo-cchsa{height:58px!important;width:70px!important}.head-actions{width:100%!important;align-items:stretch!important}.head-action-menu{width:100%;flex-wrap:wrap;justify-content:flex-start}.head-action-menu button,.head-action-menu a{flex:1 1 auto!important}.campus-banner{height:210px;background-position:center 46%}html body main{padding:0 13px 18px!important;margin:-58px auto 0!important}.dashboard-welcome{padding:23px 22px;margin-bottom:14px}}
+@media(max-width:600px){.head-action-menu button,.head-action-menu a{flex:1 1 100%!important;justify-content:flex-start!important}.campus-banner{height:170px}.dashboard-welcome{padding:20px 18px}}
+@media print{.campus-banner{display:none!important}html body main{margin:0 auto!important;padding:5mm 0!important}.dashboard-welcome{box-shadow:none!important;border:0!important;border-bottom:1pt solid #777!important}}
 </style>
 </head>
 <body>
 <header>
-  <div class="headline">
-    <div><div class="eyebrow">Painel de transparência • visão gerencial</div><h1>Painel de Contratações do CCHSA/UFPB</h1><p>Acompanhe valores planejados, empenhados e faturados. Use os filtros para explorar os registros e atualizar indicadores, gráficos, insights e tabela em tempo real.</p></div>
+  <div class="masthead-inner">
+    <div class="institution-logos" aria-label="Logos institucionais"><img class="logo-ufpb" src="logo_ufpb_transparente.png" alt="Universidade Federal da Paraíba"><img class="logo-cchsa" src="logo_cchsa_transparente.png" alt="Centro de Ciências Humanas, Sociais e Agrárias"></div>
     <div class="head-actions"><nav class="head-action-menu" aria-label="Ações do painel"><a href="./PRODUTOS/index.html">Consulta detalhada</a><button id="exportTop" type="button">↓ Exportar XLSX</button><button id="printDashboard" type="button">▧ Imprimir relatório PDF</button></nav></div>
   </div>
 </header>
+<div class="campus-banner" aria-hidden="true"></div>
 <main>
-
-
-
+<section class="dashboard-welcome"><div class="eyebrow">Painel de transparência • visão gerencial</div><h1>Painel de Contratações do CCHSA/UFPB</h1><p>Acompanhe valores planejados, empenhados e faturados. Use os filtros para explorar os registros e atualizar indicadores, gráficos, insights e tabela em tempo real.</p></section>
 <section class="filters">
  <div class="section-top"><h2>Filtros da análise</h2><span class="hint">Os componentes são recalculados automaticamente</span></div>
  <div class="filter-grid">
